@@ -1,0 +1,40 @@
+{% extends '@WebProfiler/Profiler/layout.html.twig' %}
+
+{% block toolbar %}
+    {% set icon %}
+        <span class="icon">{{ include('@ContentManagement/Icon/th-large.svg') }}</span>
+        <span class="sf-toolbar-value">{{ collector.blockCount }}</span>
+    {% endset %}
+
+    {% set text %}
+        <div class="sf-toolbar-info-piece">
+            Blocks
+        </div>
+    {% endset %}
+
+    {{ include('@WebProfiler/Profiler/toolbar_item.html.twig', { 'link': true, 'status': collector.status }) }}
+{% endblock %}
+
+{% block menu %}
+    <span class="label">
+        <span class="icon">{{ include('@ContentManagement/Icon/th-large.svg') }}</span>
+        <strong>Blocks</strong>
+    </span>
+{% endblock %}
+
+{% block panel %}
+    <h2>Blocks called</h2>
+    <table>
+        <tr>
+            <th>Node name</th>
+            <th>Status</th>
+        </tr>
+
+        {% for block in collector.blockCalled %}
+            <tr class="{% if block['status'] == 'not found' %}status-warning{% endif %}">
+                <td>{{ block['nodeName'] }}</td>
+                <td>{{ block['status'] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

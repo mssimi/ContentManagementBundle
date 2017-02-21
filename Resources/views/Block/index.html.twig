@@ -1,0 +1,40 @@
+{% extends '@ContentManagement/base.html.twig' %}
+
+{% block title %}{{ ('block.heading')|trans }}{% endblock %}
+{% block content %}
+    <div class="page-header">
+        <div class="page-title">
+            <h3>{{ ('block.heading')|trans }}</h3>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <a class="btn btn-default" href="{{ path('_mssimi_block_new') }}">{{ ('block.new')|trans }}</a>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h6 class="panel-title">{{ ('block.list')|trans }}</h6>
+        </div>
+
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <tr>
+                    <td>{{ ('node.name')|trans }}</td>
+                    <td>{{ ('node.content')|trans }}</td>
+                    <td>{{ ('form.common.tools')|trans }}</td>
+                </tr>
+                {% for block in blocks %}
+                    <tr>
+                        <td>{{ block.name }}</td>
+                        <td>{{ block.content }}</td>
+                        <td><a class="btn btn-default" href="{{ path('_mssimi_block_edit', {'id' : block.id }) }}">{{ 'form.common.edit'|trans }}</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

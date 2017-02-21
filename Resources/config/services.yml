@@ -1,4 +1,26 @@
 services:
-#    content_management.example:
-#        class: mssimi\ContentManagementBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+  doctrine_phpcr_param_converter:
+      class: Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DoctrineParamConverter
+      arguments:
+          - "@doctrine_phpcr"
+      tags:
+          - { name: "request.param_converter", converter: "doctrine.odm"}
+  cms.phpcr_initializer:
+      class: Doctrine\Bundle\PHPCRBundle\Initializer\GenericInitializer
+      arguments:
+          - ContentManagementBundle
+          - ["/cms/block", "/cms/menu"]
+      tags:
+          - { name: "doctrine_phpcr.initializer" }
+  twig.block_extension:
+      class: mssimi\ContentManagementBundle\Twig\BlockTwigExtension
+      tags:
+          - { name: twig.extension }
+      autowire: true
+  content_management.block_collector:
+      class: mssimi\ContentManagementBundle\DataCollector\BlockDataCollector
+      arguments:
+          - "@twig.block_extension"
+      public: false
+      tags:
+          - { name: data_collector, template: 'ContentManagementBundle:Block:data_collector.html.twig', id: content_management.block_collector }
