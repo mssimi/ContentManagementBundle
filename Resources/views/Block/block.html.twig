@@ -1,3 +1,3 @@
-<div id="{{ block.id|slice(1)|replace('/','-') }}{{ idSuffix|default('') }}">
+<div id="{{ block.id|slice(1)|replace({'/' : '-'}) }}{{ idSuffix|default('') }}" class="x-editable" data-url="{{ path('_mssimi_block_inline_edit', {'id' : block.id }) }}" data-type="textarea" data-placement="bottom">
     {{ block.content }}
 </div>

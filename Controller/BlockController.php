@@ -106,4 +106,23 @@ class BlockController extends Controller
             'form' => $form->createView(),
         ));
     }
+
+    /**
+     * Route for inline edit using ajax
+     *
+     * @Route("/inline-edit/{id}", name="_mssimi_block_inline_edit", options={"expose" = true} , requirements={"id"=".+"})
+     * @Method({"POST"})
+     * @param Request $request
+     * @param Block $block
+     * @return Response
+     */
+    public function inlineEditAction(Request $request, Block $block){
+
+        $block->setContent($request->get('value'));
+        $dm = $this->get('doctrine_phpcr')->getManager();
+        $dm->persist($block);
+        $dm->flush();
+
+        return new Response('success');
+    }
 }
