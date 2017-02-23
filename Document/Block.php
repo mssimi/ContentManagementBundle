@@ -5,7 +5,7 @@ namespace mssimi\ContentManagementBundle\Document;
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 
 /**
- * @PHPCR\Document
+ * @PHPCR\Document(translator="attribute")
  *
  */
 class Block
@@ -31,9 +31,14 @@ class Block
     private $children;
 
     /**
-     * @PHPCR\Field(type="string")
+     * @PHPCR\Field(type="string", translated=true)
      */
     private $content;
+
+    /**
+     * @PHPCR\Locale
+     */
+    private $locale;
 
     /**
      * @return mixed
@@ -113,5 +118,21 @@ class Block
     public function setContent($content)
     {
         $this->content = $content;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLocale()
+    {
+        return $this->locale;
+    }
+
+    /**
+     * @param mixed $locale
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
     }
 }
