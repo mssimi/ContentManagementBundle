@@ -17,6 +17,12 @@ services:
       tags:
           - { name: twig.extension }
       autowire: true
+  twig.edit_button_extension:
+      class: mssimi\ContentManagementBundle\Twig\EditButtonTwigExtension
+      tags:
+          - { name: twig.extension }
+      arguments:
+          - "%content_management.locales%"
   content_management.block_collector:
       class: mssimi\ContentManagementBundle\DataCollector\BlockDataCollector
       arguments:

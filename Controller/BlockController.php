@@ -87,13 +87,14 @@ class BlockController extends Controller
      * @param Block $block
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function editAction(Request $request, Block $block)
+    public function editAction(Request $request, $id)
     {
+        $dm = $this->get('doctrine_phpcr')->getManager();
+        $block = $dm->findTranslation(null, $id, $request->query->get('locale'));
         $form = $this->createForm(BlockType::class, $block);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $dm = $this->get('doctrine_phpcr')->getManager();
+        if ($form->isSubmitted() && $form->isValid()){
             $dm->persist($block);
             $dm->flush();
 

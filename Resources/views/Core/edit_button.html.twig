@@ -1,0 +1,14 @@
+{% if locales|length == 1 %}
+    <a class="btn btn-default dropdown-toggle" href="{{ url }}?locale={{ locales|first }}">{{ 'common.edit'|trans }}</a>
+{% else %}
+    <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ 'common.edit'|trans }} <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            {% for locale in locales %}
+                <li><a href="{{ url }}?locale={{ locale }}">{{ locale }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
