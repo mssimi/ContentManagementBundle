@@ -5,7 +5,7 @@ namespace mssimi\ContentManagementBundle\Document;
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 
 /**
- * @PHPCR\Document(translator="attribute")
+ * @PHPCR\Document(repositoryClass="mssimi\ContentManagementBundle\Repository\BlockRepository", translator="attribute")
  *
  */
 class Block

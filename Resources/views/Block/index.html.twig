@@ -11,6 +11,10 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <a class="btn btn-default" href="{{ path('_mssimi_block_new') }}">{{ ('block.new')|trans }}</a>
+            <form class="form-inline pull-right" action="{{ path('_mssimi_block_search_index') }}" method="get">
+                <input placeholder="search by nodename" class="form-control" name="name" type="text">
+                <button class="btn btn-default" type="submit">{{ ('form.common.submit')|trans }}</button>
+            </form>
         </div>
     </div>
 

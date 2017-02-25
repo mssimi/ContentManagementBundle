@@ -20,10 +20,12 @@ class BlockController extends Controller
     /**
      * Lists all Block entities.
      *
-     * @Route("/index", name="_mssimi_block_index")
+     * @Route("/index")
      * @Method("GET")
+     * @param string $id
+     * @return Response
      */
-    public function indexAction()
+    public function indexAction($id = '/cms/block')
     {
         $dm = $this->get('doctrine_phpcr')->getManager();
         $parent = $dm->find('ContentManagementBundle:Block', '/cms/block');
@@ -37,12 +39,19 @@ class BlockController extends Controller
     /**
      * Lists all Block entities ajax.
      *
-     * @Route("/ajax-index", name="_mssimi_block_ajax_index")
+     * @Route("/search-index", name="_mssimi_block_search_index")
+     * @param Request $request
      * @return Response
      * @Method({"GET","POST"})
      */
-    public function indexAjaxAction()
+    public function indexSearchAction(Request $request)
     {
+        $dm = $this->get('doctrine_phpcr')->getManager();
+        $blocks = $dm->getRepository('ContentManagementBundle:Block')->findLikeNodename($request->query->get('name'));
+
+        return $this->render('@ContentManagement/Block/index.html.twig', array(
+            'blocks' => $blocks
+        ));
     }
 
     /**
