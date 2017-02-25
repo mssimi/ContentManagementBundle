@@ -22,10 +22,9 @@ class BlockController extends Controller
      *
      * @Route("/index")
      * @Method("GET")
-     * @param string $id
      * @return Response
      */
-    public function indexAction($id = '/cms/block')
+    public function indexAction()
     {
         $dm = $this->get('doctrine_phpcr')->getManager();
         $parent = $dm->find('ContentManagementBundle:Block', '/cms/block');
