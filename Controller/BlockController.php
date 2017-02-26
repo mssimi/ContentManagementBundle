@@ -20,7 +20,7 @@ class BlockController extends Controller
     /**
      * Lists all Block entities.
      *
-     * @Route("/index")
+     * @Route("/index", name="_mssimi_block_index")
      * @Method("GET")
      * @return Response
      */

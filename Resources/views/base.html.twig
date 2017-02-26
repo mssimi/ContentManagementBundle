@@ -6,10 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('bundles/contentmanagement/css/dashboard.css') }}">
 </head>
 <body>
-    <div class="container">
-        {% block content %}{% endblock content %}
+    {% include '@ContentManagement/Core/navbar.html.twig' %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                {% include '@ContentManagement/Core/sidebar.html.twig' %}
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                {% block content %}{% endblock content %}
+            </div>
+        </div>
     </div>
 
     <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>

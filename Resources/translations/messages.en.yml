@@ -1,0 +1,6 @@
+common:
+    new: "New"
+    edit: "Edit"
+    submit: "Submit"
+    back: "Back"
+    tools: "Tools"
