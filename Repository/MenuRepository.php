@@ -3,21 +3,20 @@
 namespace mssimi\ContentManagementBundle\Repository;
 
 /**
- * Class BlockRepository
+ * Class MenuRepository
  * @package mssimi\ContentManagementBundle\Repository
  * @author Marek Šimeček <mssimi@seznam.cz>
  */
-class BlockRepository extends \Doctrine\ODM\PHPCR\DocumentRepository
+class MenuRepository extends \Doctrine\ODM\PHPCR\DocumentRepository
 {
     /**
-     * Finds block where like %nodename%
-     *
+     * Finds menu where like %nodename%
      * @param $name
      * @return mixed
      */
     public function findLikeNodename($name){
-        $qb = $this->createQueryBuilder('Block');
-        $qb->where()->like()->localName('Block')->literal('%'.$name.'%');
+        $qb = $this->createQueryBuilder('Menu');
+        $qb->where()->like()->localName('Menu')->literal('%'.$name.'%');
         return $qb->getQuery()->execute();
     }
 }

@@ -1,0 +1,48 @@
+{% extends '@ContentManagement/base.html.twig' %}
+
+{% block title %}{{ ('menu.heading')|trans }}{% endblock %}
+{% block content %}
+    <div class="page-header">
+        <div class="page-title">
+            <h3>{{ ('menu.heading')|trans }}</h3>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <a class="btn btn-default" href="{{ path('_mssimi_menu_new') }}">{{ ('common.new')|trans }}</a>
+            <form class="form-inline pull-right" action="{{ path('_mssimi_menu_search_index') }}" method="get">
+                <input placeholder="search by nodename" class="form-control" name="name" type="text">
+                <button class="btn btn-default" type="submit">{{ ('common.submit')|trans }}</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h6 class="panel-title">{{ ('menu.list')|trans }}</h6>
+        </div>
+
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <tr>
+                    <td>{{ ('node.name')|trans }}</td>
+                    <td>{{ ('node.label')|trans }}</td>
+                    <td>{{ ('node.link')|trans }}</td>
+                    <td>{{ ('node.targetBlank')|trans }}</td>
+                    <td>{{ ('common.tools')|trans }}</td>
+                </tr>
+                {% for menu in menus %}
+                    <tr>
+                        <td>{{ menu.name }}</td>
+                        <td>{{ menu.label }}</td>
+                        <td>{{ menu.link }}</td>
+                        <td>{{ menu.targetBlank }}</td>
+                        <td>{{ edit_button_render(path('_mssimi_menu_edit', {'id' : menu.id })) }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

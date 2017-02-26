@@ -92,7 +92,7 @@ class BlockController extends Controller
      * @Route("/edit/{id}", name="_mssimi_block_edit", options={"expose" = true} , requirements={"id"=".+"})
      * @Method({"GET", "POST"})
      * @param Request $request
-     * @param Block $block
+     * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function editAction(Request $request, $id)
