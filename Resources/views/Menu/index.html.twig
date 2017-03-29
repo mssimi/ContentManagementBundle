@@ -24,25 +24,47 @@
         </div>
 
         <div class="panel-body">
-            <table class="table table-bordered">
-                <tr>
-                    <td>{{ ('node.name')|trans }}</td>
-                    <td>{{ ('node.label')|trans }}</td>
-                    <td>{{ ('node.link')|trans }}</td>
-                    <td>{{ ('node.targetBlank')|trans }}</td>
-                    <td>{{ ('common.tools')|trans }}</td>
-                </tr>
-                {% for menu in menus %}
+            <table class="table table-bordered table-tree">
+                <thead>
                     <tr>
-                        <td>{{ menu.name }}</td>
-                        <td>{{ menu.label }}</td>
-                        <td>{{ menu.link }}</td>
-                        <td>{{ menu.targetBlank }}</td>
-                        <td>{{ edit_button_render(path('_mssimi_menu_edit', {'id' : menu.id })) }}</td>
+                        <th>{{ ('node.name')|trans }}</th>
+                        <th>{{ ('node.label')|trans }}</th>
+                        <th>{{ ('node.link')|trans }}</th>
+                        <th>{{ ('node.targetBlank')|trans }}</th>
+                        <th>{{ ('common.tools')|trans }}</th>
                     </tr>
-                {% endfor %}
+                </thead>
+                <tbody>
+                    {% include '@ContentManagement/Menu/node.html.twig' %}
+                </tbody>
             </table>
         </div>
     </div>
 
+    <div id="treeview12" class=""></div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        var tree = $('.table-tree');
+
+        tree.treetable({
+            expandable: true,
+            onNodeCollapse: function() {
+                var node = this;
+                tree.treetable("unloadBranch", node);
+            },
+            onNodeExpand: function() {
+                var node = this;
+
+                $.ajax({
+                    async: false,
+                    url: Routing.generate('_mssimi_menu_load', {"id" : node.id})
+                }).done(function(html) {
+                    var rows = $(html).filter("tr");
+
+                    tree.treetable("loadBranch", node, rows);
+                });
+            }
+        });
+    </script>
 {% endblock %}

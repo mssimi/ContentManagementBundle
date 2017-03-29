@@ -9,11 +9,16 @@ services:
       class: Doctrine\Bundle\PHPCRBundle\Initializer\GenericInitializer
       arguments:
           - ContentManagementBundle
-          - ["/cms/block", "/cms/menu"]
+          - ["/cms/block", "/cms/menu", "/cms/page"]
       tags:
           - { name: "doctrine_phpcr.initializer" }
   twig.block_extension:
       class: mssimi\ContentManagementBundle\Twig\BlockTwigExtension
+      tags:
+          - { name: twig.extension }
+      autowire: true
+  twig.menu_extension:
+      class: mssimi\ContentManagementBundle\Twig\MenuTwigExtension
       tags:
           - { name: twig.extension }
       autowire: true

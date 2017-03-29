@@ -19,4 +19,15 @@ class MenuRepository extends \Doctrine\ODM\PHPCR\DocumentRepository
         $qb->where()->like()->localName('Menu')->literal('%'.$name.'%');
         return $qb->getQuery()->execute();
     }
+
+    /**
+     * Finds menu where like id%
+     * @param $id
+     * @return mixed
+     */
+    public function findLikeId($id){
+        $qb = $this->createQueryBuilder('Menu');
+        $qb->where()->descendant($id,'Menu');
+        return $qb->getQuery()->execute();
+    }
 }

@@ -36,6 +36,24 @@ class MenuController extends Controller
     }
 
     /**
+     * Load node using ajax.
+     *
+     * @Route("/load/{id}", name="_mssimi_menu_load", requirements={"id"="/cms/menu.*"}, options={"expose" = "true"})
+     * @Method("GET")
+     * @param Menu $parent
+     * @return Response
+     */
+    public function loadNodeAction(Menu $parent)
+    {
+        $menus = $parent->getChildren();
+
+        return $this->render('@ContentManagement/Menu/node.html.twig', array(
+            'menus' => $menus,
+            'parent' => $parent->getId()
+        ));
+    }
+
+    /**
      * Lists all Menu entities ajax.
      *
      * @Route("/search-index", name="_mssimi_menu_search_index")
@@ -56,16 +74,14 @@ class MenuController extends Controller
     /**
      * Creates a new Menu entity.
      *
-     * @Route("/new", name="_mssimi_menu_new")
+     * @Route("/new/{id}", name="_mssimi_menu_new", defaults={"id" = "/cms/menu"} , requirements={"id"="/cms/menu.*"})
      * @Method({"GET", "POST"})
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @param Menu $parent
+     * @return Response|\Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, Menu $parent)
     {
-        $dm = $this->get('doctrine_phpcr')->getManager();
-        $parent = $dm->find(null, '/cms/menu');
-
         $menu = new Menu();
         $menu->setParent($parent);
         $form = $this->createForm(MenuType::class, $menu);

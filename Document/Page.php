@@ -5,15 +5,11 @@ namespace mssimi\ContentManagementBundle\Document;
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 
 /**
- * @PHPCR\Document(repositoryClass="mssimi\ContentManagementBundle\Repository\MenuRepository", translator="attribute")
+ * @PHPCR\Document(repositoryClass="mssimi\ContentManagementBundle\Repository\PageRepository", translator="attribute")
  *
  */
-class Menu
+class Page
 {
-    CONST linkTypeUrl = 'url';
-    CONST linkTypeRoute = 'route';
-    CONST linkTypePath = 'path';
-
     /**
      * @PHPCR\Id
      */
@@ -37,22 +33,22 @@ class Menu
     /**
      * @PHPCR\Field(type="string", translated=true)
      */
-    private $label;
+    private $metaKeywords;
 
     /**
      * @PHPCR\Field(type="string", translated=true)
      */
-    private $link;
+    private $metaDescription;
 
     /**
-     * @PHPCR\Field(type="string")
+     * @PHPCR\Field(type="string", translated=true)
      */
-    private $linkType = self::linkTypeUrl;
+    private $heading;
 
     /**
-     * @PHPCR\Field(type="boolean")
+     * @PHPCR\Field(type="string", translated=true)
      */
-    private $targetBlank = false;
+    private $content;
 
     /**
      * @PHPCR\Locale
@@ -78,22 +74,6 @@ class Menu
     /**
      * @return mixed
      */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param mixed $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getParent()
     {
         return $this->parent;
@@ -105,6 +85,22 @@ class Menu
     public function setParent($parent)
     {
         $this->parent = $parent;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
     }
 
     /**
@@ -126,49 +122,17 @@ class Menu
     /**
      * @return mixed
      */
-    public function getLabel()
+    public function getContent()
     {
-        return $this->label;
+        return $this->content;
     }
 
     /**
-     * @param mixed $label
+     * @param mixed $content
      */
-    public function setLabel($label)
+    public function setContent($content)
     {
-        $this->label = $label;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLink()
-    {
-        return $this->link;
-    }
-
-    /**
-     * @param mixed $link
-     */
-    public function setLink($link)
-    {
-        $this->link = $link;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTargetBlank()
-    {
-        return $this->targetBlank;
-    }
-
-    /**
-     * @param mixed $targetBlank
-     */
-    public function setTargetBlank($targetBlank)
-    {
-        $this->targetBlank = $targetBlank;
+        $this->content = $content;
     }
 
     /**
@@ -190,16 +154,48 @@ class Menu
     /**
      * @return mixed
      */
-    public function getLinkType()
+    public function getMetaKeywords()
     {
-        return $this->linkType;
+        return $this->metaKeywords;
     }
 
     /**
-     * @param mixed $linkType
+     * @param mixed $metaKeywords
      */
-    public function setLinkType($linkType)
+    public function setMetaKeywords($metaKeywords)
     {
-        $this->linkType = $linkType;
+        $this->metaKeywords = $metaKeywords;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMetaDescription()
+    {
+        return $this->metaDescription;
+    }
+
+    /**
+     * @param mixed $metaDescription
+     */
+    public function setMetaDescription($metaDescription)
+    {
+        $this->metaDescription = $metaDescription;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHeading()
+    {
+        return $this->heading;
+    }
+
+    /**
+     * @param mixed $heading
+     */
+    public function setHeading($heading)
+    {
+        $this->heading = $heading;
     }
 }

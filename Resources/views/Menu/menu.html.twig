@@ -1,0 +1,23 @@
+{% macro node(menu) %}
+    {% for item in menu %}
+        <li>
+            {% if item.link %}
+                <a href="{% if item.linkType == 'url' %}{{ item.link }}{% elseif item.linkType == 'path' %}{{ path(item.link) }}{% else %}{{ path('_page_index', {'id': item.link }) }}{% endif %}">{{ item.label }}</a>
+            {% else %}
+                <span>{{ item.label }}</span>
+            {% endif %}
+            {% if item.children|length %}
+                <ul>
+                    {% import _self as self %}
+                    {{ self.node(item.children) }}
+                </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+{% endmacro %}
+
+{% import _self as macro %}
+
+<ul id="{{ menu.id|slice(1)|replace({'/' : '-'}) }}{{ idSuffix|default('') }}" class="menu" data-url="{{ path('_mssimi_block_inline_edit', {'id' : menu.id }) }}">
+    {{ macro.node(menu.children) }}
+</ul>
