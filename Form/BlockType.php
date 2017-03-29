@@ -2,6 +2,7 @@
 
 namespace mssimi\ContentManagementBundle\Form;
 
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use mssimi\ContentManagementBundle\Document\Block;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,7 +28,7 @@ class BlockType extends AbstractType
                     'class' => ''
                 )
             ))
-            ->add('content', null, array(
+            ->add('content', CKEditorType::class, array(
                 'label' => 'form.block.content',
                 'attr' => array(
                     'class' => ''

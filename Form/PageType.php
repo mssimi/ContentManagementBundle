@@ -2,6 +2,7 @@
 
 namespace mssimi\ContentManagementBundle\Form;
 
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use mssimi\ContentManagementBundle\Document\Page;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -33,7 +34,7 @@ class PageType extends AbstractType
                     'class' => ''
                 )
             ))
-            ->add('content', null, array(
+            ->add('content', CKEditorType::class, array(
                 'label' => 'form.page.content',
                 'attr' => array(
                     'class' => ''
