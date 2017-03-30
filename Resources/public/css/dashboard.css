@@ -11,6 +11,10 @@ body {
   vertical-align: middle;
 }
 
+.panel-body .table{
+  margin-bottom: 0;
+}
+
 /*
  * Global add-ons
  */
