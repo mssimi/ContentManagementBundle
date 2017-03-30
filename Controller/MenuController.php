@@ -54,7 +54,7 @@ class MenuController extends Controller
     }
 
     /**
-     * Lists all Menu entities ajax.
+     * Filter nodes
      *
      * @Route("/search-index", name="_mssimi_menu_search_index")
      * @param Request $request
@@ -69,6 +69,28 @@ class MenuController extends Controller
         return $this->render('@ContentManagement/Menu/index.html.twig', array(
             'menus' => $menus
         ));
+    }
+
+    /**
+     * Search nodes ajax
+     *
+     * @Route("/ajax-index", name="_mssimi_menu_ajax", options={"expose" = "true"})
+     * @param Request $request
+     * @return Response
+     * @Method({"GET","POST"})
+     */
+    public function ajaxAction(Request $request)
+    {
+        $dm = $this->get('doctrine_phpcr')->getManager();
+        $menus = $dm->getRepository('ContentManagementBundle:Page')->findLikeNodename($request->request->get('query'), 20);
+
+        $response = ['query' => 'Unit', 'suggestions' => []];
+
+        foreach ($menus as $menu) {
+            $response['suggestions'][] = ['value' => $menu->getId(), 'data' => $menu->getId()];
+        }
+
+        return $this->json($response);
     }
 
     /**

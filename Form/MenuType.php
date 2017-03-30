@@ -19,36 +19,36 @@ class MenuType extends AbstractType
     {
         $builder
             ->add('name', null, array(
-                'label' => 'form.menu.name',
+                'label' => 'mssimiContentManagement.menu.form.name',
                 'attr' => array(
                     'class' => ''
                 )
             ))
             ->add('label', null, array(
-                'label' => 'form.menu.label',
+                'label' => 'mssimiContentManagement.menu.form.label',
                 'attr' => array(
                     'class' => ''
                 )
             ))
             ->add('link', null, array(
-                'label' => 'form.menu.link',
+                'label' => 'mssimiContentManagement.menu.form.link',
                 'attr' => array(
                     'class' => ''
                 )
             ))
             ->add('linkType', ChoiceType::class, array(
-                'label' => 'form.menu.linkType',
+                'label' => 'mssimiContentManagement.menu.form.linkType',
                 'choices' => array(
-                    'form.menu.linkType'.Menu::linkTypeUrl => Menu::linkTypeUrl,
-                    'form.menu.linkType'.Menu::linkTypeRoute => Menu::linkTypeRoute,
-                    'form.menu.linkType'.Menu::linkTypePath => Menu::linkTypePath,
+                    'mssimiContentManagement.menu.form.linkType'.ucfirst(Menu::linkTypeUrl) => Menu::linkTypeUrl,
+                    'mssimiContentManagement.menu.form.linkType'.ucfirst(Menu::linkTypeRoute) => Menu::linkTypeRoute,
+                    'mssimiContentManagement.menu.form.linkType'.ucfirst(Menu::linkTypePath) => Menu::linkTypePath,
                 ),
                 'attr' => array(
                     'class' => ''
                 )
             ))
             ->add('targetBlank', null, array(
-                'label' => 'form.menu.targetBlank',
+                'label' => 'mssimiContentManagement.menu.form.targetBlank',
                 'attr' => array(
                     'class' => ''
                 )

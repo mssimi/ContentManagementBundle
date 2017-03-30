@@ -40,7 +40,7 @@ class Menu
     private $label;
 
     /**
-     * @PHPCR\Field(type="string", translated=true)
+     * @PHPCR\Field(type="string", translated=true, nullable=true)
      */
     private $link;
 

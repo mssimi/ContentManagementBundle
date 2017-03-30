@@ -1,3 +1,5 @@
+{% set route = app.request.attributes.get('_route') %}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -9,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('bundles/contentmanagement/css/dashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('bundles/contentmanagement/css/jquery.treetable.css') }}">
     <link rel="stylesheet" href="{{ asset('bundles/contentmanagement/css/jquery.treetable.theme.default.css') }}">
+    {% block stylesheets %}{% endblock %}
 </head>
 <body>
     {% include '@ContentManagement/Core/navbar.html.twig' %}

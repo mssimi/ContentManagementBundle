@@ -1,12 +1,11 @@
 {% for menu in menus %}
-    <tr data-tt-id="{{ menu.id }}" {% if parent is defined %}data-tt-parent-id="{{ parent }}"{% endif %} data-tt-branch="true">
+    <tr data-tt-id="{{ menu.id }}" {% if parent is defined %}data-tt-parent-id="{{ parent }}"{% endif %} data-tt-branch="{% if menu.children|length %}true{% else %}false{% endif %}">
         <td><span class="folder">{{ menu.name }}</span></td>
         <td>{{ menu.label }}</td>
         <td>{{ menu.link }}</td>
-        <td>{{ menu.targetBlank }}</td>
         <td>
             {{ edit_button_render(path('_mssimi_menu_edit', {'id' : menu.id })) }}
-            <a class="btn btn-default" href="{{ path('_mssimi_menu_new', {'id' : menu.id}) }}">{{ ('common.new')|trans }}</a>
+            <a class="btn btn-default" href="{{ path('_mssimi_menu_new', {'id' : menu.id}) }}">{{ ('mssimiContentManagement.common.new')|trans }}</a>
         </td>
     </tr>
 {% endfor %}

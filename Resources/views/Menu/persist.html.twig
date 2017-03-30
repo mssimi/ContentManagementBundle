@@ -1,24 +1,53 @@
 {% extends '@ContentManagement/base.html.twig' %}
 
-{% block title %}{{ ('menu.heading')|trans }}{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/contentmanagement/css/jquery.autocomplete.css') }}">
+{% endblock %}
+
+{% block title %}{{ ('mssimiContentManagement.menu.heading')|trans }}{% endblock %}
 {% block content %}
     <div class="page-header">
         <div class="page-title">
-            <h3>{{ ('menu.heading')|trans }}</h3>
+            <h3>{{ ('mssimiContentManagement.menu.heading')|trans }}</h3>
         </div>
     </div>
 
     {{ form_start(form) }}
         <div class="panel panel-default">
-            <div class="panel-heading"><h6 class="panel-title">{{ ('menu.persist')|trans }}</h6></div>
+            <div class="panel-heading"><h6 class="panel-title">{{ ('mssimiContentManagement.common.'~(menu.id ? 'edit' : 'new'))|trans }}</h6></div>
             <div class="panel-body">
                 {{ form_widget(form) }}
             </div>
         </div>
         <div class="form-actions text-right m-bottom-35">
-            <a href="{{ path('_mssimi_menu_index') }}"  class="btn btn-default" type="button"><i class="icon-backward"></i> {{ ('common.back')|trans }}</a>
-            <button type="submit" class="btn btn-primary">{{ ('common.submit')|trans }}</button>
+            <a href="{{ path('_mssimi_menu_index') }}"  class="btn btn-default" type="button"><i class="icon-backward"></i> {{ ('mssimiContentManagement.common.back')|trans }}</a>
+            <button type="submit" class="btn btn-primary">{{ ('mssimiContentManagement.common.submit')|trans }}</button>
         </div>
     {{ form_end(form) }}
 
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('bundles/contentmanagement/js/jquery.autocomplete.min.js') }}"></script>
+    <script>
+        $( document ).ready(function() {
+            $('#menu_link').autocomplete({
+                serviceUrl: Routing.generate('_mssimi_menu_ajax'),
+                type: 'POST'
+            });
+
+            toggleAutocomplete();
+            $('#menu_linkType').change(function () {
+                toggleAutocomplete();
+            });
+        });
+
+        function toggleAutocomplete(){
+            if ($('#menu_linkType').val() == 'path') {
+                $('#menu_link').autocomplete().enable();
+            } else {
+                $('#menu_link').autocomplete().disable();
+            }
+        }
+    </script>
 {% endblock %}

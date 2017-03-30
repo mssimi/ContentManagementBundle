@@ -1,6 +1,37 @@
-common:
-    new: "New"
-    edit: "Edit"
-    submit: "Submit"
-    back: "Back"
-    tools: "Tools"
+mssimiContentManagement:
+    common:
+        new: "New"
+        edit: "Edit"
+        submit: "Submit"
+        back: "Back"
+        tools: "Tools"
+        list: "List"
+    node:
+        name: "Node name"
+        content: "Content"
+        link: "Link"
+        label: "Label"
+    block:
+        heading: "Block"
+        form:
+            name: "Name"
+            content: "Content"
+    menu:
+        heading: "Menu"
+        form:
+            name: "Name"
+            label: "Label"
+            link: "Link"
+            linkType: "Link type"
+            targetBlank: "Open in new Window"
+            linkTypeUrl: "Url"
+            linkTypePath: "Path"
+            linkTypeRoute: "Route"
+    page:
+        heading: "Page"
+        form:
+            name: "Name"
+            heading: "Heading"
+            content: "Content"
+            metaKeywords: "Meta keywords"
+            metaDescription: "Meta description"

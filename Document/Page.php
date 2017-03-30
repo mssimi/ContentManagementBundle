@@ -31,12 +31,12 @@ class Page
     private $children;
 
     /**
-     * @PHPCR\Field(type="string", translated=true)
+     * @PHPCR\Field(type="string", translated=true, nullable=true)
      */
     private $metaKeywords;
 
     /**
-     * @PHPCR\Field(type="string", translated=true)
+     * @PHPCR\Field(type="string", translated=true, nullable=true)
      */
     private $metaDescription;
 

@@ -1,34 +1,34 @@
 {% extends '@ContentManagement/base.html.twig' %}
 
-{% block title %}{{ ('page.heading')|trans }}{% endblock %}
+{% block title %}{{ ('mssimiContentManagement.page.heading')|trans }}{% endblock %}
 {% block content %}
     <div class="page-header">
         <div class="page-title">
-            <h3>{{ ('page.heading')|trans }}</h3>
+            <h3>{{ ('mssimiContentManagement.page.heading')|trans }}</h3>
         </div>
     </div>
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <a class="btn btn-default" href="{{ path('_mssimi_page_new') }}">{{ ('common.new')|trans }}</a>
+            <a class="btn btn-default" href="{{ path('_mssimi_page_new') }}">{{ ('mssimiContentManagement.common.new')|trans }}</a>
             <form class="form-inline pull-right" action="{{ path('_mssimi_page_search_index') }}" method="get">
                 <input placeholder="search by nodename" class="form-control" name="name" type="text">
-                <button class="btn btn-default" type="submit">{{ ('common.submit')|trans }}</button>
+                <button class="btn btn-default" type="submit">{{ ('mssimiContentManagement.common.submit')|trans }}</button>
             </form>
         </div>
     </div>
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h6 class="panel-title">{{ ('page.list')|trans }}</h6>
+            <h6 class="panel-title">{{ ('mssimiContentManagement.common.list')|trans }}</h6>
         </div>
 
         <div class="panel-body">
             <table class="table table-bordered">
                 <tr>
-                    <td>{{ ('node.name')|trans }}</td>
-                    <td>{{ ('node.content')|trans }}</td>
-                    <td>{{ ('common.tools')|trans }}</td>
+                    <td>{{ ('mssimiContentManagement.node.name')|trans }}</td>
+                    <td>{{ ('mssimiContentManagement.node.content')|trans }}</td>
+                    <td>{{ ('mssimiContentManagement.common.tools')|trans }}</td>
                 </tr>
                 {% for page in pages %}
                     <tr>

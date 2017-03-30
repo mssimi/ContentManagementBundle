@@ -23,31 +23,31 @@ class PageType extends AbstractType
     {
         $builder
             ->add('name', null, array(
-                'label' => 'form.page.name',
+                'label' => 'mssimiContentManagement.page.form.name',
                 'attr' => array(
                     'class' => ''
                 )
             ))
             ->add('heading', null, array(
-                'label' => 'form.page.heading',
+                'label' => 'mssimiContentManagement.page.form.heading',
                 'attr' => array(
                     'class' => ''
                 )
             ))
             ->add('content', CKEditorType::class, array(
-                'label' => 'form.page.content',
+                'label' => 'mssimiContentManagement.page.form.content',
                 'attr' => array(
                     'class' => ''
                 )
             ))
             ->add('metaKeywords', null, array(
-                'label' => 'form.page.metaKeywords',
+                'label' => 'mssimiContentManagement.page.form.metaKeywords',
                 'attr' => array(
                     'class' => ''
                 )
             ))
             ->add('metaDescription', null, array(
-                'label' => 'form.page.metaDescription',
+                'label' => 'mssimiContentManagement.page.form.metaDescription',
                 'attr' => array(
                     'class' => ''
                 )

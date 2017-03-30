@@ -16,7 +16,7 @@ class MenuRepository extends \Doctrine\ODM\PHPCR\DocumentRepository
      */
     public function findLikeNodename($name){
         $qb = $this->createQueryBuilder('Menu');
-        $qb->where()->like()->localName('Menu')->literal('%'.$name.'%');
+        $qb->where()->like()->localName('Menu')->literal('%'.$name.'%');;
         return $qb->getQuery()->execute();
     }
 
