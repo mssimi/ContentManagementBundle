@@ -14,7 +14,7 @@ class BlockControllerTest extends WebTestCase
     }
 
     /**
-     * Test new scheduling creation
+     * Test new block
      */
     public function testNewSave()
     {
@@ -33,7 +33,7 @@ class BlockControllerTest extends WebTestCase
     }
 
     /**
-     * Test "Edit and save a scheduling"
+     * Test edit block
      */
     public function testEditSave()
     {
