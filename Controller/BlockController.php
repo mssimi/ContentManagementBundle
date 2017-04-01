@@ -77,7 +77,7 @@ class BlockController extends Controller
             $dm->flush();
 
             $this->addFlash('success', 'flashMessage.common.entityCreated');
-            return $this->redirectToRoute('_mssimi_block_edit', array('id' => $block->getId()));
+            return $this->redirectToRoute('_mssimi_block_index');
         }
 
         return $this->render('@ContentManagement/Block/persist.html.twig', array(
@@ -107,7 +107,7 @@ class BlockController extends Controller
             $dm->flush();
 
             $this->addFlash('success', 'flashMessage.common.entityUpdated');
-            return $this->redirectToRoute('_mssimi_block_edit', array('id' => $block->getId()));
+            return $this->redirectToRoute('_mssimi_block_index');
         }
 
         return $this->render('@ContentManagement/Block/persist.html.twig', array(

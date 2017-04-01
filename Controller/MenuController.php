@@ -115,7 +115,7 @@ class MenuController extends Controller
             $dm->flush();
 
             $this->addFlash('success', 'flashMessage.common.entityCreated');
-            return $this->redirectToRoute('_mssimi_menu_edit', array('id' => $menu->getId()));
+            return $this->redirectToRoute('_mssimi_menu_index');
         }
 
         return $this->render('@ContentManagement/Menu/persist.html.twig', array(

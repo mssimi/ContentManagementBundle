@@ -27,11 +27,14 @@
 
         <div class="panel-body">
             <table class="table table-bordered">
-                <tr>
-                    <td>{{ ('mssimiContentManagement.node.name')|trans }}</td>
-                    <td>{{ ('mssimiContentManagement.node.content')|trans }}</td>
-                    <td>{{ ('mssimiContentManagement.common.tools')|trans }}</td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>{{ ('mssimiContentManagement.node.name')|trans }}</th>
+                        <th>{{ ('mssimiContentManagement.node.content')|trans }}</th>
+                        <th>{{ ('mssimiContentManagement.common.tools')|trans }}</th>
+                    </tr>
+                </thead>
+                <tbody>
                 {% for block in blocks %}
                     <tr>
                         <td>{{ block.name }}</td>
@@ -39,6 +42,7 @@
                         <td>{{ edit_button_render(path('_mssimi_block_edit', {'id' : block.id })) }}</td>
                     </tr>
                 {% endfor %}
+                </tbody>
             </table>
         </div>
     </div>
