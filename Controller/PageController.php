@@ -77,7 +77,7 @@ class PageController extends Controller
             $dm->flush();
 
             $this->addFlash('success', 'flashMessage.common.entityCreated');
-            return $this->redirectToRoute('_mssimi_page_edit', array('id' => $page->getId()));
+            return $this->redirectToRoute('_mssimi_page_index');
         }
 
         return $this->render('@ContentManagement/Page/persist.html.twig', array(
@@ -107,7 +107,7 @@ class PageController extends Controller
             $dm->flush();
 
             $this->addFlash('success', 'flashMessage.common.entityUpdated');
-            return $this->redirectToRoute('_mssimi_page_edit', array('id' => $page->getId()));
+            return $this->redirectToRoute('_mssimi_page_index');
         }
 
         return $this->render('@ContentManagement/Page/persist.html.twig', array(
