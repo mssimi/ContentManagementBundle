@@ -29,7 +29,7 @@ class BlockControllerTest extends WebTestCase
         ));
         $crawler = $client->submit($form);
         $this->assertEquals(1, $crawler->filter('.panel tbody tr')->count());
-        $this->assertEquals("blockCreate", trim($crawler->filter('.panel td')->eq(0)->text()));
+        $this->assertEquals("blockCreate", trim($crawler->filter('.panel td')->eq(1)->text()));
     }
 
     /**
@@ -48,6 +48,6 @@ class BlockControllerTest extends WebTestCase
         ));
         $crawler = $client->submit($form);
         $this->assertEquals(1, $crawler->filter('.panel tbody tr')->count());
-        $this->assertEquals("blockEdit", trim($crawler->filter('.panel td')->eq(0)->text()));
+        $this->assertEquals("blockEdit", trim($crawler->filter('.panel td')->eq(1)->text()));
     }
 }

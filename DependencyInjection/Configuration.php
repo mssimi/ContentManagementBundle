@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('mssimi_content_management');
+        $rootNode = $treeBuilder->root('content_management');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
@@ -29,6 +29,12 @@ class Configuration implements ConfigurationInterface
                     ->defaultValue(array('en'))
                     ->cannotBeEmpty()
                     ->prototype('scalar')->end()
+                ->end()
+            ->end()
+            ->children()
+                ->integerNode('items_per_page')
+                    ->defaultValue(20)
+                    ->min(1)
                 ->end()
             ->end()
         ;

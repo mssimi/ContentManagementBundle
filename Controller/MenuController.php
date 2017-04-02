@@ -22,13 +22,20 @@ class MenuController extends Controller
      *
      * @Route("/index", name="_mssimi_menu_index")
      * @Method("GET")
+     * @param Request $request
      * @return Response
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $dm = $this->get('doctrine_phpcr')->getManager();
-        $parent = $dm->find('ContentManagementBundle:Menu', '/cms/menu');
-        $menus = $parent->getChildren();
+        $query = $dm->getRepository('ContentManagementBundle:Menu')->pagination($request);
+
+        $paginator  = $this->get('knp_paginator');
+        $menus = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            $this->getParameter('content_management.items_per_page')
+        );
 
         return $this->render('@ContentManagement/Menu/index.html.twig', array(
             'menus' => $menus
@@ -50,24 +57,6 @@ class MenuController extends Controller
         return $this->render('@ContentManagement/Menu/node.html.twig', array(
             'menus' => $menus,
             'parent' => $parent->getId()
-        ));
-    }
-
-    /**
-     * Filter nodes
-     *
-     * @Route("/search-index", name="_mssimi_menu_search_index")
-     * @param Request $request
-     * @return Response
-     * @Method({"GET","POST"})
-     */
-    public function indexSearchAction(Request $request)
-    {
-        $dm = $this->get('doctrine_phpcr')->getManager();
-        $menus = $dm->getRepository('ContentManagementBundle:Menu')->findLikeNodename($request->query->get('name'));
-
-        return $this->render('@ContentManagement/Menu/index.html.twig', array(
-            'menus' => $menus
         ));
     }
 
@@ -152,5 +141,23 @@ class MenuController extends Controller
             'menu' => $menu,
             'form' => $form->createView(),
         ));
+    }
+
+    /**
+     * remove an existing Menu entity.
+     *
+     * @Route("/remove/{id}", name="_mssimi_menu_remove", options={"expose" = true} , requirements={"id"=".+"})
+     * @Method({"GET", "POST"})
+     * @param Menu $menu
+     * @return Response|\Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function removeAction(Menu $menu)
+    {
+        $dm = $this->get('doctrine_phpcr')->getManager();
+        $dm->remove($menu);
+        $dm->flush();
+
+        $this->addFlash('success', 'fleshMessage.common.entityRemoved');
+        return $this->redirectToRoute('_mssimi_menu_index');
     }
 }

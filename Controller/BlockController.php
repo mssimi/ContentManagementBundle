@@ -22,31 +22,20 @@ class BlockController extends Controller
      *
      * @Route("/index", name="_mssimi_block_index")
      * @Method("GET")
-     * @return Response
-     */
-    public function indexAction()
-    {
-        $dm = $this->get('doctrine_phpcr')->getManager();
-        $parent = $dm->find('ContentManagementBundle:Block', '/cms/block');
-        $blocks = $parent->getChildren();
-
-        return $this->render('@ContentManagement/Block/index.html.twig', array(
-            'blocks' => $blocks
-        ));
-    }
-
-    /**
-     * Lists all Block entities ajax.
-     *
-     * @Route("/search-index", name="_mssimi_block_search_index")
      * @param Request $request
      * @return Response
-     * @Method({"GET","POST"})
      */
-    public function indexSearchAction(Request $request)
+    public function indexAction(Request $request)
     {
         $dm = $this->get('doctrine_phpcr')->getManager();
-        $blocks = $dm->getRepository('ContentManagementBundle:Block')->findLikeNodename($request->query->get('name'));
+        $query = $dm->getRepository('ContentManagementBundle:Block')->pagination($request);
+
+        $paginator  = $this->get('knp_paginator');
+        $blocks = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            $this->getParameter('content_management.items_per_page')
+        );
 
         return $this->render('@ContentManagement/Block/index.html.twig', array(
             'blocks' => $blocks
@@ -114,6 +103,24 @@ class BlockController extends Controller
             'block' => $block,
             'form' => $form->createView(),
         ));
+    }
+
+    /**
+     * remove an existing Block entity.
+     *
+     * @Route("/remove/{id}", name="_mssimi_block_remove", options={"expose" = true} , requirements={"id"=".+"})
+     * @Method({"GET", "POST"})
+     * @param Block $block
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
+    public function removeAction(Block $block)
+    {
+        $dm = $this->get('doctrine_phpcr')->getManager();
+        $dm->remove($block);
+        $dm->flush();
+
+        $this->addFlash('success', 'fleshMessage.common.entityRemoved');
+        return $this->redirectToRoute('_mssimi_block_index');
     }
 
     /**

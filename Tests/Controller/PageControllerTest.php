@@ -30,7 +30,7 @@ class PageControllerTest extends WebTestCase
         ));
         $crawler = $client->submit($form);
         $this->assertEquals(1, $crawler->filter('.panel tbody tr')->count());
-        $this->assertEquals("pageCreate", trim($crawler->filter('.panel td')->eq(0)->text()));
+        $this->assertEquals("pageCreate", trim($crawler->filter('.panel td')->eq(1)->text()));
     }
 
     /**
@@ -50,6 +50,6 @@ class PageControllerTest extends WebTestCase
         ));
         $crawler = $client->submit($form);
         $this->assertEquals(1, $crawler->filter('.panel tbody tr')->count());
-        $this->assertEquals("pageEdit", trim($crawler->filter('.panel td')->eq(0)->text()));
+        $this->assertEquals("pageEdit", trim($crawler->filter('.panel td')->eq(1)->text()));
     }
 }

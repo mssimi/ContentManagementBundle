@@ -1,6 +1,7 @@
 <?php
 
 namespace mssimi\ContentManagementBundle\Repository;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class MenuRepository
@@ -10,24 +11,19 @@ namespace mssimi\ContentManagementBundle\Repository;
 class MenuRepository extends \Doctrine\ODM\PHPCR\DocumentRepository
 {
     /**
-     * Finds menu where like %nodename%
-     * @param $name
+     * Menu pagination query
+     *
+     * @param Request $request
      * @return mixed
      */
-    public function findLikeNodename($name){
-        $qb = $this->createQueryBuilder('Menu');
-        $qb->where()->like()->localName('Menu')->literal('%'.$name.'%');;
-        return $qb->getQuery()->execute();
-    }
+    public function pagination(Request $request){
+        $qb =  $this->createQueryBuilder('Menu');
+        $qb->where()->child('/cms/menu','Menu');
 
-    /**
-     * Finds menu where like id%
-     * @param $id
-     * @return mixed
-     */
-    public function findLikeId($id){
-        $qb = $this->createQueryBuilder('Menu');
-        $qb->where()->descendant($id,'Menu');
-        return $qb->getQuery()->execute();
+        if($request->query->has('nodeName')){
+            $qb->where()->like()->localName('Menu')->literal('%'.$request->query->get('nodeName').'%');
+        }
+
+        return $qb->getQuery();
     }
 }

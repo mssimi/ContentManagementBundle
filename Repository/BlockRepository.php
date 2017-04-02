@@ -1,6 +1,7 @@
 <?php
 
 namespace mssimi\ContentManagementBundle\Repository;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class BlockRepository
@@ -10,14 +11,18 @@ namespace mssimi\ContentManagementBundle\Repository;
 class BlockRepository extends \Doctrine\ODM\PHPCR\DocumentRepository
 {
     /**
-     * Finds block where like %nodename%
+     * Block pagination query
      *
-     * @param $name
+     * @param Request $request
      * @return mixed
      */
-    public function findLikeNodename($name){
-        $qb = $this->createQueryBuilder('Block');
-        $qb->where()->like()->localName('Block')->literal('%'.$name.'%');
-        return $qb->getQuery()->execute();
+    public function pagination(Request $request){
+        $qb =  $this->createQueryBuilder('Block');
+
+        if($request->query->has('nodeName')){
+            $qb->where()->like()->localName('Block')->literal('%'.$request->query->get('nodeName').'%');
+        }
+
+        return $qb->getQuery();
     }
 }

@@ -31,7 +31,7 @@ class MenuControllerTest extends WebTestCase
         ));
         $crawler = $client->submit($form);
         $this->assertEquals(1, $crawler->filter('.panel tbody tr')->count());
-        $this->assertEquals("menuCreate", trim($crawler->filter('.panel td .folder')->eq(0)->text()));
+        $this->assertEquals("menuCreate", trim($crawler->filter('.panel td')->eq(1)->text()));
     }
 
     /**
@@ -52,6 +52,6 @@ class MenuControllerTest extends WebTestCase
         ));
         $crawler = $client->submit($form);
         $this->assertEquals(1, $crawler->filter('.panel tbody tr')->count());
-        $this->assertEquals("menuEdit", trim($crawler->filter('.panel td .folder')->eq(0)->text()));
+        $this->assertEquals("menuEdit", trim($crawler->filter('.panel td')->eq(1)->text()));
     }
 }

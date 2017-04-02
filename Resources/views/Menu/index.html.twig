@@ -11,8 +11,8 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <a class="btn btn-default" href="{{ path('_mssimi_menu_new') }}">{{ ('mssimiContentManagement.common.new')|trans }}</a>
-            <form class="form-inline pull-right" action="{{ path('_mssimi_menu_search_index') }}" method="get">
-                <input placeholder="search by nodename" class="form-control" name="name" type="text">
+            <form class="form-inline pull-right" action="{{ path('_mssimi_menu_index') }}" method="get">
+                <input placeholder="search by nodename" class="form-control" name="nodeName" type="text">
                 <button class="btn btn-default" type="submit">{{ ('mssimiContentManagement.common.submit')|trans }}</button>
             </form>
         </div>
@@ -27,6 +27,7 @@
             <table class="table table-bordered table-tree">
                 <thead>
                     <tr>
+                        <th>{{ ('mssimiContentManagement.node.id')|trans }}</th>
                         <th>{{ ('mssimiContentManagement.node.name')|trans }}</th>
                         <th>{{ ('mssimiContentManagement.node.label')|trans }}</th>
                         <th>{{ ('mssimiContentManagement.node.link')|trans }}</th>
@@ -34,13 +35,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% include '@ContentManagement/Menu/node.html.twig' %}
+                    {% include '@ContentManagement/Menu/node.html.twig' with {'menus' : menus.items} %}
                 </tbody>
             </table>
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-6 text-right">
+                    {{ knp_pagination_render(menus, 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig') }}
+                </div>
+            </div>
         </div>
     </div>
-
-    <div id="treeview12" class=""></div>
 {% endblock %}
 {% block javascripts %}
     <script>

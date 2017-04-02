@@ -2,11 +2,13 @@ mssimiContentManagement:
     common:
         new: "New"
         edit: "Edit"
+        remove: "Remove"
         submit: "Submit"
         back: "Back"
         tools: "Tools"
         list: "List"
     node:
+        id: "Id"
         name: "Node name"
         content: "Content"
         link: "Link"

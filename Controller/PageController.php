@@ -22,31 +22,20 @@ class PageController extends Controller
      *
      * @Route("/index", name="_mssimi_page_index")
      * @Method("GET")
-     * @return Response
-     */
-    public function indexAction()
-    {
-        $dm = $this->get('doctrine_phpcr')->getManager();
-        $parent = $dm->find('ContentManagementBundle:Page', '/cms/page');
-        $pages = $parent->getChildren();
-
-        return $this->render('@ContentManagement/Page/index.html.twig', array(
-            'pages' => $pages
-        ));
-    }
-
-    /**
-     * Lists all Page entities ajax.
-     *
-     * @Route("/search-index", name="_mssimi_page_search_index")
      * @param Request $request
      * @return Response
-     * @Method({"GET","POST"})
      */
-    public function indexSearchAction(Request $request)
+    public function indexAction(Request $request)
     {
         $dm = $this->get('doctrine_phpcr')->getManager();
-        $pages = $dm->getRepository('ContentManagementBundle:Page')->findLikeNodename($request->query->get('name'));
+        $query = $dm->getRepository('ContentManagementBundle:Page')->pagination($request);
+
+        $paginator  = $this->get('knp_paginator');
+        $pages = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            $this->getParameter('content_management.items_per_page')
+        );
 
         return $this->render('@ContentManagement/Page/index.html.twig', array(
             'pages' => $pages
@@ -114,6 +103,24 @@ class PageController extends Controller
             'page' => $page,
             'form' => $form->createView(),
         ));
+    }
+
+    /**
+     * remove an existing Page entity.
+     *
+     * @Route("/remove/{id}", name="_mssimi_page_remove", options={"expose" = true} , requirements={"id"=".+"})
+     * @Method({"GET", "POST"})
+     * @param Page $page
+     * @return Response|\Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function removeAction(Page $page)
+    {
+        $dm = $this->get('doctrine_phpcr')->getManager();
+        $dm->remove($page);
+        $dm->flush();
+
+        $this->addFlash('success', 'fleshMessage.common.entityRemoved');
+        return $this->redirectToRoute('_mssimi_page_index');
     }
 
     /**
