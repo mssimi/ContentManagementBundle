@@ -3,12 +3,13 @@
 namespace mssimi\ContentManagementBundle\Document;
 
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
+use Knp\Menu\NodeInterface;
 
 /**
  * @PHPCR\Document(repositoryClass="mssimi\ContentManagementBundle\Repository\MenuRepository", translator="attribute")
  *
  */
-class Menu
+class Menu implements NodeInterface
 {
     CONST linkTypeUrl = 'url';
     CONST linkTypeRoute = 'route';
@@ -201,5 +202,49 @@ class Menu
     public function setLinkType($linkType)
     {
         $this->linkType = $linkType;
+    }
+
+    public function getUriOption()
+    {
+        return $this->linkType == self::linkTypeUrl ? $this->link : null;
+    }
+
+    public function getRouteOption()
+    {
+        switch ($this->linkType){
+            case self::linkTypeRoute:
+                return $this->link;
+                break;
+            case self::linkTypePath:
+                return '_page_index';
+                break;
+            default:
+                return null;
+        }
+    }
+
+    public function getParamOption()
+    {
+        return $this->linkType == self::linkTypePath ? ['id' => $this->link] : [];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getOptions()
+    {
+        return [
+            'uri' => $this->getUriOption(),
+            'route' => $this->getRouteOption(),
+            'label' => $this->getLabel(),
+            'attributes' => [],
+            'childrenAttributes' => [],
+            'display' => true,
+            'displayChildren' => true,
+            'routeParameters' => $this->getParamOption(),
+            'routeAbsolute' => $this->getTargetBlank(),
+            'linkAttributes' => [],
+            'labelAttributes' => [],
+        ];
     }
 }

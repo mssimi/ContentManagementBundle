@@ -35,3 +35,16 @@ services:
       public: false
       tags:
           - { name: data_collector, template: 'ContentManagementBundle:Block:data_collector.html.twig', id: content_management.block_collector }
+  content_management.provider:
+      class: mssimi\ContentManagementBundle\Provider\PhpcrMenuProvider
+      tags:
+          - { name: knp_menu.provider }
+      arguments:
+            - "@content_management.loader.node"
+            - "@doctrine_phpcr"
+            - "/cms/menu"
+  content_management.loader.node:
+      class: mssimi\ContentManagementBundle\Loader\VotingNodeLoader
+      arguments:
+            - "@knp_menu.factory"
+            - "@event_dispatcher"

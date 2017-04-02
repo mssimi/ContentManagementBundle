@@ -2,7 +2,7 @@
     {% for item in menu %}
         <li>
             {% if item.link %}
-                <a href="{% if item.linkType == 'url' %}{{ item.link }}{% elseif item.linkType == 'path' %}{{ path(item.link) }}{% else %}{{ path('_page_index', {'id': item.link }) }}{% endif %}">{{ item.label }}</a>
+                <a href="{% if item.linkType == 'url' %}{{ item.link }}{% elseif item.linkType == 'route' %}{{ path(item.link) }}{% else %}{{ path('_page_index', {'id': item.link }) }}{% endif %}">{{ item.label }}</a>
             {% else %}
                 <span>{{ item.label }}</span>
             {% endif %}

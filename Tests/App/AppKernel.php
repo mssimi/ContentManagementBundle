@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new mssimi\ContentManagementBundle\ContentManagementBundle(),
             new Doctrine\Bundle\PHPCRBundle\DoctrinePHPCRBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
