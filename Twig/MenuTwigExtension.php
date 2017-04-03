@@ -38,28 +38,20 @@ class MenuTwigExtension extends Twig_Extension
     public function getFunctions()
     {
         return array(
-            new Twig_SimpleFunction('menu_render', array($this, 'menuRender'), array('is_safe' => array('all'), 'needs_environment' => true)),
+            new Twig_SimpleFunction('mssimi_menu_render', array($this, 'menuRender'), array('is_safe' => array('all'), 'needs_environment' => true)),
         );
     }
 
     /**
      * @param Twig_Environment $twig
-     * @param string $nodeName
-     * @param $idSuffix
+     * @param $menu
+     * @param array $attributes
+     * @param string $activeClass
      * @param string $template
      * @return null|string
      */
-    public function menuRender(Twig_Environment $twig, $nodeName = '/', $idSuffix = null, $template = 'ContentManagementBundle:Menu:menu.html.twig')
+    public function menuRender(Twig_Environment $twig, $menu, $attributes = [], $activeClass = 'active', $template = 'ContentManagementBundle:Menu:menu.html.twig')
     {
-        $menu = $this->documentManager->find(null, $nodeName);
-
-        $html = null;
-
-        if($menu) {
-            $html = $twig->render($template, array('menu' => $menu, 'idSuffix' => $idSuffix));
-        }
-
-
-        return $html;
+        return $twig->render($template, array('menu' => $menu, 'attributes' => $attributes, 'activeClass' => $activeClass));
     }
 }

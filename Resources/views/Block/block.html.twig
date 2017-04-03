@@ -1,3 +1,4 @@
-<div id="{{ block.id|slice(1)|replace({'/' : '-'}) }}{{ idSuffix|default('') }}" class="block-editable" data-url="{{ path('_mssimi_block_inline_edit', {'id' : block.id }) }}">
+<div id="{{ block.id|slice(1)|replace({'/' : '-'}) }}{{ idSuffix|default('') }}" class="{% if is_granted('ROLE_CMS') %}editable-block{% endif %}">
     {{ block.content|raw }}
+    {% if is_granted('ROLE_CMS') %}<a class="editable-button" href="{{ path('_mssimi_block_edit', {'id': block.id}) }}">Edit</a>{% endif %}
 </div>

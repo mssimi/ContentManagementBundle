@@ -1,23 +1,13 @@
-{% macro node(menu) %}
-    {% for item in menu %}
-        <li>
-            {% if item.link %}
-                <a href="{% if item.linkType == 'url' %}{{ item.link }}{% elseif item.linkType == 'route' %}{{ path(item.link) }}{% else %}{{ path('_page_index', {'id': item.link }) }}{% endif %}">{{ item.label }}</a>
-            {% else %}
-                <span>{{ item.label }}</span>
-            {% endif %}
-            {% if item.children|length %}
-                <ul>
-                    {% import _self as self %}
-                    {{ self.node(item.children) }}
-                </ul>
-            {% endif %}
-        </li>
-    {% endfor %}
-{% endmacro %}
+{% set knpMenu = knp_menu_get(menu) %}
+{% for key,attribute in attributes %}
+    {% do knpMenu.setChildrenAttribute(key, attribute) %}
+{% endfor %}
+{% if is_granted('ROLE_CMS') %}
+<div class="editable-block">
+{% endif %}
+    {{ knp_menu_render(knpMenu, {'currentClass': activeClass}) }}
+{% if is_granted('ROLE_CMS') %}
+    <a class="editable-button" href="{{ path('_mssimi_menu_edit', {'id': menu}) }}">Edit</a>
+</div>
+{% endif %}
 
-{% import _self as macro %}
-
-<ul id="{{ menu.id|slice(1)|replace({'/' : '-'}) }}{{ idSuffix|default('') }}" class="menu" data-url="{{ path('_mssimi_block_inline_edit', {'id' : menu.id }) }}">
-    {{ macro.node(menu.children) }}
-</ul>

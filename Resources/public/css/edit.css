@@ -1,0 +1,22 @@
+.editable-block{
+    position: relative;
+    border: 1px dashed #dadada;
+}
+.editable-block:before{
+    display: table;
+    content: " ";
+}
+.editable-block:after{
+    content: "";
+    display: table;
+    clear: both;
+}
+.editable-block:hover{
+    border-color: #949494;
+}
+.editable-button{
+    position: absolute;
+    top: 1px;
+    right: 2px;
+    font-size: 12px;
+}

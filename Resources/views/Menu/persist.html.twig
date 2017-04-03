@@ -19,35 +19,38 @@
                 {{ form_widget(form) }}
             </div>
         </div>
-        <div class="form-actions text-right m-bottom-35">
+        <div class="form-actions form-group text-right">
             <a href="{{ path('_mssimi_menu_index') }}"  class="btn btn-default" type="button"><i class="icon-backward"></i> {{ ('mssimiContentManagement.common.back')|trans }}</a>
             <button type="submit" class="btn btn-primary">{{ ('mssimiContentManagement.common.submit')|trans }}</button>
         </div>
     {{ form_end(form) }}
 
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h6 class="panel-title">{{ ('mssimiContentManagement.common.list')|trans }}</h6>
+        </div>
+
+        <div class="panel-body">
+            <table class="table table-bordered table-tree">
+                <thead>
+                <tr>
+                    <th>{{ ('mssimiContentManagement.node.id')|trans }}</th>
+                    <th>{{ ('mssimiContentManagement.node.name')|trans }}</th>
+                    <th>{{ ('mssimiContentManagement.node.label')|trans }}</th>
+                    <th>{{ ('mssimiContentManagement.node.link')|trans }}</th>
+                    <th>{{ ('mssimiContentManagement.common.tools')|trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% include '@ContentManagement/Menu/node.html.twig' with {'menus' : menu.children} %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}
 
 {% block javascripts %}
     <script src="{{ asset('bundles/contentmanagement/js/jquery.autocomplete.min.js') }}"></script>
-    <script>
-        $( document ).ready(function() {
-            $('#menu_link').autocomplete({
-                serviceUrl: Routing.generate('_mssimi_menu_ajax'),
-                type: 'POST'
-            });
-
-            toggleAutocomplete();
-            $('#menu_linkType').change(function () {
-                toggleAutocomplete();
-            });
-        });
-
-        function toggleAutocomplete(){
-            if ($('#menu_linkType').val() == 'path') {
-                $('#menu_link').autocomplete().enable();
-            } else {
-                $('#menu_link').autocomplete().disable();
-            }
-        }
-    </script>
+    <script src="{{ asset('bundles/contentmanagement/js/menu-tree.js') }}"></script>
+    <script src="{{ asset('bundles/contentmanagement/js/load-pages.js') }}"></script>
 {% endblock %}
