@@ -30,12 +30,21 @@
                         <th>{{ ('mssimiContentManagement.node.id')|trans }}</th>
                         <th>{{ ('mssimiContentManagement.node.name')|trans }}</th>
                         <th>{{ ('mssimiContentManagement.node.label')|trans }}</th>
-                        <th>{{ ('mssimiContentManagement.node.link')|trans }}</th>
                         <th>{{ ('mssimiContentManagement.common.tools')|trans }}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% include '@ContentManagement/Menu/node.html.twig' with {'menus' : menus.items} %}
+                {% for menu in menus.items %}
+                    <tr>
+                        <td>{{ menu.id }}</td>
+                        <td>{{ menu.name }}</td>
+                        <td>{{ menu.label }}</td>
+                        <td>
+                            {{ edit_button_render(path('_mssimi_menu_edit', {'id' : menu.id })) }}
+                            <a href="{{ path('_mssimi_menu_remove', {'id' : menu.id }) }}" class="btn btn-danger" data-toggle="confirmation">{{ ('mssimiContentManagement.common.remove')|trans }}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
             <div class="row">
@@ -46,7 +55,4 @@
             </div>
         </div>
     </div>
-{% endblock %}
-{% block javascripts %}
-    <script src="{{ asset('bundles/contentmanagement/js/menu-tree.js') }}"></script>
 {% endblock %}

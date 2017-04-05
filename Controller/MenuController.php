@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class MenuController
@@ -159,5 +160,38 @@ class MenuController extends Controller
 
         $this->addFlash('success', 'fleshMessage.common.entityRemoved');
         return $this->redirectToRoute('_mssimi_menu_index');
+    }
+
+    /**
+     * remove an existing Menu entity.
+     *
+     * @Route("/reorder", name="_mssimi_menu_reorder", options={"expose" = true}, requirements={"id"=".+"})
+     * @Method({"POST"})
+     * @param Request $request
+     * @param Menu $menu
+     * @return Response|\Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function reOrderAction(Request $request)
+    {
+        $data = $request->request->all();
+        $dm = $this->get('doctrine_phpcr')->getManager();
+
+        $child = $dm->find(null, $data['id']);
+        $childName = $child->getName();
+        $dm->move($child, $data['parent_id'] . '/' . $child->getName());
+        $dm->flush();
+        $dm->clear();
+
+        $parent = $dm->find(null, $data['parent_id']);
+
+        if(isset($data['before']) && $data['before']){
+            $dm->reorder($parent, $childName, $data['before'], 0);
+        }elseif(isset($data['after']) && $data['after']){
+            $dm->reorder($parent, $childName, $data['after'], 1);
+        }
+
+        $dm->flush();
+
+        return new Response();
     }
 }

@@ -25,32 +25,80 @@
         </div>
     {{ form_end(form) }}
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h6 class="panel-title">{{ ('mssimiContentManagement.common.list')|trans }}</h6>
+    {% if menu.children|length %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h6 class="panel-title">{{ ('mssimiContentManagement.common.list')|trans }}</h6>
+            </div>
+            <div class="panel-body">
+                <ul class="sortable list-group">
+                    {% include '@ContentManagement/Menu/node.html.twig' with {'menus' : menu.children} %}
+                </ul>
+            </div>
         </div>
+    {% endif %}
 
-        <div class="panel-body">
-            <table class="table table-bordered table-tree">
-                <thead>
-                <tr>
-                    <th>{{ ('mssimiContentManagement.node.id')|trans }}</th>
-                    <th>{{ ('mssimiContentManagement.node.name')|trans }}</th>
-                    <th>{{ ('mssimiContentManagement.node.label')|trans }}</th>
-                    <th>{{ ('mssimiContentManagement.node.link')|trans }}</th>
-                    <th>{{ ('mssimiContentManagement.common.tools')|trans }}</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% include '@ContentManagement/Menu/node.html.twig' with {'menus' : menu.children} %}
-                </tbody>
-            </table>
-        </div>
-    </div>
+
 {% endblock %}
 
 {% block javascripts %}
     <script src="{{ asset('bundles/contentmanagement/js/jquery.autocomplete.min.js') }}"></script>
-    <script src="{{ asset('bundles/contentmanagement/js/menu-tree.js') }}"></script>
     <script src="{{ asset('bundles/contentmanagement/js/load-pages.js') }}"></script>
+    <script
+            src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+            crossorigin="anonymous"></script>
+    <script src="{{ asset('bundles/contentmanagement/js/jquery.mjs.nestedSortable.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+
+            $('.sortable').nestedSortable({
+                handle: 'i',
+                items: 'li.item',
+                toleranceElement: '> div',
+                listType: 'ul',
+                excludeRoot: true,
+                rootID: '{{ menu.id }}',
+                relocate: function(index,elem){
+                    var that = $(this);
+                    elem = elem.item;
+
+                    $.ajax({
+                        type: "POST",
+                        url: Routing.generate("_mssimi_menu_reorder"),
+                        data: {
+                            'id' : elem.attr('id'),
+                            'parent_id' : elem.parent().parent().attr("id") || '{{ menu.id }}',
+                            'before' : elem.prev().attr("data-name"),
+                            'after' : elem.next().attr("data-name")
+                        },
+                        success: function (data) {
+                            refreshId(elem);
+                            console.log('success');
+                            //$.jGrowl(data, {theme: 'growl-success', life: 5000});
+                        },
+                        error: function(xhr, status, error) {
+                            that.nestedSortable('cancel');
+                            console.log('error');
+
+                            //$.jGrowl(xhr.responseText, {theme: 'growl-error', header: 'Chyba!', life: 5000});
+                        }
+                    });
+                    console.log("relocate");
+                }
+            });
+
+            function refreshId(elem){
+                elem.attr('id', (elem.parent().parent().attr("id") || '{{ menu.id }}') + '/' + elem.attr('data-name'));
+
+                elem.find('li.item').each(function(index, elem) {
+                    elem = $(elem);
+                    elem.attr('id', (elem.parent().parent().attr("id") || '{{ menu.id }}') + '/' + elem.attr('data-name'));
+                });
+            }
+        });
+
+
+    </script>
 {% endblock %}
+

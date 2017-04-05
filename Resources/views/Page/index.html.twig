@@ -41,7 +41,7 @@
                         <td>{{ page.content|raw }}</td>
                         <td>
                             {{ edit_button_render(path('_mssimi_page_edit', {'id' : page.id })) }}
-                            <a href="{{ path('_mssimi_page_remove', {'id' : page.id }) }}" class="btn btn-danger">{{ ('mssimiContentManagement.common.remove')|trans }}</a>
+                            <a href="{{ path('_mssimi_page_remove', {'id' : page.id }) }}" class="btn btn-danger" data-toggle="confirmation">{{ ('mssimiContentManagement.common.remove')|trans }}</a>
                         </td>
                     </tr>
                 {% endfor %}

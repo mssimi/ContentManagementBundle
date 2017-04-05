@@ -43,7 +43,7 @@
                         <td>{{ block.content|raw }}</td>
                         <td>
                             {{ edit_button_render(path('_mssimi_block_edit', {'id' : block.id })) }}
-                            <a href="{{ path('_mssimi_block_remove', {'id' : block.id }) }}" class="btn btn-danger">{{ ('mssimiContentManagement.common.remove')|trans }}</a>
+                            <a href="{{ path('_mssimi_block_remove', {'id' : block.id }) }}" class="btn btn-danger" data-toggle="confirmation">{{ ('mssimiContentManagement.common.remove')|trans }}</a>
                         </td>
                     </tr>
                 {% endfor %}

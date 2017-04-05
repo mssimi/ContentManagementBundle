@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-    $('#menu_link').autocomplete({
+    $('#menu_link').devbridgeAutocomplete({
         serviceUrl: Routing.generate('_mssimi_menu_ajax'),
         type: 'POST'
     });
@@ -12,8 +12,8 @@ $( document ).ready(function() {
 
 function toggleAutocomplete(){
     if ($('#menu_linkType').val() == 'path') {
-        $('#menu_link').autocomplete().enable();
+        $('#menu_link').devbridgeAutocomplete().enable();
     } else {
-        $('#menu_link').autocomplete().disable();
+        $('#menu_link').devbridgeAutocomplete().disable();
     }
 }

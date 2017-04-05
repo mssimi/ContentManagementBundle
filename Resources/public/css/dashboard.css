@@ -90,3 +90,16 @@ body {
 .main .page-header {
   margin-top: 0;
 }
+
+.sortable li{
+  display: block;
+}
+.sortable .list-group-item{
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  margin-bottom: 0;
+}
+.sortable .move-block{
+  line-height: 34px;
+}

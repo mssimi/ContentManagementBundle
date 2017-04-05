@@ -18,7 +18,7 @@ class MenuRepository extends \Doctrine\ODM\PHPCR\DocumentRepository
      */
     public function pagination(Request $request){
         $qb =  $this->createQueryBuilder('Menu');
-        $qb->where()->child('/cms/menu','Menu');
+        //$qb->where()->child('/cms/menu','Menu');
 
         if($request->query->has('nodeName')){
             $qb->where()->like()->localName('Menu')->literal('%'.$request->query->get('nodeName').'%');
