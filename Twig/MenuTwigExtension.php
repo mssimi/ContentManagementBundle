@@ -45,13 +45,11 @@ class MenuTwigExtension extends Twig_Extension
     /**
      * @param Twig_Environment $twig
      * @param $menu
-     * @param array $attributes
-     * @param string $activeClass
      * @param string $template
      * @return null|string
      */
-    public function menuRender(Twig_Environment $twig, $menu, $attributes = [], $activeClass = 'active', $template = 'ContentManagementBundle:Menu:menu.html.twig')
+    public function menuRender(Twig_Environment $twig, $menu, $template = 'KnpMenuBundle::menu.html.twig')
     {
-        return $twig->render($template, array('menu' => $menu, 'attributes' => $attributes, 'activeClass' => $activeClass));
+        return $twig->render('ContentManagementBundle:Menu:menu.html.twig', array('menu' => $menu, 'template' => $template));
     }
 }

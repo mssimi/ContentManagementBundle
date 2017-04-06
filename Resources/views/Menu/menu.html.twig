@@ -1,13 +1,8 @@
-{% set knpMenu = knp_menu_get(menu) %}
-{% for key,attribute in attributes %}
-    {% do knpMenu.setChildrenAttribute(key, attribute) %}
-{% endfor %}
 {% if is_granted('ROLE_CMS') %}
 <div class="editable-block">
 {% endif %}
-    {{ knp_menu_render(knpMenu, {'currentClass': activeClass}) }}
+    {{ knp_menu_render(menu, {'template': template }) }}
 {% if is_granted('ROLE_CMS') %}
     <a class="editable-button" href="{{ path('_mssimi_menu_edit', {'id': menu}) }}">Edit</a>
 </div>
 {% endif %}
-
