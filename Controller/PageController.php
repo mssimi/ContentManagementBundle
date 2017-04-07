@@ -122,23 +122,4 @@ class PageController extends Controller
         $this->addFlash('success', 'fleshMessage.common.entityRemoved');
         return $this->redirectToRoute('_mssimi_page_index');
     }
-
-    /**
-     * Route for inline edit using ajax
-     *
-     * @Route("/inline-edit/{id}", name="_mssimi_page_inline_edit", options={"expose" = true} , requirements={"id"=".+"})
-     * @Method({"POST"})
-     * @param Request $request
-     * @param Page $page
-     * @return Response
-     */
-    public function inlineEditAction(Request $request, Page $page){
-
-        $page->setContent($request->get('value'));
-        $dm = $this->get('doctrine_phpcr')->getManager();
-        $dm->persist($page);
-        $dm->flush();
-
-        return new Response('success');
-    }
 }

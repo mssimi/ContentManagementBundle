@@ -50,4 +50,15 @@ class BlockControllerTest extends WebTestCase
         $this->assertEquals(1, $crawler->filter('.panel tbody tr')->count());
         $this->assertEquals("blockEdit", trim($crawler->filter('.panel td')->eq(1)->text()));
     }
+
+    /**
+     * Test remove block
+     */
+    public function testRemove()
+    {
+        $client = static::createClient();
+        $client->followRedirects(true);
+        $crawler = $client->request('GET', '/block/remove//cms/block/blockEdit');
+        $this->assertEquals(0, $crawler->filter('.panel tbody tr')->count());
+    }
 }

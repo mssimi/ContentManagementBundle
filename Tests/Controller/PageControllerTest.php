@@ -52,4 +52,15 @@ class PageControllerTest extends WebTestCase
         $this->assertEquals(1, $crawler->filter('.panel tbody tr')->count());
         $this->assertEquals("pageEdit", trim($crawler->filter('.panel td')->eq(1)->text()));
     }
+
+    /**
+     * Test remove page
+     */
+    public function testRemove()
+    {
+        $client = static::createClient();
+        $client->followRedirects(true);
+        $crawler = $client->request('GET', '/page/remove//cms/page/pageEdit');
+        $this->assertEquals(0, $crawler->filter('.panel tbody tr')->count());
+    }
 }

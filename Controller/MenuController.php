@@ -44,46 +44,6 @@ class MenuController extends Controller
     }
 
     /**
-     * Load node using ajax.
-     *
-     * @Route("/load/{id}", name="_mssimi_menu_load", requirements={"id"="/cms/menu.*"}, options={"expose" = "true"})
-     * @Method("GET")
-     * @param Menu $parent
-     * @return Response
-     */
-    public function loadNodeAction(Menu $parent)
-    {
-        $menus = $parent->getChildren();
-
-        return $this->render('@ContentManagement/Menu/node.html.twig', array(
-            'menus' => $menus,
-            'parent' => $parent->getId()
-        ));
-    }
-
-    /**
-     * Search nodes ajax
-     *
-     * @Route("/ajax-index", name="_mssimi_menu_ajax", options={"expose" = "true"})
-     * @param Request $request
-     * @return Response
-     * @Method({"GET","POST"})
-     */
-    public function ajaxAction(Request $request)
-    {
-        $dm = $this->get('doctrine_phpcr')->getManager();
-        $menus = $dm->getRepository('ContentManagementBundle:Page')->findLikeNodename($request->request->get('query'), 20);
-
-        $response = ['query' => 'Unit', 'suggestions' => []];
-
-        foreach ($menus as $menu) {
-            $response['suggestions'][] = ['value' => $menu->getId(), 'data' => $menu->getId()];
-        }
-
-        return $this->json($response);
-    }
-
-    /**
      * Creates a new Menu entity.
      *
      * @Route("/new/{id}", name="_mssimi_menu_new", defaults={"id" = "/cms/menu"} , requirements={"id"="/cms/menu.*"})
@@ -168,7 +128,6 @@ class MenuController extends Controller
      * @Route("/reorder", name="_mssimi_menu_reorder", options={"expose" = true}, requirements={"id"=".+"})
      * @Method({"POST"})
      * @param Request $request
-     * @param Menu $menu
      * @return Response|\Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function reOrderAction(Request $request)

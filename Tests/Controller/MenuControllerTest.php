@@ -54,4 +54,15 @@ class MenuControllerTest extends WebTestCase
         $this->assertEquals(1, $crawler->filter('.panel tbody tr')->count());
         $this->assertEquals("menuEdit", trim($crawler->filter('.panel td')->eq(1)->text()));
     }
+
+    /**
+     * Test remove menu
+     */
+    public function testRemove()
+    {
+        $client = static::createClient();
+        $client->followRedirects(true);
+        $crawler = $client->request('GET', '/menu/remove//cms/menu/menuEdit');
+        $this->assertEquals(0, $crawler->filter('.panel tbody tr')->count());
+    }
 }
