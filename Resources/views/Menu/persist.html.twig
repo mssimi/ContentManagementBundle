@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="form-actions form-group text-right">
-            <a href="{{ path('_mssimi_menu_index') }}"  class="btn btn-default" type="button"><i class="icon-backward"></i> {{ ('mssimiContentManagement.common.back')|trans }}</a>
+            <a href="{{ path('mssimi_menu_index') }}"  class="btn btn-default" type="button"><i class="icon-backward"></i> {{ ('mssimiContentManagement.common.back')|trans }}</a>
             <button type="submit" class="btn btn-primary">{{ ('mssimiContentManagement.common.submit')|trans }}</button>
         </div>
     {{ form_end(form) }}
@@ -65,7 +65,7 @@
 
                     $.ajax({
                         type: "POST",
-                        url: Routing.generate("_mssimi_menu_reorder"),
+                        url: Routing.generate("mssimi_menu_reorder"),
                         data: {
                             'id' : elem.attr('id'),
                             'parent_id' : elem.parent().parent().attr("id") || '{{ menu.id }}',

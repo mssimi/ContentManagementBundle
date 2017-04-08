@@ -10,8 +10,8 @@
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <a class="btn btn-default" href="{{ path('_mssimi_page_new') }}">{{ ('mssimiContentManagement.common.new')|trans }}</a>
-            <form class="form-inline pull-right" action="{{ path('_mssimi_page_index') }}" method="get">
+            <a class="btn btn-default" href="{{ path('mssimi_page_new') }}">{{ ('mssimiContentManagement.common.new')|trans }}</a>
+            <form class="form-inline pull-right" action="{{ path('mssimi_page_index') }}" method="get">
                 <input placeholder="search by nodename" class="form-control" name="nodeName" type="text">
                 <button class="btn btn-default" type="submit">{{ ('mssimiContentManagement.common.submit')|trans }}</button>
             </form>
@@ -40,8 +40,8 @@
                         <td>{{ page.name }}</td>
                         <td>{{ page.content|raw }}</td>
                         <td>
-                            {{ edit_button_render(path('_mssimi_page_edit', {'id' : page.id })) }}
-                            <a href="{{ path('_mssimi_page_remove', {'id' : page.id }) }}" class="btn btn-danger" data-toggle="confirmation">{{ ('mssimiContentManagement.common.remove')|trans }}</a>
+                            {{ edit_button_render(path('mssimi_page_edit', {'id' : page.id })) }}
+                            <a href="{{ path('mssimi_page_remove', {'id' : page.id }) }}" class="btn btn-danger" data-toggle="confirmation">{{ ('mssimiContentManagement.common.remove')|trans }}</a>
                         </td>
                     </tr>
                 {% endfor %}

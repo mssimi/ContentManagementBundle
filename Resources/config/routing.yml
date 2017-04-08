@@ -1,3 +1,0 @@
-content_management:
-    resource: "@ContentManagementBundle/Controller/"
-    type:     annotation

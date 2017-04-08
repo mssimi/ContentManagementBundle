@@ -1,6 +1,6 @@
 <?php
 
-namespace mssimi\ContentManagementBundle\Controller;
+namespace mssimi\ContentManagementBundle\Controller\Admin;
 
 use mssimi\ContentManagementBundle\Document\Block;
 use mssimi\ContentManagementBundle\Form\BlockType;
@@ -20,7 +20,7 @@ class BlockController extends Controller
     /**
      * Lists all Block entities.
      *
-     * @Route("/index", name="_mssimi_block_index")
+     * @Route("/index", name="mssimi_block_index")
      * @Method("GET")
      * @param Request $request
      * @return Response
@@ -45,7 +45,7 @@ class BlockController extends Controller
     /**
      * Creates a new Block entity.
      *
-     * @Route("/new", name="_mssimi_block_new")
+     * @Route("/new", name="mssimi_block_new")
      * @Method({"GET", "POST"})
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
@@ -66,7 +66,7 @@ class BlockController extends Controller
             $dm->flush();
 
             $this->addFlash('success', 'flashMessage.common.entityCreated');
-            return $this->redirectToRoute('_mssimi_block_index');
+            return $this->redirectToRoute('mssimi_block_index');
         }
 
         return $this->render('@ContentManagement/Block/persist.html.twig', array(
@@ -78,7 +78,7 @@ class BlockController extends Controller
     /**
      * Displays a form to edit an existing Block entity.
      *
-     * @Route("/edit/{id}", name="_mssimi_block_edit", options={"expose" = true} , requirements={"id"=".+"})
+     * @Route("/edit/{id}", name="mssimi_block_edit", options={"expose" = true} , requirements={"id"=".+"})
      * @Method({"GET", "POST"})
      * @param Request $request
      * @param $id
@@ -96,7 +96,7 @@ class BlockController extends Controller
             $dm->flush();
 
             $this->addFlash('success', 'flashMessage.common.entityUpdated');
-            return $this->redirectToRoute('_mssimi_block_index');
+            return $this->redirectToRoute('mssimi_block_index');
         }
 
         return $this->render('@ContentManagement/Block/persist.html.twig', array(
@@ -108,7 +108,7 @@ class BlockController extends Controller
     /**
      * remove an existing Block entity.
      *
-     * @Route("/remove/{id}", name="_mssimi_block_remove", options={"expose" = true} , requirements={"id"=".+"})
+     * @Route("/remove/{id}", name="mssimi_block_remove", options={"expose" = true} , requirements={"id"=".+"})
      * @Method({"GET", "POST"})
      * @param Block $block
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
@@ -120,13 +120,13 @@ class BlockController extends Controller
         $dm->flush();
 
         $this->addFlash('success', 'fleshMessage.common.entityRemoved');
-        return $this->redirectToRoute('_mssimi_block_index');
+        return $this->redirectToRoute('mssimi_block_index');
     }
 
     /**
      * Route for inline edit using ajax
      *
-     * @Route("/inline-edit/{id}", name="_mssimi_block_inline_edit", options={"expose" = true} , requirements={"id"=".+"})
+     * @Route("/inline-edit/{id}", name="mssimi_block_inline_edit", options={"expose" = true} , requirements={"id"=".+"})
      * @Method({"POST"})
      * @param Request $request
      * @param Block $block

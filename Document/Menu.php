@@ -216,7 +216,7 @@ class Menu implements NodeInterface
                 return $this->link;
                 break;
             case self::linkTypePath:
-                return '_page_index';
+                return 'mssimi_page_render';
                 break;
             default:
                 return null;
@@ -225,7 +225,7 @@ class Menu implements NodeInterface
 
     public function getParamOption()
     {
-        return $this->linkType == self::linkTypePath ? ['id' => $this->link] : [];
+        return $this->linkType == self::linkTypePath ? ['id' => str_replace('/cms/page/','', $this->link)] : [];
     }
 
     /**

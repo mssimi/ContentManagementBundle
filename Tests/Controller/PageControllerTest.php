@@ -53,6 +53,13 @@ class PageControllerTest extends WebTestCase
         $this->assertEquals("pageEdit", trim($crawler->filter('.panel td')->eq(1)->text()));
     }
 
+    public function testPageAction()
+    {
+        $client = static::createClient();
+        $client->request('GET', '/pageEdit');
+        $this->assertTrue($client->getResponse()->isSuccessful());
+    }
+
     /**
      * Test remove page
      */

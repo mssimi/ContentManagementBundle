@@ -1,0 +1,3 @@
+content_management_admin:
+    resource: "@ContentManagementBundle/Controller/Admin/"
+    type:     annotation

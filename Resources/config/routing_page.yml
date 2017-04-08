@@ -1,0 +1,3 @@
+content_management_page:
+    resource: "@ContentManagementBundle/Controller/Page/"
+    type:     annotation

@@ -1,5 +1,9 @@
-content_management:
-    resource: "@ContentManagementBundle/Resources/config/routing.yml"
+content_management_admin:
+    resource: "@ContentManagementBundle/Resources/config/routing_admin.yml"
+    prefix:   /
+
+content_management_page:
+    resource: "@ContentManagementBundle/Resources/config/routing_page.yml"
     prefix:   /
 
 fos_js_routing:

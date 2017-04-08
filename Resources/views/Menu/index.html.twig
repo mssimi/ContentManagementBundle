@@ -10,8 +10,8 @@
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <a class="btn btn-default" href="{{ path('_mssimi_menu_new') }}">{{ ('mssimiContentManagement.common.new')|trans }}</a>
-            <form class="form-inline pull-right" action="{{ path('_mssimi_menu_index') }}" method="get">
+            <a class="btn btn-default" href="{{ path('mssimi_menu_new') }}">{{ ('mssimiContentManagement.common.new')|trans }}</a>
+            <form class="form-inline pull-right" action="{{ path('mssimi_menu_index') }}" method="get">
                 <input placeholder="search by nodename" class="form-control" name="nodeName" type="text">
                 <button class="btn btn-default" type="submit">{{ ('mssimiContentManagement.common.submit')|trans }}</button>
             </form>
@@ -40,8 +40,8 @@
                         <td>{{ menu.name }}</td>
                         <td>{{ menu.label }}</td>
                         <td>
-                            {{ edit_button_render(path('_mssimi_menu_edit', {'id' : menu.id })) }}
-                            <a href="{{ path('_mssimi_menu_remove', {'id' : menu.id }) }}" class="btn btn-danger" data-toggle="confirmation">{{ ('mssimiContentManagement.common.remove')|trans }}</a>
+                            {{ edit_button_render(path('mssimi_menu_edit', {'id' : menu.id })) }}
+                            <a href="{{ path('mssimi_menu_remove', {'id' : menu.id }) }}" class="btn btn-danger" data-toggle="confirmation">{{ ('mssimiContentManagement.common.remove')|trans }}</a>
                         </td>
                     </tr>
                 {% endfor %}

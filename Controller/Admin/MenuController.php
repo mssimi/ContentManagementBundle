@@ -1,6 +1,6 @@
 <?php
 
-namespace mssimi\ContentManagementBundle\Controller;
+namespace mssimi\ContentManagementBundle\Controller\Admin;
 
 use mssimi\ContentManagementBundle\Document\Menu;
 use mssimi\ContentManagementBundle\Form\MenuType;
@@ -21,7 +21,7 @@ class MenuController extends Controller
     /**
      * Lists all Menu entities.
      *
-     * @Route("/index", name="_mssimi_menu_index")
+     * @Route("/index", name="mssimi_menu_index")
      * @Method("GET")
      * @param Request $request
      * @return Response
@@ -46,7 +46,7 @@ class MenuController extends Controller
     /**
      * Creates a new Menu entity.
      *
-     * @Route("/new/{id}", name="_mssimi_menu_new", defaults={"id" = "/cms/menu"} , requirements={"id"="/cms/menu.*"})
+     * @Route("/new/{id}", name="mssimi_menu_new", defaults={"id" = "/cms/menu"} , requirements={"id"="/cms/menu.*"})
      * @Method({"GET", "POST"})
      * @param Request $request
      * @param Menu $parent
@@ -65,7 +65,7 @@ class MenuController extends Controller
             $dm->flush();
 
             $this->addFlash('success', 'flashMessage.common.entityCreated');
-            return $this->redirectToRoute('_mssimi_menu_index');
+            return $this->redirectToRoute('mssimi_menu_index');
         }
 
         return $this->render('@ContentManagement/Menu/persist.html.twig', array(
@@ -77,7 +77,7 @@ class MenuController extends Controller
     /**
      * Displays a form to edit an existing Menu entity.
      *
-     * @Route("/edit/{id}", name="_mssimi_menu_edit", options={"expose" = true} , requirements={"id"=".+"})
+     * @Route("/edit/{id}", name="mssimi_menu_edit", options={"expose" = true} , requirements={"id"=".+"})
      * @Method({"GET", "POST"})
      * @param Request $request
      * @param $id
@@ -95,7 +95,7 @@ class MenuController extends Controller
             $dm->flush();
 
             $this->addFlash('success', 'flashMessage.common.entityUpdated');
-            return $this->redirectToRoute('_mssimi_menu_index');
+            return $this->redirectToRoute('mssimi_menu_index');
         }
 
         return $this->render('@ContentManagement/Menu/persist.html.twig', array(
@@ -107,7 +107,7 @@ class MenuController extends Controller
     /**
      * remove an existing Menu entity.
      *
-     * @Route("/remove/{id}", name="_mssimi_menu_remove", options={"expose" = true} , requirements={"id"=".+"})
+     * @Route("/remove/{id}", name="mssimi_menu_remove", options={"expose" = true} , requirements={"id"=".+"})
      * @Method({"GET", "POST"})
      * @param Menu $menu
      * @return Response|\Symfony\Component\HttpFoundation\RedirectResponse
@@ -119,13 +119,13 @@ class MenuController extends Controller
         $dm->flush();
 
         $this->addFlash('success', 'fleshMessage.common.entityRemoved');
-        return $this->redirectToRoute('_mssimi_menu_index');
+        return $this->redirectToRoute('mssimi_menu_index');
     }
 
     /**
      * remove an existing Menu entity.
      *
-     * @Route("/reorder", name="_mssimi_menu_reorder", options={"expose" = true}, requirements={"id"=".+"})
+     * @Route("/reorder", name="mssimi_menu_reorder", options={"expose" = true}, requirements={"id"=".+"})
      * @Method({"POST"})
      * @param Request $request
      * @return Response|\Symfony\Component\HttpFoundation\RedirectResponse
@@ -153,4 +153,27 @@ class MenuController extends Controller
 
         return new Response();
     }
+
+    /**
+     * Search nodes ajax
+     *
+     * @Route("/ajax-index", name="mssimi_menu_ajax", options={"expose" = "true"})
+     * @param Request $request
+     * @return Response
+     * @Method({"GET","POST"})
+     */
+    public function ajaxAction(Request $request)
+    {
+        $dm = $this->get('doctrine_phpcr')->getManager();
+        $menus = $dm->getRepository('ContentManagementBundle:Page')->findLikeNodename($request->request->get('query'), 20);
+
+        $response = ['query' => 'Unit', 'suggestions' => []];
+
+        foreach ($menus as $menu) {
+            $response['suggestions'][] = ['value' => $menu->getId(), 'data' => $menu->getId()];
+        }
+
+        return $this->json($response);
+    }
+
 }

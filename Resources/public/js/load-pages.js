@@ -1,6 +1,6 @@
 $( document ).ready(function() {
     $('#menu_link').devbridgeAutocomplete({
-        serviceUrl: Routing.generate('_mssimi_menu_ajax'),
+        serviceUrl: Routing.generate('mssimi_menu_ajax'),
         type: 'POST'
     });
 
