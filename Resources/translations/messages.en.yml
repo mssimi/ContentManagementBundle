@@ -1,6 +1,7 @@
 mssimiContentManagement:
     common:
         new: "New"
+        newDir: "New directory"
         edit: "Edit"
         remove: "Remove"
         submit: "Submit"

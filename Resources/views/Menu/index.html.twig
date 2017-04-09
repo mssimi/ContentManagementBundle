@@ -41,6 +41,7 @@
                         <td>{{ menu.label }}</td>
                         <td>
                             {{ edit_button_render(path('mssimi_menu_edit', {'id' : menu.id })) }}
+                            <a class="btn btn-default" href="{{ path('mssimi_menu_new', {'id' : menu.id}) }}">{{ ('mssimiContentManagement.common.new')|trans }}</a>
                             <a href="{{ path('mssimi_menu_remove', {'id' : menu.id }) }}" class="btn btn-danger" data-toggle="confirmation">{{ ('mssimiContentManagement.common.remove')|trans }}</a>
                         </td>
                     </tr>

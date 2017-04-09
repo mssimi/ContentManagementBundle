@@ -34,6 +34,7 @@
                 <ul class="sortable list-group">
                     {% include '@ContentManagement/Menu/node.html.twig' with {'menus' : menu.children} %}
                 </ul>
+                <a class="btn btn-default pull-right" href="{{ path('mssimi_menu_new', {'id' : menu.id}) }}">{{ ('mssimiContentManagement.common.new')|trans }}</a>
             </div>
         </div>
     {% endif %}

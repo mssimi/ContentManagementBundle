@@ -16,7 +16,8 @@ class PageRepository extends \Doctrine\ODM\PHPCR\DocumentRepository
      * @param Request $request
      * @return mixed
      */
-    public function pagination(Request $request){
+    public function pagination(Request $request)
+    {
         $qb =  $this->createQueryBuilder('Page');
 
         if($request->query->has('nodeName')){
