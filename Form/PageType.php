@@ -7,6 +7,7 @@ use mssimi\ContentManagementBundle\Document\Page;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 /**
  * Class PageType
@@ -48,6 +49,19 @@ class PageType extends AbstractType
             ))
             ->add('metaDescription', null, array(
                 'label' => 'mssimiContentManagement.page.form.metaDescription',
+                'attr' => array(
+                    'class' => ''
+                )
+            ))
+            ->add('publish', null, array(
+                'label' => 'mssimiContentManagement.page.form.publish',
+                'attr' => array(
+                    'class' => ''
+                )
+            ))
+            ->add('imageFile', VichFileType::class, array(
+                'label' => 'mssimiContentManagement.page.form.imageFile',
+                'download_link' => false,
                 'attr' => array(
                     'class' => ''
                 )

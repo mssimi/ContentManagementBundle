@@ -67,4 +67,12 @@ doctrine_phpcr:
 content_management:
     locales: ['en','de','fr']
 
+vich_uploader:
+    db_driver: orm
+    mappings:
+        content_management:
+            uri_prefix:         /images/cms
+            upload_destination: '%kernel.root_dir%/../web/images/cms'
+            db_driver: phpcr
+
 

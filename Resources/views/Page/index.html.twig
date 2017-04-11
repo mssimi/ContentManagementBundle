@@ -11,7 +11,6 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <a class="btn btn-default" href="{{ path('mssimi_page_new') }}">{{ ('mssimiContentManagement.common.new')|trans }}</a>
-            {#<a class="btn btn-default" href="{{ path('mssimi_directory_new', {'id' : ''}) }}">{{ ('mssimiContentManagement.common.newDir')|trans }}</a>#}
             <form class="form-inline pull-right" action="{{ path('mssimi_page_index') }}" method="get">
                 <input placeholder="search by nodename" class="form-control" name="nodeName" type="text">
                 <button class="btn btn-default" type="submit">{{ ('mssimiContentManagement.common.submit')|trans }}</button>
@@ -30,7 +29,8 @@
                     <tr>
                         <th>{{ ('mssimiContentManagement.node.id')|trans }}</th>
                         <th>{{ ('mssimiContentManagement.node.name')|trans }}</th>
-                        <th>{{ ('mssimiContentManagement.node.content')|trans }}</th>
+                        <th>{{ ('mssimiContentManagement.node.published')|trans }}</th>
+                        <th>{{ ('mssimiContentManagement.node.childrenCount')|trans }}</th>
                         <th>{{ ('mssimiContentManagement.common.tools')|trans }}</th>
                     </tr>
                 </thead>
@@ -39,9 +39,11 @@
                     <tr>
                         <td>{{ page.id }}</td>
                         <td>{{ page.name }}</td>
-                        <td>{{ page.content|raw }}</td>
+                        <td>{{ page.publish }}</td>
+                        <td>{{ page.children|length }}</td>
                         <td>
                             {{ edit_button_render(path('mssimi_page_edit', {'id' : page.id })) }}
+                            <a class="btn btn-default" href="{{ path('mssimi_page_new', {'id' : page.id}) }}">{{ ('mssimiContentManagement.common.new')|trans }}</a>
                             <a href="{{ path('mssimi_page_remove', {'id' : page.id }) }}" class="btn btn-danger" data-toggle="confirmation">{{ ('mssimiContentManagement.common.remove')|trans }}</a>
                         </td>
                     </tr>

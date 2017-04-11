@@ -14,6 +14,8 @@ mssimiContentManagement:
         content: "Content"
         link: "Link"
         label: "Label"
+        childrenCount: "Children count"
+        published: "published"
     block:
         heading: "Block"
         form:
@@ -38,3 +40,5 @@ mssimiContentManagement:
             content: "Content"
             metaKeywords: "Meta keywords"
             metaDescription: "Meta description"
+            publish: "Publish"
+            imageFile: "Upload image"

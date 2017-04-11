@@ -7,6 +7,9 @@
 {% block content %}
     <div class="container">
         <h1>{{ page.heading }}</h1>
+        {% if page.imageName %}
+            <img src="{{ asset(vich_uploader_asset(page, 'imageFile')) }}" alt="img">
+        {% endif %}
         {{ page.content|raw }}
     </div>
 {% endblock content %}

@@ -45,16 +45,14 @@ class PageController extends Controller
     /**
      * Creates a new Page entity.
      *
-     * @Route("/new", name="mssimi_page_new")
+     * @Route("/new/{id}", name="mssimi_page_new", defaults={"id" = "/cms/page"} , requirements={"id"="/cms/page.*"})
      * @Method({"GET", "POST"})
      * @param Request $request
+     * @param Page $parent
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, Page $parent)
     {
-        $dm = $this->get('doctrine_phpcr')->getManager();
-        $parent = $dm->find(null, '/cms/page');
-
         $page = new Page();
         $page->setParent($parent);
         $form = $this->createForm(PageType::class, $page);

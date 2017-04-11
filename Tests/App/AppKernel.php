@@ -21,8 +21,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
-            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
-            new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
+            new Vich\UploaderBundle\VichUploaderBundle(),
         );
         return $bundles;
     }

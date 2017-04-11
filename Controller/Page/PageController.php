@@ -21,7 +21,7 @@ class PageController extends Controller
         $dm = $this->get('doctrine_phpcr')->getManager();
         $page = $dm->find(null, '/cms/page/' . $id);
 
-        if(!$page){
+        if(!$page || !$page->getPublish()){
             throw $this->createNotFoundException();
         }
 
