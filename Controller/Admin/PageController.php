@@ -55,7 +55,7 @@ class PageController extends Controller
     {
         $page = new Page();
         $page->setParent($parent);
-        $form = $this->createForm(PageType::class, $page);
+        $form = $this->createForm(PageType::class, $page, array('templates' => $this->getParameter('content_management.templates')));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -86,7 +86,7 @@ class PageController extends Controller
     {
         $dm = $this->get('doctrine_phpcr')->getManager();
         $page = $dm->findTranslation(null, $id, $request->query->get('locale'));
-        $form = $this->createForm(PageType::class, $page);
+        $form = $this->createForm(PageType::class, $page, array('templates' => $this->getParameter('content_management.templates')));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){

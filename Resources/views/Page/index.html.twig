@@ -39,7 +39,7 @@
                     <tr>
                         <td>{{ page.id }}</td>
                         <td>{{ page.name }}</td>
-                        <td>{{ page.publish }}</td>
+                        <td><i class="glyphicon {{ page.publish ? 'glyphicon-ok' : 'glyphicon-remove' }}"></i></td>
                         <td>{{ page.children|length }}</td>
                         <td>
                             {{ edit_button_render(path('mssimi_page_edit', {'id' : page.id })) }}

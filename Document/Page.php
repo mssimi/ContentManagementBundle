@@ -62,6 +62,11 @@ class Page
     private $publish = true;
 
     /**
+     * @PHPCR\Field(type="string")
+     */
+    private $template = '@ContentManagement/Page/page.html.twig';
+
+    /**
      *
      * @Vich\UploadableField(mapping="content_management", fileNameProperty="imageName")
      *
@@ -346,5 +351,21 @@ class Page
     public function setLastModifiedBy($lastModifiedBy)
     {
         $this->lastModifiedBy = $lastModifiedBy;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTemplate()
+    {
+        return $this->template;
+    }
+
+    /**
+     * @param mixed $template
+     */
+    public function setTemplate($template)
+    {
+        $this->template = $template;
     }
 }

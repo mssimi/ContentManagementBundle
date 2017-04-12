@@ -1,6 +1,6 @@
-##Simple content management
+#Simple content management
 
-https://travis-ci.org/mssimi/ContentManagementBundle.svg?branch=master
+[![Build Status](https://travis-ci.org/mssimi/ContentManagementBundle.svg?branch=master)](https://travis-ci.org/mssimi/ContentManagementBundle)
 
 in development
 

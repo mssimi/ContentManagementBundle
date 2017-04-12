@@ -25,7 +25,7 @@ class PageController extends Controller
             throw $this->createNotFoundException();
         }
 
-        return $this->render('@ContentManagement/Page/page.html.twig', array(
+        return $this->render($page->getTemplate(), array(
             'page' => $page,
         ));
     }

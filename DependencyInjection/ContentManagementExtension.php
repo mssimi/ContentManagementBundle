@@ -23,6 +23,7 @@ class ContentManagementExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
         $container->setParameter('content_management.locales', $config['locales']);
         $container->setParameter('content_management.items_per_page', $config['items_per_page']);
+        $container->setParameter('content_management.templates', $config['templates']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');

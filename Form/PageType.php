@@ -5,6 +5,7 @@ namespace mssimi\ContentManagementBundle\Form;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use mssimi\ContentManagementBundle\Document\Page;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichFileType;
@@ -22,6 +23,11 @@ class PageType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $choices = array_combine(
+            array_map(function($key){ return 'mssimiContentManagement.page.form.template'.ucfirst($key); }, array_keys($options['templates'])),
+            $options['templates']
+        );
+
         $builder
             ->add('name', null, array(
                 'label' => 'mssimiContentManagement.page.form.name',
@@ -62,6 +68,14 @@ class PageType extends AbstractType
             ->add('imageFile', VichFileType::class, array(
                 'label' => 'mssimiContentManagement.page.form.imageFile',
                 'download_link' => false,
+                'required' => false,
+                'attr' => array(
+                    'class' => ''
+                )
+            ))
+            ->add('template', ChoiceType::class, array(
+                'label' => 'mssimiContentManagement.page.form.template',
+                'choices' => $choices,
                 'attr' => array(
                     'class' => ''
                 )
@@ -77,5 +91,7 @@ class PageType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => Page::class
         ));
+
+        $resolver->setRequired('templates');
     }
 }
