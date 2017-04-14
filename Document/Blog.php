@@ -6,8 +6,8 @@ namespace mssimi\ContentManagementBundle\Document;
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 
 /**
- * @PHPCR\Document(repositoryClass="mssimi\ContentManagementBundle\Repository\GalleryRepository")
+ * @PHPCR\Document(repositoryClass="mssimi\ContentManagementBundle\Repository\BlogRepository")
  */
-class Gallery extends AbstractPage
+class Blog extends AbstractPage
 {
 }

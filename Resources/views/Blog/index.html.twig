@@ -1,17 +1,17 @@
 {% extends '@ContentManagement/base.html.twig' %}
 
-{% block title %}{{ ('mssimiContentManagement.page.heading')|trans }}{% endblock %}
+{% block title %}{{ ('mssimiContentManagement.blog.heading')|trans }}{% endblock %}
 {% block content %}
-    <div class="page-header">
-        <div class="page-title">
-            <h3>{{ ('mssimiContentManagement.page.heading')|trans }}</h3>
+    <div class="blog-header">
+        <div class="blog-title">
+            <h3>{{ ('mssimiContentManagement.blog.heading')|trans }}</h3>
         </div>
     </div>
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <a class="btn btn-default" href="{{ path('mssimi_page_new') }}">{{ ('mssimiContentManagement.common.new')|trans }}</a>
-            <form class="form-inline pull-right" action="{{ path('mssimi_page_index') }}" method="get">
+            <a class="btn btn-default" href="{{ path('mssimi_blog_new') }}">{{ ('mssimiContentManagement.common.new')|trans }}</a>
+            <form class="form-inline pull-right" action="{{ path('mssimi_blog_index') }}" method="get">
                 <input placeholder="search by nodename" class="form-control" name="nodeName" type="text">
                 <button class="btn btn-default" type="submit">{{ ('mssimiContentManagement.common.submit')|trans }}</button>
             </form>
@@ -35,15 +35,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                {% for page in pages.items %}
+                {% for blog in blogs.items %}
                     <tr>
-                        <td>{{ page.id }}</td>
-                        <td>{{ page.name }}</td>
-                        <td><i class="glyphicon {{ page.publish ? 'glyphicon-ok' : 'glyphicon-remove' }}"></i></td>
-                        <td>{{ page.children|length }}</td>
+                        <td>{{ blog.id }}</td>
+                        <td>{{ blog.name }}</td>
+                        <td><i class="glyphicon {{ blog.publish ? 'glyphicon-ok' : 'glyphicon-remove' }}"></i></td>
+                        <td>{{ blog.children|length }}</td>
                         <td>
-                            {{ edit_button_render(path('mssimi_page_edit', {'id' : page.id })) }}
-                            <a href="{{ path('mssimi_page_remove', {'id' : page.id }) }}" class="btn btn-danger" data-toggle="confirmation">{{ ('mssimiContentManagement.common.remove')|trans }}</a>
+                            {{ edit_button_render(path('mssimi_blog_edit', {'id' : blog.id })) }}
+                            <a class="btn btn-default" href="{{ path('mssimi_blog_new', {'id' : blog.id}) }}">{{ ('mssimiContentManagement.common.new')|trans }}</a>
+                            <a href="{{ path('mssimi_blog_remove', {'id' : blog.id }) }}" class="btn btn-danger" data-toggle="confirmation">{{ ('mssimiContentManagement.common.remove')|trans }}</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -52,7 +53,7 @@
             <div class="row">
                 <div class="col-md-6"></div>
                 <div class="col-md-6 text-right">
-                    {{ knp_pagination_render(pages, 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig') }}
+                    {{ knp_pagination_render(blogs, 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig') }}
                 </div>
             </div>
         </div>
