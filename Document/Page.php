@@ -1,370 +1,149 @@
 <?php
+declare(strict_types = 1);
 
 namespace mssimi\ContentManagementBundle\Document;
 
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @PHPCR\Document(mixins={"mix:created", "mix:lastModified"}, repositoryClass="mssimi\ContentManagementBundle\Repository\PageRepository", translator="attribute")
- * @Vich\Uploadable
  */
-class Page
+class Page extends AbstractNode
 {
     /**
-     * @PHPCR\Id
-     */
-    private $id;
-
-    /**
-     * @PHPCR\Nodename
-     */
-    private $name;
-
-    /**
-     * @PHPCR\ParentDocument
-     */
-    private $parent;
-
-    /**
-     * @PHPCR\Children
-     */
-    private $children;
-
-    /**
+     * @var string
+     *
      * @PHPCR\Field(type="string", translated=true, nullable=true)
      */
     private $metaKeywords;
 
     /**
+     * @var string
+     *
      * @PHPCR\Field(type="string", translated=true, nullable=true)
      */
     private $metaDescription;
 
     /**
+     * @var string
+     *
      * @PHPCR\Field(type="string", translated=true)
      */
     private $heading;
 
     /**
+     * @var string
+     *
      * @PHPCR\Field(type="string", translated=true, nullable=true)
      */
     private $content;
 
     /**
+     * @var string
+     *
      * @PHPCR\Locale
      */
     private $locale;
 
     /**
-     * @PHPCR\Field(type="boolean")
-     */
-    private $publish = true;
-
-    /**
+     * @var string
+     *
      * @PHPCR\Field(type="string")
      */
     private $template = '@ContentManagement/Page/page.html.twig';
 
     /**
-     *
-     * @Vich\UploadableField(mapping="content_management", fileNameProperty="imageName")
-     *
-     * @var File
+     * @return string
      */
-    private $imageFile;
-
-    /**
-     * @PHPCR\Field(type="string", nullable=true)
-     *
-     * @var string
-     */
-    private $imageName;
-
-    /** @PHPCR\Field(type="date", property="jcr:created") */
-    private $created;
-
-    /** @PHPCR\Field(type="string", property="jcr:createdBy") */
-    private $createdBy;
-
-    /** @PHPCR\Field(type="date", property="jcr:lastModified") */
-    private $lastModified;
-
-    /** @PHPCR\Field(type="string", property="jcr:lastModifiedBy") */
-    private $lastModifiedBy;
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getParent()
-    {
-        return $this->parent;
-    }
-
-    /**
-     * @param mixed $parent
-     */
-    public function setParent($parent)
-    {
-        $this->parent = $parent;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param mixed $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getChildren()
-    {
-        return $this->children;
-    }
-
-    /**
-     * @param mixed $children
-     */
-    public function setChildren($children)
-    {
-        $this->children = $children;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getContent()
-    {
-        return $this->content;
-    }
-
-    /**
-     * @param mixed $content
-     */
-    public function setContent($content)
-    {
-        $this->content = $content;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLocale()
-    {
-        return $this->locale;
-    }
-
-    /**
-     * @param mixed $locale
-     */
-    public function setLocale($locale)
-    {
-        $this->locale = $locale;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMetaKeywords()
+    public function getMetaKeywords(): string
     {
         return $this->metaKeywords;
     }
 
     /**
-     * @param mixed $metaKeywords
+     * @param string $metaKeywords
      */
-    public function setMetaKeywords($metaKeywords)
+    public function setMetaKeywords(string $metaKeywords)
     {
         $this->metaKeywords = $metaKeywords;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getMetaDescription()
+    public function getMetaDescription(): string
     {
         return $this->metaDescription;
     }
 
     /**
-     * @param mixed $metaDescription
+     * @param string $metaDescription
      */
-    public function setMetaDescription($metaDescription)
+    public function setMetaDescription(string $metaDescription)
     {
         $this->metaDescription = $metaDescription;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getHeading()
+    public function getHeading(): string
     {
         return $this->heading;
     }
 
     /**
-     * @param mixed $heading
+     * @param string $heading
      */
-    public function setHeading($heading)
+    public function setHeading(string $heading)
     {
         $this->heading = $heading;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getPublish()
+    public function getContent(): string
     {
-        return $this->publish;
+        return $this->content;
     }
 
     /**
-     * @param mixed $publish
+     * @param string $content
      */
-    public function setPublish($publish)
+    public function setContent(string $content)
     {
-        $this->publish = $publish;
-    }
-
-    /**
-     * @return File
-     */
-    public function getImageFile()
-    {
-        return $this->imageFile;
-    }
-
-    /**
-     * @param File $imageFile
-     */
-    public function setImageFile($imageFile)
-    {
-        $this->imageFile = $imageFile;
-
-        if ($imageFile) {
-            $this->lastModified = new \DateTime();
-        }
+        $this->content = $content;
     }
 
     /**
      * @return string
      */
-    public function getImageName()
+    public function getLocale(): string
     {
-        return $this->imageName;
+        return $this->locale;
     }
 
     /**
-     * @param string $imageName
+     * @param string $locale
      */
-    public function setImageName($imageName)
+    public function setLocale(string $locale)
     {
-        $this->imageName = $imageName;
+        $this->locale = $locale;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getCreated()
-    {
-        return $this->created;
-    }
-
-    /**
-     * @param mixed $created
-     */
-    public function setCreated($created)
-    {
-        $this->created = $created;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCreatedBy()
-    {
-        return $this->createdBy;
-    }
-
-    /**
-     * @param mixed $createdBy
-     */
-    public function setCreatedBy($createdBy)
-    {
-        $this->createdBy = $createdBy;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLastModified()
-    {
-        return $this->lastModified;
-    }
-
-    /**
-     * @param mixed $lastModified
-     */
-    public function setLastModified($lastModified)
-    {
-        $this->lastModified = $lastModified;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLastModifiedBy()
-    {
-        return $this->lastModifiedBy;
-    }
-
-    /**
-     * @param mixed $lastModifiedBy
-     */
-    public function setLastModifiedBy($lastModifiedBy)
-    {
-        $this->lastModifiedBy = $lastModifiedBy;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTemplate()
+    public function getTemplate(): string
     {
         return $this->template;
     }
 
     /**
-     * @param mixed $template
+     * @param string $template
      */
-    public function setTemplate($template)
+    public function setTemplate(string $template)
     {
         $this->template = $template;
     }

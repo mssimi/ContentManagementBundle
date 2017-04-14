@@ -3,6 +3,7 @@
 namespace mssimi\ContentManagementBundle\Form;
 
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
+use mssimi\ContentManagementBundle\Document\Gallery;
 use mssimi\ContentManagementBundle\Document\Page;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -10,11 +11,11 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class PageType
+ * Class GalleryType
  * @package mssimi\ContentManagementBundle\Form
  * @author Marek Šimeček <mssimi@seznam.cz>
  */
-class PageType extends AbstractType
+class GalleryType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -80,7 +81,7 @@ class PageType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => Page::class
+            'data_class' => Gallery::class
         ));
 
         $resolver->setRequired('templates');
