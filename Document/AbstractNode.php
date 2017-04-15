@@ -142,7 +142,7 @@ class AbstractNode
     /**
      * @return bool
      */
-    public function isPublish(): bool
+    public function getPublish(): bool
     {
         return $this->publish;
     }
