@@ -4,9 +4,9 @@ namespace mssimi\ContentManagementBundle\Form;
 
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use mssimi\ContentManagementBundle\Document\Gallery;
-use mssimi\ContentManagementBundle\Document\Page;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -70,6 +70,15 @@ class GalleryType extends AbstractType
                 'choices' => $choices,
                 'attr' => array(
                     'class' => ''
+                )
+            ))
+            ->add('images', CollectionType::class, array(
+                'entry_type' => GalleryImageType::class,
+                'allow_delete' => true,
+                'allow_add' => true,
+                'by_reference' => false,
+                'attr' => array(
+                    'class' => 'image-collection row'
                 )
             ))
         ;

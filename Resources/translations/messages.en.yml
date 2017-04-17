@@ -44,3 +44,12 @@ mssimiContentManagement:
             imageFile: "Upload image"
             template: "Template"
             templateSimple: "Simple"
+    blog:
+        heading: "Blog"
+        articles: "Articles"
+    article:
+        heading: "Article"
+    galleryImage:
+        form:
+            title: "Title"
+            perex: "Perex"

@@ -27,6 +27,7 @@ class PageControllerTest extends WebTestCase
             'page[name]' => "pageCreate",
             'page[heading]' => "pageCreate heading",
             'page[content]' => "pageCreate content",
+            'page[template]' => "@ContentManagement/Page/page.html.twig",
         ));
         $crawler = $client->submit($form);
         $this->assertEquals(1, $crawler->filter('.panel tbody tr')->count());
@@ -47,6 +48,7 @@ class PageControllerTest extends WebTestCase
             'page[name]' => "pageEdit",
             'page[heading]' => "pageEdit heading",
             'page[content]' => "pageEdit content",
+            'page[template]' => "@ContentManagement/Page/page.html.twig",
         ));
         $crawler = $client->submit($form);
         $this->assertEquals(1, $crawler->filter('.panel tbody tr')->count());

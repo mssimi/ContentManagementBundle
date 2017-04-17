@@ -9,7 +9,7 @@ services:
       class: Doctrine\Bundle\PHPCRBundle\Initializer\GenericInitializer
       arguments:
           - ContentManagementBundle
-          - ["/cms/block", "/cms/menu", "/cms/page"]
+          - ["/cms/block", "/cms/menu", "/cms/page", "cms/image"]
       tags:
           - { name: "doctrine_phpcr.initializer" }
   twig.block_extension:

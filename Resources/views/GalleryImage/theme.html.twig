@@ -1,0 +1,44 @@
+{% block GalleryType_label %}{% endblock %}
+{% block GalleryType_errors %}{% endblock %}
+
+{% block _gallery_images_entry_label %}{% endblock %}
+{% block _gallery_images_errors %}{% endblock %}
+
+{% block _gallery_images_entry_row %}
+    <div class="col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                {{ form_label(form) }}
+                {{ form_errors(form) }}
+                {{ form_widget(form) }}
+                <div class="text-right">
+                    <a href="#" class="collection-remove btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block _gallery_images_widget %}
+    {{ form_widget(form) }}
+{% endblock %}
+
+{% block vich_image_widget %}
+    {% spaceless %}
+        <div class="vich-image">
+            {{ form_widget(form.file) }}
+
+            <div class="embed-responsive embed-responsive-4by3">
+                <span class="embed-responsive-img">Drag or click</span>
+                <img class="embed-responsive-img" src="{% if download_uri is defined and download_uri %}{{ asset(download_uri) }}{% endif %}" alt="" />
+            </div>
+
+            {% if show_download_link and download_uri is defined and download_uri%}
+                <a href="{{ download_uri }}">{{ 'download'|trans({}, 'VichUploaderBundle') }}</a>
+            {% endif %}
+            {% if form.delete is defined %}
+                {{ form_row(form.delete) }}
+            {% endif %}
+        </div>
+    {% endspaceless %}
+{% endblock %}

@@ -5,9 +5,11 @@ namespace mssimi\ContentManagementBundle\Document;
 
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @PHPCR\Document(repositoryClass="mssimi\ContentManagementBundle\Repository\SliderImageRepository", translator="attribute")
+ * @Vich\Uploadable
  */
 class SliderImage extends AbstractImage
 {

@@ -38,7 +38,8 @@
         "friendsofsymfony/jsrouting-bundle": "^1.6",
         "egeloen/ckeditor-bundle": "^5.0",
         "knplabs/knp-menu-bundle": "^2.0",
-        "vich/uploader-bundle": "^1.5"
+        "vich/uploader-bundle": "^1.5",
+        "ninsuo/symfony-collection": "^2.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

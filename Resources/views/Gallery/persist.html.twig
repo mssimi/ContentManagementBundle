@@ -1,6 +1,11 @@
 {% extends '@ContentManagement/base.html.twig' %}
+{% form_theme form
+    '@ContentManagement/Core/jquery.collection.html.twig'
+    '@ContentManagement/GalleryImage/theme.html.twig'
+%}
 
 {% block title %}{{ ('mssimiContentManagement.page.heading')|trans }}{% endblock %}
+
 {% block content %}
     <div class="page-header">
         <div class="page-title">
@@ -21,4 +26,39 @@
         </div>
     {{ form_end(form) }}
 
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('bundles/contentmanagement/js/jquery.collection.js') }}"></script>
+
+    <script type="text/javascript">
+        $('.image-collection').collection({
+            add_at_the_end: true,
+            add: '<span class="col-md-3"><a href="#" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span></a></span>',
+            up: '',
+            down: '',
+            after_add: function (collection, element) {
+            },
+            drag_drop_options: {
+                placeholder: "col-md-3 ui-state-highlight",
+                forcePlaceholderSize: false,
+                forceHelperSize: false,
+            }
+        });
+
+
+        $( document ).ready(function() {
+            $('.image-collection').on('change', '.vich-image input[type="file"]', handleImage);
+        });
+
+        function handleImage(e) {
+            console.log(e.target);
+            var reader = new FileReader();
+            reader.onload = function (event) {
+
+                $(e.target).parent('.vich-image').find('img').attr('src',event.target.result);
+            }
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    </script>
 {% endblock %}

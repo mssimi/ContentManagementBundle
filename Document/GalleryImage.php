@@ -5,9 +5,11 @@ namespace mssimi\ContentManagementBundle\Document;
 
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * @PHPCR\Document(repositoryClass="mssimi\ContentManagementBundle\Repository\GalleryImageRepository", translator="attribute")
+ * @PHPCR\Document(repositoryClass="mssimi\ContentManagementBundle\Repository\GalleryImageRepository", translator="attribute", referenceable=true, mixins={"mix:created", "mix:lastModified"})
+ * @Vich\Uploadable
  */
 class GalleryImage extends AbstractImage
 {
@@ -38,6 +40,14 @@ class GalleryImage extends AbstractImage
      * @PHPCR\Field(type="string", translated=true, nullable=true)
      */
     private $perex;
+
+    /**
+     * GalleryImage constructor.
+     */
+    public function __construct()
+    {
+        $this->setId('/cms/image/' . bin2hex(random_bytes(10)));
+    }
 
     /**
      * @return File
@@ -102,7 +112,7 @@ class GalleryImage extends AbstractImage
     /**
      * @param string $perex
      */
-    public function setPerex(string $perex)
+    public function setPerex(string $perex = null)
     {
         $this->perex = $perex;
     }

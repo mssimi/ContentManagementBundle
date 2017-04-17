@@ -30,7 +30,6 @@
                         <th>{{ ('mssimiContentManagement.node.id')|trans }}</th>
                         <th>{{ ('mssimiContentManagement.node.name')|trans }}</th>
                         <th>{{ ('mssimiContentManagement.node.published')|trans }}</th>
-                        <th>{{ ('mssimiContentManagement.node.childrenCount')|trans }}</th>
                         <th>{{ ('mssimiContentManagement.common.tools')|trans }}</th>
                     </tr>
                 </thead>
@@ -40,7 +39,6 @@
                         <td>{{ page.id }}</td>
                         <td>{{ page.name }}</td>
                         <td><i class="glyphicon {{ page.publish ? 'glyphicon-ok' : 'glyphicon-remove' }}"></i></td>
-                        <td>{{ page.children|length }}</td>
                         <td>
                             {{ edit_button_render(path('mssimi_page_edit', {'id' : page.id })) }}
                             <a href="{{ path('mssimi_page_remove', {'id' : page.id }) }}" class="btn btn-danger" data-toggle="confirmation">{{ ('mssimiContentManagement.common.remove')|trans }}</a>
