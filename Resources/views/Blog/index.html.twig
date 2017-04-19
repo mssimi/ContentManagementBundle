@@ -43,7 +43,7 @@
                         <td>{{ blog.children|length }}</td>
                         <td>
                             {{ edit_button_render(path('mssimi_blog_edit', {'id' : blog.id })) }}
-                            <a class="btn btn-default" href="{{ path('mssimi_article_index', {'parent' : blog.id}) }}">{{ ('mssimiContentManagement.blog.articles')|trans }}</a>
+                            <a class="btn btn-default" href="{{ path('mssimi_article_index', {'id' : blog.id}) }}">{{ ('mssimiContentManagement.blog.articles')|trans }}</a>
                             <a href="{{ path('mssimi_blog_remove', {'id' : blog.id }) }}" class="btn btn-danger" data-toggle="confirmation">{{ ('mssimiContentManagement.common.remove')|trans }}</a>
                         </td>
                     </tr>

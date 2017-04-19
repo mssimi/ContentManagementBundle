@@ -1,6 +1,7 @@
 <?php
 
 namespace mssimi\ContentManagementBundle\Repository;
+use mssimi\ContentManagementBundle\Document\Blog;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -14,12 +15,13 @@ class ArticleRepository extends \Doctrine\ODM\PHPCR\DocumentRepository
      * Article pagination query
      *
      * @param Request $request
+     * @param Blog $blog
      * @return mixed
      */
-    public function pagination(Request $request)
+    public function pagination(Request $request, Blog $blog)
     {
         $qb =  $this->createQueryBuilder('Article');
-        $qb->where()->child($request->query->get('parent'), 'Article');
+        $qb->where()->child($blog->getId(), 'Article');
 
         if($request->query->has('nodeName')){
             $qb->where()->like()->localName('Article')->literal('%'.$request->query->get('nodeName').'%');

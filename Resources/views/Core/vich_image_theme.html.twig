@@ -1,0 +1,23 @@
+{% block vich_image_widget %}
+    {% spaceless %}
+        <div class="row">
+            <div class="col-md-3">
+                <div class="vich-image">
+                    {{ form_widget(form.file) }}
+
+                    <div class="embed-responsive embed-responsive-4by3">
+                        <span class="embed-responsive-img">Drag or click</span>
+                        <img class="embed-responsive-img" src="{% if download_uri is defined and download_uri %}{{ asset(download_uri) }}{% endif %}" alt="" />
+                    </div>
+
+                    {% if show_download_link and download_uri is defined and download_uri%}
+                        <a href="{{ download_uri }}">{{ 'download'|trans({}, 'VichUploaderBundle') }}</a>
+                    {% endif %}
+                </div>
+                {% if form.delete is defined %}
+                    {{ form_row(form.delete) }}
+                {% endif %}
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock %}

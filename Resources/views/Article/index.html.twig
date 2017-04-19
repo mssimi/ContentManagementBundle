@@ -10,8 +10,8 @@
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <a class="btn btn-default" href="{{ path('mssimi_article_new') }}">{{ ('mssimiContentManagement.common.new')|trans }}</a>
-            <form class="form-inline pull-right" action="{{ path('mssimi_article_index') }}" method="get">
+            <a class="btn btn-default" href="{{ path('mssimi_article_new', {'id' : blog.id}) }}">{{ ('mssimiContentManagement.common.new')|trans }}</a>
+            <form class="form-inline pull-right" action="{{ path('mssimi_article_index', {'id' : blog.id}) }}" method="get">
                 <input placeholder="search by nodename" class="form-control" name="nodeName" type="text">
                 <button class="btn btn-default" type="submit">{{ ('mssimiContentManagement.common.submit')|trans }}</button>
             </form>

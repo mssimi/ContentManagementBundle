@@ -4,12 +4,11 @@ namespace mssimi\ContentManagementBundle\Form;
 
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use mssimi\ContentManagementBundle\Document\Article;
-use mssimi\ContentManagementBundle\Document\Page;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Vich\UploaderBundle\Form\Type\VichFileType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 /**
  * Class ArticleType
@@ -73,9 +72,11 @@ class ArticleType extends AbstractType
                     'class' => ''
                 )
             ))
-            ->add('imageFile', VichFileType::class, array(
-                'label' => 'mssimiContentManagement.page.form.imageFile',
+            ->add('imageFile', VichImageType::class, array(
+                'label' => false,
                 'download_link' => false,
+                'allow_delete' => true,
+                'required' => false,
                 'attr' => array(
                     'class' => ''
                 )

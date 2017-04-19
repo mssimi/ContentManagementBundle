@@ -21,15 +21,16 @@ class ArticleController extends Controller
     /**
      * Lists all Article entities.
      *
-     * @Route("/index", name="mssimi_article_index")
+     * @Route("/index/{id}", name="mssimi_article_index", requirements={"id"="/cms/page.*"})
      * @Method("GET")
      * @param Request $request
+     * @param Blog $blog
      * @return Response
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request, Blog $blog)
     {
         $dm = $this->get('doctrine_phpcr')->getManager();
-        $query = $dm->getRepository('ContentManagementBundle:Article')->pagination($request);
+        $query = $dm->getRepository('ContentManagementBundle:Article')->pagination($request, $blog);
 
         $paginator  = $this->get('knp_paginator');
         $articles = $paginator->paginate(
@@ -39,7 +40,8 @@ class ArticleController extends Controller
         );
 
         return $this->render('@ContentManagement/Article/index.html.twig', array(
-            'articles' => $articles
+            'articles' => $articles,
+            'blog' => $blog
         ));
     }
 
@@ -49,13 +51,13 @@ class ArticleController extends Controller
      * @Route("/new/{id}", name="mssimi_article_new", defaults={"id" = "/cms/page"} , requirements={"id"="/cms/page.*"})
      * @Method({"GET", "POST"})
      * @param Request $request
-     * @param Blog $parent
+     * @param Blog $blog
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function newAction(Request $request, Blog $parent)
+    public function newAction(Request $request, Blog $blog)
     {
         $article = new Article();
-        $article->setParent($parent);
+        $article->setParent($blog);
         $form = $this->createForm(ArticleType::class, $article, array('templates' => $this->getParameter('content_management.templates')));
         $form->handleRequest($request);
 
@@ -65,11 +67,12 @@ class ArticleController extends Controller
             $dm->flush();
 
             $this->addFlash('success', 'flashMessage.common.entityCreated');
-            return $this->redirectToRoute('mssimi_article_index');
+            return $this->redirectToRoute('mssimi_article_index', array('id' => $blog->getId()));
         }
 
         return $this->render('@ContentManagement/Article/persist.html.twig', array(
             'article' => $article,
+            'blog' => $blog,
             'form' => $form->createView(),
         ));
     }
@@ -95,11 +98,12 @@ class ArticleController extends Controller
             $dm->flush();
 
             $this->addFlash('success', 'flashMessage.common.entityUpdated');
-            return $this->redirectToRoute('mssimi_article_index');
+            return $this->redirectToRoute('mssimi_article_index', array('id' => $article->getParent()->getId()));
         }
 
         return $this->render('@ContentManagement/Article/persist.html.twig', array(
             'article' => $article,
+            'blog' => $article->getParent(),
             'form' => $form->createView(),
         ));
     }
@@ -114,11 +118,12 @@ class ArticleController extends Controller
      */
     public function removeAction(Article $article)
     {
+        $blog = $article->getParent();
         $dm = $this->get('doctrine_phpcr')->getManager();
         $dm->remove($article);
         $dm->flush();
 
         $this->addFlash('success', 'fleshMessage.common.entityRemoved');
-        return $this->redirectToRoute('mssimi_article_index');
+        return $this->redirectToRoute('mssimi_article_index', array('id' => $blog->getId()));
     }
 }
