@@ -25,9 +25,6 @@ class MenuControllerTest extends WebTestCase
         $form = $buttonCrawlerNode->form();
         $form->setValues(array(
             'menu[name]' => "menuCreate",
-            'menu[label]' => "menuCreate label",
-            'menu[link]' => "http://www.google.com",
-            'menu[linkType]' => "url",
         ));
         $crawler = $client->submit($form);
         $this->assertEquals(1, $crawler->filter('.panel tbody tr')->count());
@@ -46,9 +43,6 @@ class MenuControllerTest extends WebTestCase
         $form = $buttonCrawlerNode->form();
         $form->setValues(array(
             'menu[name]' => "menuEdit",
-            'menu[label]' => "menuEdit label",
-            'menu[link]' => "http://www.google.com",
-            'menu[linkType]' => "url",
         ));
         $crawler = $client->submit($form);
         $this->assertEquals(1, $crawler->filter('.panel tbody tr')->count());

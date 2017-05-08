@@ -18,38 +18,69 @@
         <div class="panel-heading">
             <h6 class="panel-title">{{ ('mssimiContentManagement.common.list')|trans }}</h6>
         </div>
-
         <div class="panel-body">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>{{ ('mssimiContentManagement.node.id')|trans }}</th>
-                        <td></td>
-                        <th>{{ ('mssimiContentManagement.node.published')|trans }}</th>
-                        <th>{{ ('mssimiContentManagement.common.tools')|trans }}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for sliderImage in sliderImages.items %}
-                    <tr>
-                        <td>{{ sliderImage.id }}</td>
-                        <td><img src="{{ vich_uploader_asset(sliderImage, 'imageFile')| imagine_filter('thumbnail') }}"></td>
-                        <td><i class="glyphicon {{ sliderImage.publish ? 'glyphicon-ok' : 'glyphicon-remove' }}"></i></td>
-                        <td>
-                            {{ edit_button_render(path('mssimi_slider_image_edit', {'id' : sliderImage.id })) }}
-                            <a href="{{ path('mssimi_slider_image_remove', {'id' : sliderImage.id }) }}" class="btn btn-danger" data-toggle="confirmation">{{ ('mssimiContentManagement.common.remove')|trans }}</a>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-            <div class="row">
-                <div class="col-md-6"></div>
-                <div class="col-md-6 text-right">
-                    {{ knp_pagination_render(sliderImages, 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig') }}
-                </div>
-            </div>
+            {% if slider.children|length %}
+                <ul class="sortable list-group">
+                    {% include '@ContentManagement/SliderImage/node.html.twig' with {'sliderImages' : slider.children} %}
+                </ul>
+            {% endif %}
         </div>
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('bundles/contentmanagement/js/jquery.mjs.nestedSortable.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+
+            $('.sortable').nestedSortable({
+                handle: 'i',
+                items: 'li.item',
+                toleranceElement: '> div',
+                listType: 'ul',
+                excludeRoot: true,
+                disableParentChange: true,
+                rootID: '{{ slider.id }}',
+                relocate: function(index,elem){
+                    var that = $(this);
+                    elem = elem.item;
+
+                    $.ajax({
+                        type: "POST",
+                        url: Routing.generate("mssimi_slider_image_reorder"),
+                        data: {
+                            'id' : elem.attr('id'),
+                            'parent_id' : elem.parent().parent().attr("id") || '{{ slider.id }}',
+                            'before' : elem.prev().attr("data-name"),
+                            'after' : elem.next().attr("data-name")
+                        },
+                        success: function (data) {
+                            refreshId(elem);
+                            console.log('success');
+                            //$.jGrowl(data, {theme: 'growl-success', life: 5000});
+                        },
+                        error: function(xhr, status, error) {
+                            that.nestedSortable('cancel');
+                            console.log('error');
+
+                            //$.jGrowl(xhr.responseText, {theme: 'growl-error', header: 'Chyba!', life: 5000});
+                        }
+                    });
+                    console.log("relocate");
+                }
+            });
+
+            function refreshId(elem){
+                elem.attr('id', (elem.parent().parent().attr("id") || '{{ slider.id }}') + '/' + elem.attr('data-name'));
+
+                elem.find('li.item').each(function(index, elem) {
+                    elem = $(elem);
+                    elem.attr('id', (elem.parent().parent().attr("id") || '{{ slider.id }}') + '/' + elem.attr('data-name'));
+                });
+            }
+        });
+
+
+    </script>
 {% endblock %}

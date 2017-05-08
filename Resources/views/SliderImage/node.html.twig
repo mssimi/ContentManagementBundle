@@ -1,0 +1,17 @@
+{% macro node(sliderImages) %}
+    {% for sliderImage in sliderImages %}
+        <li class="item" id="{{ sliderImage.id }}" data-name="{{ sliderImage.name }}">
+            <div class="list-group-item clearfix">
+                <div class="pull-left move-block"><i class="glyphicon glyphicon-move move"></i> <img src="{{ vich_uploader_asset(sliderImage, 'imageFile')| imagine_filter('thumbnail') }}"></div>
+                <div class="pull-right">
+                    {{ edit_button_render(path('mssimi_slider_image_edit', {'id' : sliderImage.id })) }}
+                    <a href="{{ path('mssimi_slider_image_remove', {'id' : sliderImage.id }) }}" class="btn btn-danger" data-toggle="confirmation">{{ ('mssimiContentManagement.common.remove')|trans }}</a>
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+{% endmacro %}
+
+{% import _self as macro %}
+
+{{ macro.node(sliderImages) }}

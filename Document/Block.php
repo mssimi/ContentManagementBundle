@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 namespace mssimi\ContentManagementBundle\Document;
 
@@ -11,11 +12,15 @@ use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 class Block
 {
     /**
+     * @var string
+     *
      * @PHPCR\Id
      */
     private $id;
 
     /**
+     * @var string
+     *
      * @PHPCR\Nodename
      */
     private $name;
@@ -31,29 +36,49 @@ class Block
     private $children;
 
     /**
+     * @var string
+     *
      * @PHPCR\Field(type="string", translated=true)
      */
     private $content;
 
     /**
+     * @var string
+     *
      * @PHPCR\Locale
      */
     private $locale;
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getId()
+    public function getId(): ?string
     {
         return $this->id;
     }
 
     /**
-     * @param mixed $id
+     * @param string $id
      */
-    public function setId($id)
+    public function setId(string $id)
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName(string $name)
+    {
+        $this->name = $name;
     }
 
     /**
@@ -75,22 +100,6 @@ class Block
     /**
      * @return mixed
      */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param mixed $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getChildren()
     {
         return $this->children;
@@ -105,33 +114,33 @@ class Block
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getContent()
+    public function getContent(): ?string
     {
         return $this->content;
     }
 
     /**
-     * @param mixed $content
+     * @param string $content
      */
-    public function setContent($content)
+    public function setContent(string $content)
     {
         $this->content = $content;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getLocale()
+    public function getLocale(): ?string
     {
         return $this->locale;
     }
 
     /**
-     * @param mixed $locale
+     * @param string $locale
      */
-    public function setLocale($locale)
+    public function setLocale(string $locale)
     {
         $this->locale = $locale;
     }

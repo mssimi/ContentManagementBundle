@@ -29,18 +29,7 @@ class SliderImageController extends Controller
      */
     public function indexAction(Request $request, Slider $slider)
     {
-        $dm = $this->get('doctrine_phpcr')->getManager();
-        $query = $dm->getRepository('ContentManagementBundle:SliderImage')->pagination($request, $slider);
-
-        $paginator  = $this->get('knp_paginator');
-        $sliderImages = $paginator->paginate(
-            $query,
-            $request->query->getInt('page', 1),
-            $this->getParameter('content_management.items_per_page')
-        );
-
         return $this->render('@ContentManagement/SliderImage/index.html.twig', array(
-            'sliderImages' => $sliderImages,
             'slider' => $slider
         ));
     }
@@ -125,5 +114,33 @@ class SliderImageController extends Controller
 
         $this->addFlash('success', 'fleshMessage.common.entityRemoved');
         return $this->redirectToRoute('mssimi_slider_image_index', array('id' => $slider->getId()));
+    }
+
+    /**
+     * reorder an existing slider images entity.
+     *
+     * @Route("/reorder", name="mssimi_slider_image_reorder", options={"expose" = true}, requirements={"id"=".+"})
+     * @Method({"POST"})
+     * @param Request $request
+     * @return Response|\Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function reOrderAction(Request $request)
+    {
+        $data = $request->request->all();
+        $dm = $this->get('doctrine_phpcr')->getManager();
+
+        $child = $dm->find(null, $data['id']);
+        $parent = $dm->find(null, $data['parent_id']);
+
+        if(isset($data['before']) && $data['before']){
+            $dm->reorder($parent, $child->getName(), $data['before'], 0);
+        }
+        elseif(isset($data['after']) && $data['after']){
+            $dm->reorder($parent, $child->getName(), $data['after'], 1);
+        }
+
+        $dm->flush();
+
+        return new Response();
     }
 }

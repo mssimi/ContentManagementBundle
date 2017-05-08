@@ -17,6 +17,11 @@ services:
       tags:
           - { name: twig.extension }
       autowire: true
+  twig.slider_extension:
+      class: mssimi\ContentManagementBundle\Twig\SliderTwigExtension
+      tags:
+          - { name: twig.extension }
+      autowire: true
   twig.menu_extension:
       class: mssimi\ContentManagementBundle\Twig\MenuTwigExtension
       tags:

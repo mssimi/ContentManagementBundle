@@ -45,22 +45,22 @@ class MenuItemController extends Controller
      */
     public function newAction(Request $request, Menu $parent)
     {
-        $menu = new MenuItem();
-        $menu->setParent($parent);
-        $form = $this->createForm(MenuItemType::class, $menu);
+        $menuItem = new MenuItem();
+        $menuItem->setParent($parent);
+        $form = $this->createForm(MenuItemType::class, $menuItem);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $dm = $this->get('doctrine_phpcr')->getManager();
-            $dm->persist($menu);
+            $dm->persist($menuItem);
             $dm->flush();
 
             $this->addFlash('success', 'flashMessage.common.entityCreated');
-            return $this->redirectToRoute('mssimi_menu_item_index', array('id' => $parent->getId()));
+            return $this->redirectToRoute('mssimi_menu_item_index', array('id' => $menuItem->getMenuId()));
         }
 
         return $this->render('@ContentManagement/MenuItem/persist.html.twig', array(
-            'menu' => $menu,
+            'menuItem' => $menuItem,
             'form' => $form->createView(),
         ));
     }
@@ -77,20 +77,20 @@ class MenuItemController extends Controller
     public function editAction(Request $request, $id)
     {
         $dm = $this->get('doctrine_phpcr')->getManager();
-        $menu = $dm->findTranslation(null, $id, $request->query->get('locale'));
-        $form = $this->createForm(MenuItemType::class, $menu);
+        $menuItem = $dm->findTranslation(null, $id, $request->query->get('locale'));
+        $form = $this->createForm(MenuItemType::class, $menuItem);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
-            $dm->persist($menu);
+            $dm->persist($menuItem);
             $dm->flush();
 
             $this->addFlash('success', 'flashMessage.common.entityUpdated');
-            return $this->redirectToRoute('mssimi_menu_item_index', $menu->getParent()->getId());
+            return $this->redirectToRoute('mssimi_menu_item_index', array('id' => $menuItem->getMenuId()));
         }
 
-        return $this->render('@ContentManagement/Menu/persist.html.twig', array(
-            'menu' => $menu,
+        return $this->render('@ContentManagement/MenuItem/persist.html.twig', array(
+            'menuItem' => $menuItem,
             'form' => $form->createView(),
         ));
     }
@@ -136,7 +136,8 @@ class MenuItemController extends Controller
 
         if(isset($data['before']) && $data['before']){
             $dm->reorder($parent, $childName, $data['before'], 0);
-        }elseif(isset($data['after']) && $data['after']){
+        }
+        elseif(isset($data['after']) && $data['after']){
             $dm->reorder($parent, $childName, $data['after'], 1);
         }
 

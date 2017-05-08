@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 namespace mssimi\ContentManagementBundle\Document;
 
@@ -16,6 +17,8 @@ class MenuItem implements NodeInterface
     CONST linkTypePath = 'path';
 
     /**
+     * @var string
+     *
      * @PHPCR\Id
      */
     private $id;
@@ -31,52 +34,71 @@ class MenuItem implements NodeInterface
     private $children;
 
     /**
+     * @var string
+     *
      * @PHPCR\Field(type="string", translated=true)
      */
     private $label;
 
     /**
+     * @var string
+     *
      * @PHPCR\Field(type="string", translated=true, nullable=true)
      */
     private $link;
 
     /**
+     * @var string
+     *
      * @PHPCR\Field(type="string")
      */
     private $linkType = self::linkTypeUrl;
 
     /**
+     * @var boolean
+     *
      * @PHPCR\Field(type="boolean")
      */
     private $targetBlank = false;
 
     /**
+     * @var string
+     *
      * @PHPCR\Locale
      */
     private $locale;
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getId()
+    public function getId(): ?string
     {
         return $this->id;
     }
 
     /**
-     * @param mixed $id
+     * @param string $id
      */
-    public function setId($id)
+    public function setId(string $id)
     {
         $this->id = $id;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getName()
+    public function getName(): ?string
     {
-        return $this->id;
+        return substr($this->id, strrpos($this->id, '/') + 1);
+    }
+
+    /**
+     * @return string
+     */
+    public function getMenuId(): ?string
+    {
+        preg_match('/\/cms\/menu\/(.*?)\//', $this->id, $match);
+        return '/cms/menu/' . $match[1];
     }
 
     /**
@@ -112,84 +134,85 @@ class MenuItem implements NodeInterface
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getLabel()
+    public function getLabel(): ?string
     {
         return $this->label;
     }
 
     /**
-     * @param mixed $label
+     * @param string $label
      */
-    public function setLabel($label)
+    public function setLabel(string $label)
     {
         $this->label = $label;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getLink()
+    public function getLink(): ?string
     {
         return $this->link;
     }
 
     /**
-     * @param mixed $link
+     * @param string $link
      */
-    public function setLink($link)
+    public function setLink(string $link)
     {
         $this->link = $link;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getTargetBlank()
-    {
-        return $this->targetBlank;
-    }
-
-    /**
-     * @param mixed $targetBlank
-     */
-    public function setTargetBlank($targetBlank)
-    {
-        $this->targetBlank = $targetBlank;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLocale()
-    {
-        return $this->locale;
-    }
-
-    /**
-     * @param mixed $locale
-     */
-    public function setLocale($locale)
-    {
-        $this->locale = $locale;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLinkType()
+    public function getLinkType(): ?string
     {
         return $this->linkType;
     }
 
     /**
-     * @param mixed $linkType
+     * @param string $linkType
      */
-    public function setLinkType($linkType)
+    public function setLinkType(string $linkType)
     {
         $this->linkType = $linkType;
     }
+
+    /**
+     * @return bool
+     */
+    public function getTargetBlank(): ?bool
+    {
+        return $this->targetBlank;
+    }
+
+    /**
+     * @param bool $targetBlank
+     */
+    public function setTargetBlank(bool $targetBlank)
+    {
+        $this->targetBlank = $targetBlank;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLocale(): ?string
+    {
+        return $this->locale;
+    }
+
+    /**
+     * @param string $locale
+     */
+    public function setLocale(string $locale)
+    {
+        $this->locale = $locale;
+    }
+
 
     public function getUriOption()
     {

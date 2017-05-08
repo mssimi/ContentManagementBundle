@@ -22,6 +22,9 @@ class ArticleRepository extends \Doctrine\ODM\PHPCR\DocumentRepository
     {
         $qb =  $this->createQueryBuilder('Article');
         $qb->where()->child($blog->getId(), 'Article');
+        $qb->orderBy()
+            ->desc()->field('Article.created')->end()
+        ->end();
 
         if($request->query->has('nodeName')){
             $qb->where()->like()->localName('Article')->literal('%'.$request->query->get('nodeName').'%');

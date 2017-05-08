@@ -1,0 +1,29 @@
+<div id="{{ slider.id|slice(1)|replace({'/' : '-'}) }}{{ idSuffix|default('') }}" class="{% if is_granted('ROLE_CMS') %}editable-block{% endif %}">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+        <ol class="carousel-indicators">
+            {% for slide in slider.children %}
+                <li data-target="#myCarousel" data-slide-to="{{ loop.index }}" class="{% if loop.first %}active{% endif %}"></li>
+            {% endfor %}
+        </ol>
+
+        <div class="carousel-inner">
+            {% for slide in slider.children %}
+                <div class="item text-center {% if loop.first %}active{% endif %}">
+                    <img src="{{ vich_uploader_asset(slide, 'imageFile')| imagine_filter('slider') }}" alt="slide-{{ loop.index }}">
+                </div>
+            {% endfor %}
+        </div>
+
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+        </a>
+
+    </div>
+    {% if is_granted('ROLE_CMS') %}<a class="editable-button" href="{{ path('mssimi_slider_image_index', {'id': slider.id}) }}">Edit</a>{% endif %}
+</div>

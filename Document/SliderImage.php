@@ -42,6 +42,14 @@ class SliderImage extends AbstractImage
     private $publish = true;
 
     /**
+     * @return string
+     */
+    public function getName(): ?string
+    {
+        return substr($this->getId(), strrpos($this->getId(), '/') + 1);
+    }
+
+    /**
      * @return File
      */
     public function getImageFile(): ?File
