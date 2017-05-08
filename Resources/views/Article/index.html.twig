@@ -29,6 +29,7 @@
                     <tr>
                         <th>{{ ('mssimiContentManagement.node.id')|trans }}</th>
                         <th>{{ ('mssimiContentManagement.node.name')|trans }}</th>
+                        <th></th>
                         <th>{{ ('mssimiContentManagement.node.published')|trans }}</th>
                         <th>{{ ('mssimiContentManagement.common.tools')|trans }}</th>
                     </tr>
@@ -38,6 +39,7 @@
                     <tr>
                         <td>{{ article.id }}</td>
                         <td>{{ article.name }}</td>
+                        <td>{% if article.imageName %}<img src="{{ vich_uploader_asset(article, 'imageFile')| imagine_filter('thumbnail') }}">{% endif %}</td>
                         <td><i class="glyphicon {{ article.publish ? 'glyphicon-ok' : 'glyphicon-remove' }}"></i></td>
                         <td>
                             {{ edit_button_render(path('mssimi_article_edit', {'id' : article.id })) }}

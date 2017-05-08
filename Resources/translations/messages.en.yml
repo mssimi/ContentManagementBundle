@@ -8,6 +8,7 @@ mssimiContentManagement:
         back: "Back"
         tools: "Tools"
         list: "List"
+        menuItems: "Menu items"
     node:
         id: "Id"
         name: "Node name"

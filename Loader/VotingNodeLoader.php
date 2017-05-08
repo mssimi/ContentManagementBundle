@@ -14,7 +14,7 @@ namespace mssimi\ContentManagementBundle\Loader;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\Loader\NodeLoader;
 use Knp\Menu\NodeInterface;
-use mssimi\ContentManagementBundle\Document\Menu;
+use mssimi\ContentManagementBundle\Document\MenuItem;
 use mssimi\ContentManagementBundle\Event\CreateMenuItemFromNodeEvent;
 use mssimi\ContentManagementBundle\Event\Events;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -52,7 +52,7 @@ class VotingNodeLoader extends NodeLoader
         $this->dispatcher->dispatch(Events::CREATE_ITEM_FROM_NODE, $event);
 
         if ($event->isSkipNode()) {
-            if ($data instanceof Menu) {
+            if ($data instanceof MenuItem) {
                 // create an empty menu root to avoid the knp menu from failing.
                 return $this->menuFactory->createItem('');
             }

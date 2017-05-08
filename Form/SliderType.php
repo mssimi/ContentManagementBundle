@@ -2,23 +2,23 @@
 
 namespace mssimi\ContentManagementBundle\Form;
 
-use mssimi\ContentManagementBundle\Document\Menu;
+use mssimi\ContentManagementBundle\Document\Slider;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class MenuType
+ * Class SliderType
  * @package mssimi\ContentManagementBundle\Form
  * @author Marek Šimeček <mssimi@seznam.cz>
  */
-class MenuType extends AbstractType
+class SliderType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name', null, array(
-                'label' => 'mssimiContentManagement.menu.form.name',
+                'label' => 'mssimiContentManagement.slider.form.name',
                 'attr' => array(
                     'class' => ''
                 )
@@ -29,7 +29,7 @@ class MenuType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => Menu::class
+            'data_class' => Slider::class
         ));
     }
 

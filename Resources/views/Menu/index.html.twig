@@ -29,7 +29,6 @@
                     <tr>
                         <th>{{ ('mssimiContentManagement.node.id')|trans }}</th>
                         <th>{{ ('mssimiContentManagement.node.name')|trans }}</th>
-                        <th>{{ ('mssimiContentManagement.node.label')|trans }}</th>
                         <th>{{ ('mssimiContentManagement.common.tools')|trans }}</th>
                     </tr>
                 </thead>
@@ -38,10 +37,9 @@
                     <tr>
                         <td>{{ menu.id }}</td>
                         <td>{{ menu.name }}</td>
-                        <td>{{ menu.label }}</td>
                         <td>
                             {{ edit_button_render(path('mssimi_menu_edit', {'id' : menu.id })) }}
-                            <a class="btn btn-default" href="{{ path('mssimi_menu_new', {'id' : menu.id}) }}">{{ ('mssimiContentManagement.common.new')|trans }}</a>
+                            <a class="btn btn-default" href="{{ path('mssimi_menu_item_index', {'id' : menu.id}) }}">{{ ('mssimiContentManagement.common.menuItems')|trans }}</a>
                             <a href="{{ path('mssimi_menu_remove', {'id' : menu.id }) }}" class="btn btn-danger" data-toggle="confirmation">{{ ('mssimiContentManagement.common.remove')|trans }}</a>
                         </td>
                     </tr>

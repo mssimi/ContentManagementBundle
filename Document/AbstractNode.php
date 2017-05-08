@@ -34,7 +34,6 @@ class AbstractNode
     private $parent;
 
     /**
-     * @var ChildrenCollection
      *
      * @PHPCR\Children
      */
@@ -126,15 +125,15 @@ class AbstractNode
     /**
      * @return ChildrenCollection
      */
-    public function getChildren(): ChildrenCollection
+    public function getChildren()
     {
         return $this->children;
     }
 
     /**
-     * @param ChildrenCollection $children
+     * @param $children
      */
-    public function setChildren(ChildrenCollection $children)
+    public function setChildren($children)
     {
         $this->children = $children;
     }

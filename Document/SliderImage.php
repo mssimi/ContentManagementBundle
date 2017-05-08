@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * @PHPCR\Document(repositoryClass="mssimi\ContentManagementBundle\Repository\SliderImageRepository", translator="attribute")
+ * @PHPCR\Document(repositoryClass="mssimi\ContentManagementBundle\Repository\SliderImageRepository", translator="attribute", mixins={"mix:created", "mix:lastModified"})
  * @Vich\Uploadable
  */
 class SliderImage extends AbstractImage
@@ -33,6 +33,13 @@ class SliderImage extends AbstractImage
      * @PHPCR\Field(type="string", translated=true, nullable=true)
      */
     private $link;
+
+    /**
+     * @var boolean
+     *
+     * @PHPCR\Field(type="boolean")
+     */
+    private $publish = true;
 
     /**
      * @return File
@@ -84,5 +91,21 @@ class SliderImage extends AbstractImage
     public function setLink(string $link)
     {
         $this->link = $link;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getPublish(): bool
+    {
+        return $this->publish;
+    }
+
+    /**
+     * @param bool $publish
+     */
+    public function setPublish(bool $publish)
+    {
+        $this->publish = $publish;
     }
 }

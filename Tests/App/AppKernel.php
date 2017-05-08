@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
         );
         return $bundles;
     }

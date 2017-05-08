@@ -19,6 +19,13 @@ class AbstractImage
     private $id;
 
     /**
+     * @var object
+     *
+     * @PHPCR\ParentDocument
+     */
+    private $parent;
+
+    /**
      * @var string
      *
      * @PHPCR\Locale
@@ -70,9 +77,25 @@ class AbstractImage
     }
 
     /**
+     * @return object
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * @param $parent
+     */
+    public function setParent($parent)
+    {
+        $this->parent = $parent;
+    }
+
+    /**
      * @return string
      */
-    public function getLocale(): ?string
+    public function getLocale(): string
     {
         return $this->locale;
     }
@@ -148,4 +171,5 @@ class AbstractImage
     {
         $this->lastModifiedBy = $lastModifiedBy;
     }
+
 }

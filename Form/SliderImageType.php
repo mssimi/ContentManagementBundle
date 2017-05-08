@@ -22,12 +22,6 @@ class SliderImageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', null, array(
-                'label' => 'mssimiContentManagement.page.form.name',
-                'attr' => array(
-                    'class' => ''
-                )
-            ))
             ->add('link', null, array(
                 'label' => 'mssimiContentManagement.page.form.heading',
                 'attr' => array(

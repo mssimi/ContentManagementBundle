@@ -1,0 +1,55 @@
+{% extends '@ContentManagement/base.html.twig' %}
+
+{% block title %}{{ ('mssimiContentManagement.slider.heading')|trans }}{% endblock %}
+{% block content %}
+    <div class="article-header">
+        <div class="article-title">
+            <h3>{{ ('mssimiContentManagement.slider.heading')|trans }}</h3>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <a class="btn btn-default" href="{{ path('mssimi_slider_image_new', {'id' : slider.id}) }}">{{ ('mssimiContentManagement.common.new')|trans }}</a>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h6 class="panel-title">{{ ('mssimiContentManagement.common.list')|trans }}</h6>
+        </div>
+
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>{{ ('mssimiContentManagement.node.id')|trans }}</th>
+                        <td></td>
+                        <th>{{ ('mssimiContentManagement.node.published')|trans }}</th>
+                        <th>{{ ('mssimiContentManagement.common.tools')|trans }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for sliderImage in sliderImages.items %}
+                    <tr>
+                        <td>{{ sliderImage.id }}</td>
+                        <td><img src="{{ vich_uploader_asset(sliderImage, 'imageFile')| imagine_filter('thumbnail') }}"></td>
+                        <td><i class="glyphicon {{ sliderImage.publish ? 'glyphicon-ok' : 'glyphicon-remove' }}"></i></td>
+                        <td>
+                            {{ edit_button_render(path('mssimi_slider_image_edit', {'id' : sliderImage.id })) }}
+                            <a href="{{ path('mssimi_slider_image_remove', {'id' : sliderImage.id }) }}" class="btn btn-danger" data-toggle="confirmation">{{ ('mssimiContentManagement.common.remove')|trans }}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-6 text-right">
+                    {{ knp_pagination_render(sliderImages, 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
