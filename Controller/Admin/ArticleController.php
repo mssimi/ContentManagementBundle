@@ -58,7 +58,7 @@ class ArticleController extends Controller
     {
         $article = new Article();
         $article->setParent($blog);
-        $form = $this->createForm(ArticleType::class, $article, array('templates' => $this->getParameter('content_management.templates')));
+        $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -90,7 +90,7 @@ class ArticleController extends Controller
     {
         $dm = $this->get('doctrine_phpcr')->getManager();
         $article = $dm->findTranslation(null, $id, $request->query->get('locale'));
-        $form = $this->createForm(ArticleType::class, $article, array('templates' => $this->getParameter('content_management.templates')));
+        $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){

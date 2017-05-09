@@ -121,27 +121,4 @@ class MenuController extends Controller
         $this->addFlash('success', 'fleshMessage.common.entityRemoved');
         return $this->redirectToRoute('mssimi_menu_index');
     }
-
-    /**
-     * Search nodes ajax
-     *
-     * @Route("/ajax-index", name="mssimi_menu_ajax", options={"expose" = "true"})
-     * @param Request $request
-     * @return Response
-     * @Method({"GET","POST"})
-     */
-    public function ajaxAction(Request $request)
-    {
-        $dm = $this->get('doctrine_phpcr')->getManager();
-        $menus = $dm->getRepository('ContentManagementBundle:Page')->findLikeNodename($request->request->get('query'), 20);
-
-        $response = ['query' => 'Unit', 'suggestions' => []];
-
-        foreach ($menus as $menu) {
-            $response['suggestions'][] = ['value' => $menu->getId(), 'data' => $menu->getId()];
-        }
-
-        return $this->json($response);
-    }
-
 }

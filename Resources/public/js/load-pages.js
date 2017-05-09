@@ -1,19 +1,19 @@
 $( document ).ready(function() {
-    $('#menu_link').devbridgeAutocomplete({
-        serviceUrl: Routing.generate('mssimi_menu_ajax'),
+    $('#menu_item_link').devbridgeAutocomplete({
+        serviceUrl: Routing.generate('mssimi_menu_item_ajax'),
         type: 'POST'
     });
 
     toggleAutocomplete();
-    $('#menu_linkType').change(function () {
+    $('#menu_item_linkType').change(function () {
         toggleAutocomplete();
     });
 });
 
 function toggleAutocomplete(){
-    if ($('#menu_linkType').val() == 'path') {
-        $('#menu_link').devbridgeAutocomplete().enable();
+    if ($('#menu_item_linkType').val() == 'path') {
+        $('#menu_item_link').devbridgeAutocomplete().enable();
     } else {
-        $('#menu_link').devbridgeAutocomplete().disable();
+        $('#menu_item_link').devbridgeAutocomplete().disable();
     }
 }

@@ -7,7 +7,7 @@ use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 
 /**
  * @PHPCR\MappedSuperclass()
- * @PHPCR\Document(translator="attribute")
+ * @PHPCR\Document(repositoryClass="mssimi\ContentManagementBundle\Repository\AbstractPageRepository", translator="attribute")
  */
 class AbstractPage extends AbstractNode
 {
@@ -45,13 +45,6 @@ class AbstractPage extends AbstractNode
      * @PHPCR\Locale
      */
     private $locale;
-
-    /**
-     * @var string
-     *
-     * @PHPCR\Field(type="string")
-     */
-    private $template = '@ContentManagement/Page/page.html.twig';
 
     /**
      * @return string
@@ -134,18 +127,9 @@ class AbstractPage extends AbstractNode
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getTemplate(): string
-    {
-        return $this->template;
-    }
-
-    /**
-     * @param string $template
-     */
-    public function setTemplate(string $template)
-    {
-        $this->template = $template;
+    public function getPath(){
+        return str_replace('/cms/page/','', $this->getId());
     }
 }

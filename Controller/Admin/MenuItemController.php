@@ -157,7 +157,7 @@ class MenuItemController extends Controller
     public function ajaxAction(Request $request)
     {
         $dm = $this->get('doctrine_phpcr')->getManager();
-        $menus = $dm->getRepository('ContentManagementBundle:Page')->findLikeNodename($request->request->get('query'), 20);
+        $menus = $dm->getRepository('ContentManagementBundle:AbstractPage')->findLikeNodename($request->request->get('query'), 20);
 
         $response = ['query' => 'Unit', 'suggestions' => []];
 
@@ -167,5 +167,4 @@ class MenuItemController extends Controller
 
         return $this->json($response);
     }
-
 }

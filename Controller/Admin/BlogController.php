@@ -55,7 +55,7 @@ class BlogController extends Controller
     {
         $blog = new Blog();
         $blog->setParent($parent);
-        $form = $this->createForm(BlogType::class, $blog, array('templates' => $this->getParameter('content_management.templates')));
+        $form = $this->createForm(BlogType::class, $blog);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -86,7 +86,7 @@ class BlogController extends Controller
     {
         $dm = $this->get('doctrine_phpcr')->getManager();
         $blog = $dm->findTranslation(null, $id, $request->query->get('locale'));
-        $form = $this->createForm(BlogType::class, $blog, array('templates' => $this->getParameter('content_management.templates')));
+        $form = $this->createForm(BlogType::class, $blog);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){

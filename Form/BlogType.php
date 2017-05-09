@@ -22,11 +22,6 @@ class BlogType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $choices = array_combine(
-            array_map(function($key){ return 'mssimiContentManagement.page.form.template'.ucfirst($key); }, array_keys($options['templates'])),
-            $options['templates']
-        );
-
         $builder
             ->add('name', null, array(
                 'label' => 'mssimiContentManagement.page.form.name',
@@ -64,13 +59,6 @@ class BlogType extends AbstractType
                     'class' => ''
                 )
             ))
-            ->add('template', ChoiceType::class, array(
-                'label' => 'mssimiContentManagement.page.form.template',
-                'choices' => $choices,
-                'attr' => array(
-                    'class' => ''
-                )
-            ))
         ;
     }
     
@@ -82,7 +70,5 @@ class BlogType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => Blog::class
         ));
-
-        $resolver->setRequired('templates');
     }
 }

@@ -80,7 +80,7 @@ class SliderImage extends AbstractImage
     /**
      * @param string $imageName
      */
-    public function setImageName(string $imageName)
+    public function setImageName(string $imageName = null)
     {
         $this->imageName = $imageName;
     }

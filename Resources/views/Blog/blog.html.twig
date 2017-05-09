@@ -1,0 +1,33 @@
+{% extends '@ContentManagement/base.html.twig' %}
+
+{% block title %}{{ blog.heading}}{% endblock %}
+{% block metaKeywords %}{% if blog.metaKeywords is not null %}{{ blog.metaKeywords }}{% else %}{{ parent() }}{% endif %}{% endblock metaKeywords %}
+{% block metaDescription %}{% if blog.metaDescription is not null %}{{ blog.metaDescription }}{% else %}{{ parent() }}{% endif %}{% endblock metaDescription %}
+
+{% block content %}
+    <div class="container">
+        <h1>{{ blog.heading }}</h1>
+
+        {{ blog.content|raw }}
+
+        <div class="row">
+            {% for article in articles.items %}
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h2>{{ article.heading }}</h2>
+                            <p>{{ article.content|raw|slice(0, 50) ~ '...' }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6 text-right">
+                {{ knp_pagination_render(articles, 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endblock content %}
