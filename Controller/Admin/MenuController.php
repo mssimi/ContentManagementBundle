@@ -77,7 +77,7 @@ class MenuController extends Controller
     /**
      * Displays a form to edit an existing Menu entity.
      *
-     * @Route("/edit/{id}", name="mssimi_menu_edit", options={"expose" = true} , requirements={"id"=".+"})
+     * @Route("/edit/{id}", name="mssimi_menu_edit", options={"expose" = true} , requirements={"id"="/cms/menu.*"})
      * @Method({"GET", "POST"})
      * @param Request $request
      * @param $id
@@ -107,7 +107,7 @@ class MenuController extends Controller
     /**
      * remove an existing Menu entity.
      *
-     * @Route("/remove/{id}", name="mssimi_menu_remove", options={"expose" = true} , requirements={"id"=".+"})
+     * @Route("/remove/{id}", name="mssimi_menu_remove", options={"expose" = true} , requirements={"id"="/cms/menu.*"})
      * @Method({"GET", "POST"})
      * @param Menu $menu
      * @return Response|\Symfony\Component\HttpFoundation\RedirectResponse

@@ -32,9 +32,4 @@ class MenuType extends AbstractType
             'data_class' => Menu::class
         ));
     }
-
-    public function getName()
-    {
-        return 'content_management_bundle_menu_type';
-    }
 }

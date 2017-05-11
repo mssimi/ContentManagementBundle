@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 class MenuItemController extends Controller
 {
     /**
-     * Lists all Menu entities.
+     * Lists all Menu item entities.
      *
      * @Route("/index/{id}", name="mssimi_menu_item_index", requirements={"id"="/cms/menu.*"})
      * @Method("GET")
@@ -35,7 +35,7 @@ class MenuItemController extends Controller
     }
 
     /**
-     * Creates a new Menu entity.
+     * Creates a new Menu item entity.
      *
      * @Route("/new/{id}", name="mssimi_menu_item_new", defaults={"id" = "/cms/menu"} , requirements={"id"="/cms/menu.*"})
      * @Method({"GET", "POST"})
@@ -66,9 +66,9 @@ class MenuItemController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing Menu entity.
+     * Displays a form to edit an existing Menu item entity.
      *
-     * @Route("/edit/{id}", name="mssimi_menu_item_edit", options={"expose" = true} , requirements={"id"=".+"})
+     * @Route("/edit/{id}", name="mssimi_menu_item_edit", options={"expose" = true} , requirements={"id"="/cms/menu.*"})
      * @Method({"GET", "POST"})
      * @param Request $request
      * @param $id
@@ -96,9 +96,9 @@ class MenuItemController extends Controller
     }
 
     /**
-     * remove an existing Menu entity.
+     * remove an existing Menu item entity.
      *
-     * @Route("/remove/{id}", name="mssimi_menu_item_remove", options={"expose" = true} , requirements={"id"=".+"})
+     * @Route("/remove/{id}", name="mssimi_menu_item_remove", options={"expose" = true} , requirements={"id"="/cms/page.*"})
      * @Method({"GET", "POST"})
      * @param MenuItem $menu
      * @return Response|\Symfony\Component\HttpFoundation\RedirectResponse
@@ -114,9 +114,9 @@ class MenuItemController extends Controller
     }
 
     /**
-     * remove an existing Menu entity.
+     * reorder menu items
      *
-     * @Route("/reorder", name="mssimi_menu_item_reorder", options={"expose" = true}, requirements={"id"=".+"})
+     * @Route("/reorder", name="mssimi_menu_item_reorder", options={"expose" = true})
      * @Method({"POST"})
      * @param Request $request
      * @return Response|\Symfony\Component\HttpFoundation\RedirectResponse

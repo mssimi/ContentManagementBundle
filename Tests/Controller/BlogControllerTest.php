@@ -4,63 +4,63 @@ namespace mssimi\ContentManagementBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class PageControllerTest extends WebTestCase
+class BlogControllerTest extends WebTestCase
 {
     public function testIndexAction()
     {
         $client = static::createClient();
-        $client->request('GET', '/page/index');
+        $client->request('GET', '/blog/index');
         $this->assertTrue($client->getResponse()->isSuccessful());
     }
 
     /**
-     * Test new page
+     * Test new blog
      */
     public function testNewSave()
     {
         $client = static::createClient();
         $client->followRedirects(true);
-        $crawler = $client->request('GET', '/page/new');
+        $crawler = $client->request('GET', '/blog/new');
         $buttonCrawlerNode = $crawler->selectButton('Submit');
         $form = $buttonCrawlerNode->form();
         $form->setValues(array(
-            'page[name]' => "pageCreate",
-            'page[heading]' => "pageCreate heading",
-            'page[content]' => "pageCreate content",
+            'blog[name]' => "blogCreate",
+            'blog[heading]' => "blogCreate heading",
+            'blog[content]' => "blogCreate content",
         ));
         $crawler = $client->submit($form);
         $this->assertEquals(1, $crawler->filter('.panel tbody tr')->count());
-        $this->assertEquals("pageCreate", trim($crawler->filter('.panel td')->eq(1)->text()));
+        $this->assertEquals("blogCreate", trim($crawler->filter('.panel td')->eq(1)->text()));
     }
 
     /**
-     * Test edit page
+     * Test edit blog
      */
     public function testEditSave()
     {
         $client = static::createClient();
         $client->followRedirects(true);
-        $crawler = $client->request('GET', '/page/edit//cms/page/pageCreate');
+        $crawler = $client->request('GET', '/blog/edit//cms/page/blogCreate');
         $buttonCrawlerNode = $crawler->selectButton('Submit');
         $form = $buttonCrawlerNode->form();
         $form->setValues(array(
-            'page[name]' => "pageEdit",
-            'page[heading]' => "pageEdit heading",
-            'page[content]' => "pageEdit content",
+            'blog[name]' => "blogEdit",
+            'blog[heading]' => "blogEdit heading",
+            'blog[content]' => "blogEdit content",
         ));
         $crawler = $client->submit($form);
         $this->assertEquals(1, $crawler->filter('.panel tbody tr')->count());
-        $this->assertEquals("pageEdit", trim($crawler->filter('.panel td')->eq(1)->text()));
+        $this->assertEquals("blogEdit", trim($crawler->filter('.panel td')->eq(1)->text()));
     }
 
     /**
-     * Test remove page
+     * Test remove blog
      */
     public function testRemove()
     {
         $client = static::createClient();
         $client->followRedirects(true);
-        $crawler = $client->request('GET', '/page/remove//cms/page/pageEdit');
+        $crawler = $client->request('GET', '/blog/remove//cms/page/blogEdit');
         $this->assertEquals(0, $crawler->filter('.panel tbody tr')->count());
     }
 }

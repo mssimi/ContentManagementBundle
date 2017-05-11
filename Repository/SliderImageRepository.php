@@ -29,13 +29,14 @@ class SliderImageRepository extends \Doctrine\ODM\PHPCR\DocumentRepository
     }
 
     /**
-     * Finds block where like %nodename%
+     * Finds where like %nodename%
      *
      * @param $name
      * @param null $limit
      * @return mixed
      */
-    public function findLikeNodename($name, $limit = null){
+    public function findLikeNodename($name, $limit = null)
+    {
         $qb = $this->createQueryBuilder('SliderImage');
         $qb->where()->like()->localName('SliderImage')->literal('%'.$name.'%');
         $qb->setMaxResults($limit);

@@ -32,9 +32,4 @@ class SliderType extends AbstractType
             'data_class' => Slider::class
         ));
     }
-
-    public function getName()
-    {
-        return 'content_management_bundle_menu_type';
-    }
 }

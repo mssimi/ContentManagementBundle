@@ -28,7 +28,7 @@ class BlogRepository extends \Doctrine\ODM\PHPCR\DocumentRepository
     }
 
     /**
-     * Finds block where like %nodename%
+     * Finds where like %nodename%
      *
      * @param $name
      * @param null $limit

@@ -76,7 +76,7 @@ class PageController extends Controller
     /**
      * Displays a form to edit an existing Page entity.
      *
-     * @Route("/edit/{id}", name="mssimi_page_edit", options={"expose" = true} , requirements={"id"=".+"})
+     * @Route("/edit/{id}", name="mssimi_page_edit", options={"expose" = true} , requirements={"id"="/cms/page.*"})
      * @Method({"GET", "POST"})
      * @param Request $request
      * @param $id
@@ -106,7 +106,7 @@ class PageController extends Controller
     /**
      * remove an existing Page entity.
      *
-     * @Route("/remove/{id}", name="mssimi_page_remove", options={"expose" = true} , requirements={"id"=".+"})
+     * @Route("/remove/{id}", name="mssimi_page_remove", options={"expose" = true} , requirements={"id"="/cms/page.*"})
      * @Method({"GET", "POST"})
      * @param Page $page
      * @return Response|\Symfony\Component\HttpFoundation\RedirectResponse

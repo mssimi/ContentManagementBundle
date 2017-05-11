@@ -76,7 +76,7 @@ class BlogController extends Controller
     /**
      * Displays a form to edit an existing Blog entity.
      *
-     * @Route("/edit/{id}", name="mssimi_blog_edit", options={"expose" = true} , requirements={"id"=".+"})
+     * @Route("/edit/{id}", name="mssimi_blog_edit", options={"expose" = true} , requirements={"id"="/cms/page.*"})
      * @Method({"GET", "POST"})
      * @param Request $request
      * @param $id
@@ -106,7 +106,7 @@ class BlogController extends Controller
     /**
      * remove an existing Blog entity.
      *
-     * @Route("/remove/{id}", name="mssimi_blog_remove", options={"expose" = true} , requirements={"id"=".+"})
+     * @Route("/remove/{id}", name="mssimi_blog_remove", options={"expose" = true} , requirements={"id"="/cms/page.*"})
      * @Method({"GET", "POST"})
      * @param Blog $blog
      * @return Response|\Symfony\Component\HttpFoundation\RedirectResponse

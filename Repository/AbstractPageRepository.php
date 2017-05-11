@@ -3,14 +3,14 @@
 namespace mssimi\ContentManagementBundle\Repository;
 
 /**
- * Class MenuRepository
+ * Class AbstractPageRepository
  * @package mssimi\ContentManagementBundle\Repository
  * @author Marek Šimeček <mssimi@seznam.cz>
  */
 class AbstractPageRepository extends \Doctrine\ODM\PHPCR\DocumentRepository
 {
     /**
-     * Finds block where like %nodename%
+     * Finds where like %nodename%
      *
      * @param $name
      * @param null $limit

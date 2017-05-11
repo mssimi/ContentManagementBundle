@@ -56,9 +56,4 @@ class MenuItemType extends AbstractType
             'data_class' => MenuItem::class
         ));
     }
-
-    public function getName()
-    {
-        return 'content_management_bundle_menu_type';
-    }
 }

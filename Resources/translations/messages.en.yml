@@ -15,7 +15,7 @@ mssimiContentManagement:
         content: "Content"
         link: "Link"
         label: "Label"
-        childrenCount: "Children count"
+        childrenCount: "Count"
         published: "published"
     block:
         heading: "Block"
@@ -50,7 +50,6 @@ mssimiContentManagement:
         articles: "Articles"
     article:
         heading: "Article"
-    galleryImage:
-        form:
-            title: "Title"
-            perex: "Perex"
+    slider:
+        heading: "Slider"
+        sliderImages: "Slides"

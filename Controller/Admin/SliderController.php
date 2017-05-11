@@ -76,7 +76,7 @@ class SliderController extends Controller
     /**
      * Displays a form to edit an existing Slider entity.
      *
-     * @Route("/edit/{id}", name="mssimi_slider_edit", options={"expose" = true} , requirements={"id"=".+"})
+     * @Route("/edit/{id}", name="mssimi_slider_edit", options={"expose" = true} , requirements={"id"="/cms/slider.*"})
      * @Method({"GET", "POST"})
      * @param Request $request
      * @param $id
@@ -106,7 +106,7 @@ class SliderController extends Controller
     /**
      * remove an existing Slider entity.
      *
-     * @Route("/remove/{id}", name="mssimi_slider_remove", options={"expose" = true} , requirements={"id"=".+"})
+     * @Route("/remove/{id}", name="mssimi_slider_remove", options={"expose" = true} , requirements={"id"="/cms/slider.*"})
      * @Method({"GET", "POST"})
      * @param Slider $slider
      * @return Response|\Symfony\Component\HttpFoundation\RedirectResponse

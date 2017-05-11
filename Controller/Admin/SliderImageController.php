@@ -23,11 +23,10 @@ class SliderImageController extends Controller
      *
      * @Route("/index/{id}", name="mssimi_slider_image_index", requirements={"id"="/cms/slider.*"})
      * @Method("GET")
-     * @param Request $request
      * @param Slider $slider
      * @return Response
      */
-    public function indexAction(Request $request, Slider $slider)
+    public function indexAction(Slider $slider)
     {
         return $this->render('@ContentManagement/SliderImage/index.html.twig', array(
             'slider' => $slider
@@ -69,7 +68,7 @@ class SliderImageController extends Controller
     /**
      * Displays a form to edit an existing SliderImage entity.
      *
-     * @Route("/edit/{id}", name="mssimi_slider_image_edit", options={"expose" = true} , requirements={"id"=".+"})
+     * @Route("/edit/{id}", name="mssimi_slider_image_edit", options={"expose" = true} , requirements={"id"="/cms/slider.*"})
      * @Method({"GET", "POST"})
      * @param Request $request
      * @param $id
@@ -100,7 +99,7 @@ class SliderImageController extends Controller
     /**
      * remove an existing SliderImage entity.
      *
-     * @Route("/remove/{id}", name="mssimi_slider_image_remove", options={"expose" = true} , requirements={"id"=".+"})
+     * @Route("/remove/{id}", name="mssimi_slider_image_remove", options={"expose" = true} , requirements={"id"="/cms/page.*"})
      * @Method({"GET", "POST"})
      * @param SliderImage $sliderImage
      * @return Response|\Symfony\Component\HttpFoundation\RedirectResponse
@@ -119,7 +118,7 @@ class SliderImageController extends Controller
     /**
      * reorder an existing slider images entity.
      *
-     * @Route("/reorder", name="mssimi_slider_image_reorder", options={"expose" = true}, requirements={"id"=".+"})
+     * @Route("/reorder", name="mssimi_slider_image_reorder", options={"expose" = true})
      * @Method({"POST"})
      * @param Request $request
      * @return Response|\Symfony\Component\HttpFoundation\RedirectResponse
