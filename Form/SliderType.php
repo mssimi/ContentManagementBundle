@@ -18,7 +18,7 @@ class SliderType extends AbstractType
     {
         $builder
             ->add('name', null, array(
-                'label' => 'mssimiContentManagement.slider.form.name',
+                'label' => 'slider.name',
                 'attr' => array(
                     'class' => ''
                 )

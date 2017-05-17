@@ -19,7 +19,7 @@ class PageController extends Controller
      * @Method({"GET"})
      * @param $id
      * @param Request $request
-     * @return Response|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function routerAction($id, Request $request)
     {

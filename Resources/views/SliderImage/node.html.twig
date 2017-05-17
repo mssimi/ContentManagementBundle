@@ -5,7 +5,7 @@
                 <div class="pull-left move-block"><i class="glyphicon glyphicon-move move"></i> <img src="{{ vich_uploader_asset(sliderImage, 'imageFile')| imagine_filter('thumbnail') }}"></div>
                 <div class="pull-right">
                     {{ edit_button_render(path('mssimi_slider_image_edit', {'id' : sliderImage.id })) }}
-                    <a href="{{ path('mssimi_slider_image_remove', {'id' : sliderImage.id }) }}" class="btn btn-danger" data-toggle="confirmation">{{ ('mssimiContentManagement.common.remove')|trans }}</a>
+                    <a href="{{ path('mssimi_slider_image_remove', {'id' : sliderImage.id }) }}" class="btn btn-danger" data-toggle="confirmation">{{ ('common.remove')|trans }}</a>
                 </div>
             </div>
         </li>

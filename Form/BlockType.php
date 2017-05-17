@@ -23,13 +23,13 @@ class BlockType extends AbstractType
     {
         $builder
             ->add('name', null, array(
-                'label' => 'mssimiContentManagement.block.form.name',
+                'label' => 'block.name',
                 'attr' => array(
                     'class' => ''
                 )
             ))
             ->add('content', CKEditorType::class, array(
-                'label' => 'mssimiContentManagement.block.form.content',
+                'label' => 'block.content',
                 'attr' => array(
                     'class' => ''
                 )

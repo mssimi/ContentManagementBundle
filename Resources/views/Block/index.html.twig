@@ -1,38 +1,33 @@
 {% extends '@ContentManagement/base.html.twig' %}
 
-{% block title %}{{ ('mssimiContentManagement.block.heading')|trans }}{% endblock %}
+{% block title %}{{ ('block.heading')|trans }}{% endblock %}
 {% block content %}
-    <div class="page-header">
-        <div class="page-title">
-            <h3>{{ ('mssimiContentManagement.block.heading')|trans }}</h3>
-        </div>
-    </div>
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <a class="btn btn-default" href="{{ path('mssimi_block_new') }}">{{ ('mssimiContentManagement.common.new')|trans }}</a>
+            <a class="btn btn-default" href="{{ path('mssimi_block_new') }}">{{ ('common.new')|trans }}</a>
             <form class="form-inline pull-right" action="{{ path('mssimi_block_index') }}" method="get">
                 <div class="form-group">
                     <input placeholder="search by nodename" class="form-control" name="nodeName" type="text">
                 </div>
-                <button class="btn btn-default" type="submit">{{ ('mssimiContentManagement.common.submit')|trans }}</button>
+                <button class="btn btn-default" type="submit">{{ ('common.submit')|trans }}</button>
             </form>
         </div>
     </div>
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h6 class="panel-title">{{ ('mssimiContentManagement.common.list')|trans }}</h6>
+            <h6 class="panel-title">{{ ('common.list')|trans }}</h6>
         </div>
 
         <div class="panel-body">
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>{{ ('mssimiContentManagement.node.id')|trans }}</th>
-                        <th>{{ ('mssimiContentManagement.node.name')|trans }}</th>
-                        <th>{{ ('mssimiContentManagement.node.content')|trans }}</th>
-                        <th>{{ ('mssimiContentManagement.common.tools')|trans }}</th>
+                        <th>{{ ('node.id')|trans }}</th>
+                        <th>{{ ('node.name')|trans }}</th>
+                        <th>{{ ('node.content')|trans }}</th>
+                        <th>{{ ('common.tools')|trans }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,7 +38,7 @@
                         <td>{{ block.content|raw }}</td>
                         <td>
                             {{ edit_button_render(path('mssimi_block_edit', {'id' : block.id })) }}
-                            <a href="{{ path('mssimi_block_remove', {'id' : block.id }) }}" class="btn btn-danger" data-toggle="confirmation">{{ ('mssimiContentManagement.common.remove')|trans }}</a>
+                            <a href="{{ path('mssimi_block_remove', {'id' : block.id }) }}" class="btn btn-danger" data-toggle="confirmation">{{ ('common.remove')|trans }}</a>
                         </td>
                     </tr>
                 {% endfor %}

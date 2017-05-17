@@ -22,3 +22,4 @@ install: composer update --prefer-dist --no-interaction $COMPOSER_FLAGS
 
 script:
   - ./vendor/bin/simple-phpunit
+  - ./vendor/bin/phpstan analyse !(Tests|vendor)

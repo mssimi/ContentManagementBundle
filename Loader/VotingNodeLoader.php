@@ -12,7 +12,7 @@
 namespace mssimi\ContentManagementBundle\Loader;
 
 use Knp\Menu\FactoryInterface;
-use Knp\Menu\Loader\NodeLoader;
+use Knp\Menu\Loader\LoaderInterface;
 use Knp\Menu\NodeInterface;
 use mssimi\ContentManagementBundle\Document\MenuItem;
 use mssimi\ContentManagementBundle\Event\CreateMenuItemFromNodeEvent;
@@ -22,7 +22,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 /**
  * @author Wouter J <wouter@wouterj.nl>
  */
-class VotingNodeLoader extends NodeLoader
+class VotingNodeLoader implements LoaderInterface
 {
     /**
      * @var EventDispatcherInterface
@@ -71,14 +71,17 @@ class VotingNodeLoader extends NodeLoader
         }
 
         foreach ($data->getChildren() as $childNode) {
-            if ($childNode instanceof NodeInterface) {
-                $child = $this->load($childNode);
-                if (!empty($child)) {
-                    $item->addChild($child);
-                }
+            $child = $this->load($childNode);
+            if (!empty($child)) {
+                $item->addChild($child);
             }
         }
 
         return $item;
+    }
+
+    public function supports($data)
+    {
+        return $data instanceof NodeInterface;
     }
 }

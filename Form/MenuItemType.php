@@ -19,30 +19,30 @@ class MenuItemType extends AbstractType
     {
         $builder
             ->add('label', null, array(
-                'label' => 'mssimiContentManagement.menu.form.label',
+                'label' => 'menu.label',
                 'attr' => array(
                     'class' => ''
                 )
             ))
             ->add('link', null, array(
-                'label' => 'mssimiContentManagement.menu.form.link',
+                'label' => 'menu.link',
                 'attr' => array(
                     'class' => ''
                 )
             ))
             ->add('linkType', ChoiceType::class, array(
-                'label' => 'mssimiContentManagement.menu.form.linkType',
+                'label' => 'menu.linkType',
                 'choices' => array(
-                    'mssimiContentManagement.menu.form.linkType'.ucfirst(MenuItem::linkTypeUrl) => MenuItem::linkTypeUrl,
-                    'mssimiContentManagement.menu.form.linkType'.ucfirst(MenuItem::linkTypeRoute) => MenuItem::linkTypeRoute,
-                    'mssimiContentManagement.menu.form.linkType'.ucfirst(MenuItem::linkTypePath) => MenuItem::linkTypePath,
+                    'menu.linkType'.ucfirst(MenuItem::linkTypeUrl) => MenuItem::linkTypeUrl,
+                    'menu.linkType'.ucfirst(MenuItem::linkTypeRoute) => MenuItem::linkTypeRoute,
+                    'menu.linkType'.ucfirst(MenuItem::linkTypePath) => MenuItem::linkTypePath,
                 ),
                 'attr' => array(
                     'class' => ''
                 )
             ))
             ->add('targetBlank', null, array(
-                'label' => 'mssimiContentManagement.menu.form.targetBlank',
+                'label' => 'menu.targetBlank',
                 'attr' => array(
                     'class' => ''
                 )

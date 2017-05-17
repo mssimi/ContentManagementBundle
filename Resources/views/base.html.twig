@@ -23,7 +23,13 @@
                 {% include '@ContentManagement/Core/sidebar.html.twig' %}
             </div>
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                {% block content %}{% endblock content %}
+                <div class="page-header">
+                    <div class="page-title">
+                        <h3>{% block title %}{% endblock %}</h3>
+                    </div>
+                </div>
+
+                {% block content %}{% endblock %}
             </div>
         </div>
     </div>

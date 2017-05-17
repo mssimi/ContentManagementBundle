@@ -1,36 +1,31 @@
 {% extends '@ContentManagement/base.html.twig' %}
 
-{% block title %}{{ ('mssimiContentManagement.page.heading')|trans }}{% endblock %}
+{% block title %}{{ ('page.heading')|trans }}{% endblock %}
 {% block content %}
-    <div class="page-header">
-        <div class="page-title">
-            <h3>{{ ('mssimiContentManagement.page.heading')|trans }}</h3>
-        </div>
-    </div>
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <a class="btn btn-default" href="{{ path('mssimi_page_new') }}">{{ ('mssimiContentManagement.common.new')|trans }}</a>
+            <a class="btn btn-default" href="{{ path('mssimi_page_new') }}">{{ ('common.new')|trans }}</a>
             <form class="form-inline pull-right" action="{{ path('mssimi_page_index') }}" method="get">
                 <input placeholder="search by nodename" class="form-control" name="nodeName" type="text">
-                <button class="btn btn-default" type="submit">{{ ('mssimiContentManagement.common.submit')|trans }}</button>
+                <button class="btn btn-default" type="submit">{{ ('common.submit')|trans }}</button>
             </form>
         </div>
     </div>
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h6 class="panel-title">{{ ('mssimiContentManagement.common.list')|trans }}</h6>
+            <h6 class="panel-title">{{ ('common.list')|trans }}</h6>
         </div>
 
         <div class="panel-body">
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>{{ ('mssimiContentManagement.node.id')|trans }}</th>
-                        <th>{{ ('mssimiContentManagement.node.name')|trans }}</th>
-                        <th>{{ ('mssimiContentManagement.node.published')|trans }}</th>
-                        <th>{{ ('mssimiContentManagement.common.tools')|trans }}</th>
+                        <th>{{ ('node.id')|trans }}</th>
+                        <th>{{ ('node.name')|trans }}</th>
+                        <th>{{ ('node.published')|trans }}</th>
+                        <th>{{ ('common.tools')|trans }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,7 +36,7 @@
                         <td><i class="glyphicon {{ page.publish ? 'glyphicon-ok' : 'glyphicon-remove' }}"></i></td>
                         <td>
                             {{ edit_button_render(path('mssimi_page_edit', {'id' : page.id })) }}
-                            <a href="{{ path('mssimi_page_remove', {'id' : page.id }) }}" class="btn btn-danger" data-toggle="confirmation">{{ ('mssimiContentManagement.common.remove')|trans }}</a>
+                            <a href="{{ path('mssimi_page_remove', {'id' : page.id }) }}" class="btn btn-danger" data-toggle="confirmation">{{ ('common.remove')|trans }}</a>
                         </td>
                     </tr>
                 {% endfor %}

@@ -15,6 +15,7 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ODM\PHPCR\DocumentManager;
 use Jackalope\Session;
 use Knp\Menu\ItemInterface;
+use Knp\Menu\Loader\LoaderInterface;
 use Knp\Menu\Loader\NodeLoader;
 use Knp\Menu\NodeInterface;
 use Knp\Menu\Provider\MenuProviderInterface;
@@ -57,13 +58,13 @@ class PhpcrMenuProvider implements MenuProviderInterface
     private $managerRegistry;
 
     /**
-     * @param NodeLoader      $loader          Factory for the menu items
+     * @param LoaderInterface $loader Factory for the menu items
      * @param ManagerRegistry $managerRegistry manager registry service to use in conjunction
      *                                         with the manager name to load the load menu root document
-     * @param string          $menuRoot        root id of the menu
+     * @param string $menuRoot root id of the menu
      */
     public function __construct(
-        NodeLoader $loader,
+        LoaderInterface $loader,
         ManagerRegistry $managerRegistry,
         $menuRoot
     ) {

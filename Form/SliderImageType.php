@@ -23,19 +23,19 @@ class SliderImageType extends AbstractType
     {
         $builder
             ->add('link', null, array(
-                'label' => 'mssimiContentManagement.page.form.heading',
+                'label' => 'page.link',
                 'attr' => array(
                     'class' => ''
                 )
             ))
             ->add('publish', null, array(
-                'label' => 'mssimiContentManagement.page.form.publish',
+                'label' => 'page.publish',
                 'attr' => array(
                     'class' => ''
                 )
             ))
             ->add('imageFile', VichFileType::class, array(
-                'label' => 'mssimiContentManagement.page.form.imageFile',
+                'label' => 'page.imageFile',
                 'download_link' => false,
                 'attr' => array(
                     'class' => ''

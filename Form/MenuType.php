@@ -18,7 +18,7 @@ class MenuType extends AbstractType
     {
         $builder
             ->add('name', null, array(
-                'label' => 'mssimiContentManagement.menu.form.name',
+                'label' => 'menu.name',
                 'attr' => array(
                     'class' => ''
                 )
