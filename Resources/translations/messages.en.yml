@@ -16,11 +16,11 @@ node:
     childrenCount: "Count"
     published: "published"
 block:
-    heading: "Block"
+    pageHeading: "Block"
     name: "Name"
     content: "Content"
 menu:
-    heading: "Menu"
+    pageHeading: "Menu"
     name: "Name"
     label: "Label"
     link: "Link"
@@ -31,7 +31,7 @@ menu:
     linkTypeRoute: "Route"
     menuItems: "Menu items"
 page:
-    heading: "Page"
+    pageHeading: "Page"
     name: "Name"
     heading: "Heading"
     content: "Content"
@@ -42,11 +42,11 @@ page:
     template: "Template"
     templateSimple: "Simple"
 blog:
-    heading: "Blog"
+    pageHeading: "Blog"
     articles: "Articles"
 article:
-    heading: "Article"
+    pageHeading: "Article"
 slider:
-    heading: "Slider"
+    pageHeading: "Slider"
     sliderImages: "Slides"
     link: "Link"
