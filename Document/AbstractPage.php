@@ -14,6 +14,26 @@ class AbstractPage extends AbstractNode
     /**
      * @var string
      *
+     * @PHPCR\Nodename
+     */
+    private $name;
+
+    /**
+     *
+     * @PHPCR\Children
+     */
+    private $children;
+
+    /**
+     * @var boolean
+     *
+     * @PHPCR\Field(type="boolean")
+     */
+    private $publish = true;
+
+    /**
+     * @var string
+     *
      * @PHPCR\Field(type="string", translated=true, nullable=true)
      */
     private $metaKeywords;
@@ -45,6 +65,54 @@ class AbstractPage extends AbstractNode
      * @PHPCR\Locale
      */
     private $locale;
+
+    /**
+     * @return string
+     */
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName(string $name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return ChildrenCollection
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * @param $children
+     */
+    public function setChildren($children)
+    {
+        $this->children = $children;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getPublish(): bool
+    {
+        return $this->publish;
+    }
+
+    /**
+     * @param bool $publish
+     */
+    public function setPublish(bool $publish)
+    {
+        $this->publish = $publish;
+    }
 
     /**
      * @return string

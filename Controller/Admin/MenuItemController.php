@@ -2,6 +2,8 @@
 
 namespace mssimi\ContentManagementBundle\Controller\Admin;
 
+use Knp\Menu\NodeInterface;
+use mssimi\ContentManagementBundle\Document\AbstractNode;
 use mssimi\ContentManagementBundle\Document\Menu;
 use mssimi\ContentManagementBundle\Document\MenuItem;
 use mssimi\ContentManagementBundle\Form\MenuItemType;
@@ -40,10 +42,10 @@ class MenuItemController extends Controller
      * @Route("/new/{id}", name="mssimi_menu_item_new", defaults={"id" = "/cms/menu"} , requirements={"id"="/cms/menu.*"})
      * @Method({"GET", "POST"})
      * @param Request $request
-     * @param Menu $parent
-     * @return Response|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @param AbstractNode $parent
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function newAction(Request $request, Menu $parent)
+    public function newAction(Request $request, AbstractNode $parent)
     {
         $menuItem = new MenuItem();
         $menuItem->setParent($parent);

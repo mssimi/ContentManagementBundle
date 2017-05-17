@@ -108,7 +108,7 @@ class BlockController extends Controller
     /**
      * remove an existing Block entity.
      *
-     * @Route("/remove/{id}", name="mssimi_block_remove", options={"expose" = true} , requirements={"id"="/cms/page.*"})
+     * @Route("/remove/{id}", name="mssimi_block_remove", options={"expose" = true} , requirements={"id"="/cms/block.*"})
      * @Method({"GET", "POST"})
      * @param Block $block
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
@@ -126,7 +126,7 @@ class BlockController extends Controller
     /**
      * Route for inline edit using ajax
      *
-     * @Route("/inline-edit/{id}", name="mssimi_block_inline_edit", options={"expose" = true} , requirements={"id"="/cms/page.*"})
+     * @Route("/inline-edit/{id}", name="mssimi_block_inline_edit", options={"expose" = true} , requirements={"id"="/cms/block.*"})
      * @Method({"POST"})
      * @param Request $request
      * @param Block $block

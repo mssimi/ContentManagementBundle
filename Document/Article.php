@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * @PHPCR\Document(repositoryClass="mssimi\ContentManagementBundle\Repository\ArticleRepository", translator="attribute")
+ * @PHPCR\Document(repositoryClass="mssimi\ContentManagementBundle\Repository\ArticleRepository", translator="attribute", mixins={"mix:created", "mix:lastModified"})
  * @Vich\Uploadable
  */
 class Article extends AbstractPage

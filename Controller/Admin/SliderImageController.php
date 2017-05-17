@@ -14,7 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 /**
  * SliderImage controller.
  * @author Marek Šimeček <mssimi@seznam.cz>
- * @Route("/sliderImage")
+ * @Route("/slider-image")
  */
 class SliderImageController extends Controller
 {
@@ -99,7 +99,7 @@ class SliderImageController extends Controller
     /**
      * remove an existing SliderImage entity.
      *
-     * @Route("/remove/{id}", name="mssimi_slider_image_remove", options={"expose" = true} , requirements={"id"="/cms/page.*"})
+     * @Route("/remove/{id}", name="mssimi_slider_image_remove", options={"expose" = true} , requirements={"id"="/cms/slider.*"})
      * @Method({"GET", "POST"})
      * @param SliderImage $sliderImage
      * @return Response|\Symfony\Component\HttpFoundation\RedirectResponse

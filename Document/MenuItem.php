@@ -7,26 +7,14 @@ use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 use Knp\Menu\NodeInterface;
 
 /**
- * @PHPCR\Document(repositoryClass="mssimi\ContentManagementBundle\Repository\MenuItemRepository", translator="attribute")
+ * @PHPCR\Document(repositoryClass="mssimi\ContentManagementBundle\Repository\MenuItemRepository", translator="attribute", mixins={"mix:created", "mix:lastModified"})
  *
  */
-class MenuItem implements NodeInterface
+class MenuItem extends AbstractNode implements NodeInterface
 {
     CONST linkTypeUrl = 'url';
     CONST linkTypeRoute = 'route';
     CONST linkTypePath = 'path';
-
-    /**
-     * @var string
-     *
-     * @PHPCR\Id
-     */
-    private $id;
-
-    /**
-     * @PHPCR\ParentDocument
-     */
-    private $parent;
 
     /**
      * @PHPCR\Children
@@ -71,25 +59,9 @@ class MenuItem implements NodeInterface
     /**
      * @return string
      */
-    public function getId(): ?string
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param string $id
-     */
-    public function setId(string $id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return string
-     */
     public function getName(): ?string
     {
-        return substr($this->id, strrpos($this->id, '/') + 1);
+        return substr($this->getId(), strrpos($this->getId(), '/') + 1);
     }
 
     /**
@@ -97,24 +69,8 @@ class MenuItem implements NodeInterface
      */
     public function getMenuId(): ?string
     {
-        preg_match('/\/cms\/menu\/(.*?)\//', $this->id, $match);
-        return '/cms/menu/' . $match[1];
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getParent()
-    {
-        return $this->parent;
-    }
-
-    /**
-     * @param mixed $parent
-     */
-    public function setParent($parent)
-    {
-        $this->parent = $parent;
+        preg_match('/\/cms\/menu\/(.*?)\//', $this->getParent()->getId(), $match);
+        return $match ? '/cms/menu/' . $match[1] : $this->getParent()->getId();
     }
 
     /**

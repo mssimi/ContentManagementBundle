@@ -82,4 +82,21 @@ vich_uploader:
             upload_destination: '%kernel.root_dir%/../web/images/cms'
             db_driver: phpcr
 
+liip_imagine:
+    resolvers:
+       default:
+          web_path: ~
+
+    filter_sets:
+        cache: ~
+        thumbnail:
+            quality: 75
+            filters:
+                strip: ~
+                thumbnail: { size: [50, 50], mode: inset }
+        slider:
+            quality: 75
+            filters:
+                strip: ~
+                thumbnail: { size: [1140, 560], mode: outbound }
 
