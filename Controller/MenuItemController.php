@@ -1,6 +1,6 @@
 <?php
 
-namespace mssimi\ContentManagementBundle\Controller\Admin;
+namespace mssimi\ContentManagementBundle\Controller;
 
 use Knp\Menu\NodeInterface;
 use mssimi\ContentManagementBundle\Document\AbstractNode;

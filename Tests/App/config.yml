@@ -71,6 +71,9 @@ doctrine_phpcr:
 
 content_management:
     locales: ['en','de','fr']
+    page_template: 'cms/page.html.twig'
+    blog_template: 'cms/blog.html.twig'
+    article_template: 'cms/article.html.twig'
 
 vich_uploader:
     db_driver: orm

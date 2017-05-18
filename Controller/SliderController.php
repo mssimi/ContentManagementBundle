@@ -1,9 +1,9 @@
 <?php
 
-namespace mssimi\ContentManagementBundle\Controller\Admin;
+namespace mssimi\ContentManagementBundle\Controller;
 
-use mssimi\ContentManagementBundle\Document\Page;
-use mssimi\ContentManagementBundle\Form\PageType;
+use mssimi\ContentManagementBundle\Document\Slider;
+use mssimi\ContentManagementBundle\Form\SliderType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,16 +11,16 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
- * Page controller.
+ * Slider controller.
  * @author Marek Šimeček <mssimi@seznam.cz>
- * @Route("/page")
+ * @Route("/slider")
  */
-class PageController extends Controller
+class SliderController extends Controller
 {
     /**
-     * Lists all Page entities.
+     * Lists all Slider entities.
      *
-     * @Route("/index", name="mssimi_page_index")
+     * @Route("/index", name="mssimi_slider_index")
      * @Method("GET")
      * @param Request $request
      * @return Response
@@ -28,55 +28,55 @@ class PageController extends Controller
     public function indexAction(Request $request)
     {
         $dm = $this->get('doctrine_phpcr')->getManager();
-        $query = $dm->getRepository('ContentManagementBundle:Page')->pagination($request);
+        $query = $dm->getRepository('ContentManagementBundle:Slider')->pagination($request);
 
         $paginator  = $this->get('knp_paginator');
-        $pages = $paginator->paginate(
+        $sliders = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
             $this->getParameter('content_management.items_per_page')
         );
 
-        return $this->render('@ContentManagement/Page/index.html.twig', array(
-            'pages' => $pages
+        return $this->render('@ContentManagement/Slider/index.html.twig', array(
+            'sliders' => $sliders
         ));
     }
 
     /**
-     * Creates a new Page entity.
+     * Creates a new Slider entity.
      *
-     * @Route("/new/{id}", name="mssimi_page_new", defaults={"id" = "/cms/page"} , requirements={"id"="/cms/page.*"})
+     * @Route("/new/{id}", name="mssimi_slider_new", defaults={"id" = "/cms/slider"} , requirements={"id"="/cms/slider.*"})
      * @Method({"GET", "POST"})
      * @param Request $request
-     * @param Page $parent
+     * @param Slider $parent
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function newAction(Request $request, Page $parent)
+    public function newAction(Request $request, Slider $parent)
     {
-        $page = new Page();
-        $page->setParent($parent);
-        $form = $this->createForm(PageType::class, $page);
+        $slider = new Slider();
+        $slider->setParent($parent);
+        $form = $this->createForm(SliderType::class, $slider);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $dm = $this->get('doctrine_phpcr')->getManager();
-            $dm->persist($page);
+            $dm->persist($slider);
             $dm->flush();
 
             $this->addFlash('success', 'flashMessage.common.entityCreated');
-            return $this->redirectToRoute('mssimi_page_index');
+            return $this->redirectToRoute('mssimi_slider_index');
         }
 
-        return $this->render('@ContentManagement/Page/persist.html.twig', array(
-            'page' => $page,
+        return $this->render('@ContentManagement/Slider/persist.html.twig', array(
+            'slider' => $slider,
             'form' => $form->createView(),
         ));
     }
 
     /**
-     * Displays a form to edit an existing Page entity.
+     * Displays a form to edit an existing Slider entity.
      *
-     * @Route("/edit/{id}", name="mssimi_page_edit", options={"expose" = true} , requirements={"id"="/cms/page.*"})
+     * @Route("/edit/{id}", name="mssimi_slider_edit", options={"expose" = true} , requirements={"id"="/cms/slider.*"})
      * @Method({"GET", "POST"})
      * @param Request $request
      * @param $id
@@ -85,39 +85,39 @@ class PageController extends Controller
     public function editAction(Request $request, $id)
     {
         $dm = $this->get('doctrine_phpcr')->getManager();
-        $page = $dm->findTranslation(null, $id, $request->query->get('locale'));
-        $form = $this->createForm(PageType::class, $page);
+        $slider = $dm->findTranslation(null, $id, $request->query->get('locale'));
+        $form = $this->createForm(SliderType::class, $slider);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
-            $dm->persist($page);
+            $dm->persist($slider);
             $dm->flush();
 
             $this->addFlash('success', 'flashMessage.common.entityUpdated');
-            return $this->redirectToRoute('mssimi_page_index');
+            return $this->redirectToRoute('mssimi_slider_index');
         }
 
-        return $this->render('@ContentManagement/Page/persist.html.twig', array(
-            'page' => $page,
+        return $this->render('@ContentManagement/Slider/persist.html.twig', array(
+            'slider' => $slider,
             'form' => $form->createView(),
         ));
     }
 
     /**
-     * remove an existing Page entity.
+     * remove an existing Slider entity.
      *
-     * @Route("/remove/{id}", name="mssimi_page_remove", options={"expose" = true} , requirements={"id"="/cms/page.*"})
+     * @Route("/remove/{id}", name="mssimi_slider_remove", options={"expose" = true} , requirements={"id"="/cms/slider.*"})
      * @Method({"GET", "POST"})
-     * @param Page $page
+     * @param Slider $slider
      * @return Response|\Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function removeAction(Page $page)
+    public function removeAction(Slider $slider)
     {
         $dm = $this->get('doctrine_phpcr')->getManager();
-        $dm->remove($page);
+        $dm->remove($slider);
         $dm->flush();
 
         $this->addFlash('success', 'fleshMessage.common.entityRemoved');
-        return $this->redirectToRoute('mssimi_page_index');
+        return $this->redirectToRoute('mssimi_slider_index');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace mssimi\ContentManagementBundle\Controller\Page;
+namespace mssimi\ContentManagementBundle\ControllerRouter;
 
 use mssimi\ContentManagementBundle\Document\Article;
 use mssimi\ContentManagementBundle\Document\Blog;
@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-class PageController extends Controller
+class RouterController extends Controller
 {
     /**
      * Displays a form to edit an existing Page entity.
@@ -46,7 +46,7 @@ class PageController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function pageAction(Page $page){
-        return $this->render('@ContentManagement/page.html.twig', array(
+        return $this->render($this->getParameter('content_management.page_template'), array(
             'page' => $page,
         ));
     }
@@ -56,7 +56,7 @@ class PageController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function articleAction(Article $article){
-        return $this->render('@ContentManagement/article.html.twig', array(
+        return $this->render($this->getParameter('content_management.article_template'), array(
             'article' => $article,
         ));
     }
@@ -75,10 +75,10 @@ class PageController extends Controller
         $articles = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            $this->getParameter('content_management.items_per_page')
+            $this->getParameter('content_management.articles_per_page')
         );
 
-        return $this->render('@ContentManagement/blog.html.twig', array(
+        return $this->render($this->getParameter('content_management.blog_template'), array(
             'blog' => $blog,
             'articles' => $articles
         ));

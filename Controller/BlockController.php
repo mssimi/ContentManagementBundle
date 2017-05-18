@@ -1,6 +1,6 @@
 <?php
 
-namespace mssimi\ContentManagementBundle\Controller\Admin;
+namespace mssimi\ContentManagementBundle\Controller;
 
 use mssimi\ContentManagementBundle\Document\Block;
 use mssimi\ContentManagementBundle\Form\BlockType;
