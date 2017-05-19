@@ -3,7 +3,7 @@
 
         <ol class="carousel-indicators">
             {% for slide in slider.children %}
-                <li data-target="#myCarousel" data-slide-to="{{ loop.index }}" class="{% if loop.first %}active{% endif %}"></li>
+                <li data-target="#myCarousel" data-slide-to="{{ loop.index0 }}" class="{% if loop.first %}active{% endif %}"></li>
             {% endfor %}
         </ol>
 

@@ -42,13 +42,6 @@ class AbstractPage extends AbstractNode
     /**
      * @var string
      *
-     * @PHPCR\Field(type="string", translated=true, nullable=true)
-     */
-    private $metaDescription;
-
-    /**
-     * @var string
-     *
      * @PHPCR\Field(type="string", translated=true)
      */
     private $heading;
@@ -129,22 +122,6 @@ class AbstractPage extends AbstractNode
     public function setMetaKeywords(string $metaKeywords)
     {
         $this->metaKeywords = $metaKeywords;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMetaDescription(): ?string
-    {
-        return $this->metaDescription;
-    }
-
-    /**
-     * @param string $metaDescription
-     */
-    public function setMetaDescription(string $metaDescription)
-    {
-        $this->metaDescription = $metaDescription;
     }
 
     /**

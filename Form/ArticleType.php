@@ -47,12 +47,6 @@ class ArticleType extends AbstractType
                     'class' => ''
                 )
             ))
-            ->add('metaDescription', null, array(
-                'label' => 'page.metaDescription',
-                'attr' => array(
-                    'class' => ''
-                )
-            ))
             ->add('publish', null, array(
                 'label' => 'page.publish',
                 'attr' => array(
