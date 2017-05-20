@@ -1,6 +1,7 @@
 # Content management mimi framework
 
 [![Build Status](https://travis-ci.org/mssimi/ContentManagementBundle.svg?branch=master)](https://travis-ci.org/mssimi/ContentManagementBundle)
+[![PHPStan](https://img.shields.io/badge/PHPStan-enabled-brightgreen.svg?style=flat)](https://github.com/phpstan/phpstan)
 
 This bundle provides basic content management tools for your symfony project. You can integrate this bundle into your existing system to add CMS functionality or use it for simple websites.
 
