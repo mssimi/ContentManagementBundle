@@ -15,6 +15,7 @@ class MenuItem extends AbstractNode implements NodeInterface
     CONST linkTypeUrl = 'url';
     CONST linkTypeRoute = 'route';
     CONST linkTypePath = 'path';
+    CONST linkTypePage = 'page';
 
     /**
      * @PHPCR\Children
@@ -172,7 +173,7 @@ class MenuItem extends AbstractNode implements NodeInterface
 
     public function getUriOption()
     {
-        return $this->linkType == self::linkTypeUrl ? $this->link : null;
+        return $this->linkType == (self::linkTypeUrl || self::linkTypePath) ? $this->link : null;
     }
 
     public function getRouteOption()
@@ -181,7 +182,7 @@ class MenuItem extends AbstractNode implements NodeInterface
             case self::linkTypeRoute:
                 return $this->link;
                 break;
-            case self::linkTypePath:
+            case self::linkTypePage:
                 return 'mssimi_page_render';
                 break;
             default:
@@ -191,7 +192,7 @@ class MenuItem extends AbstractNode implements NodeInterface
 
     public function getParamOption()
     {
-        return $this->linkType == self::linkTypePath ? ['id' => str_replace('/cms/page/','', $this->link)] : [];
+        return $this->linkType == self::linkTypePage ? ['id' => str_replace('/cms/page/','', $this->link)] : [];
     }
 
     /**

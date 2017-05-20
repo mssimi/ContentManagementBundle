@@ -30,9 +30,9 @@ class SliderImageControllerTest extends WebTestCase
         $container = $client->getContainer();
         $dm = $container->get('doctrine_phpcr')->getManager();
 
-        $blog = $dm->find(null, '/cms/slider/slider');
+        $slider = $dm->find(null, '/cms/slider/slider');
 
-        $dm->remove($blog);
+        $dm->remove($slider);
         $dm->flush();
     }
 
@@ -58,6 +58,7 @@ class SliderImageControllerTest extends WebTestCase
 
         $form->setValues(array(
             'slider_image[imageFile]' => ['file' => $image],
+            'slider_image[link]' => 'http://google.com',
         ));
         $crawler = $client->submit($form);
         $this->assertEquals(1, $crawler->filter('ul.sortable')->count());

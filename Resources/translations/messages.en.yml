@@ -29,6 +29,7 @@ menu:
     linkTypeUrl: "Url"
     linkTypePath: "Path"
     linkTypeRoute: "Route"
+    linkTypePage: "Page"
     menuItems: "Menu items"
 page:
     pageHeading: "Page"
@@ -41,6 +42,7 @@ page:
     imageFile: "Upload image"
     template: "Template"
     templateSimple: "Simple"
+    link: "Link"
 blog:
     pageHeading: "Blog"
     articles: "Articles"
@@ -50,3 +52,4 @@ slider:
     pageHeading: "Slider"
     sliderImages: "Slides"
     link: "Link"
+    imageNotBlank: "Image cannot be empty"

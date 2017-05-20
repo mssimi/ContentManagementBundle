@@ -6,6 +6,7 @@ namespace mssimi\ContentManagementBundle\Document;
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @PHPCR\Document(repositoryClass="mssimi\ContentManagementBundle\Repository\SliderImageRepository", translator="attribute", mixins={"mix:created", "mix:lastModified"})
@@ -14,23 +15,24 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 class SliderImage extends AbstractImage
 {
     /**
-     * @var File
+     * @var File|null
      *
      * @Vich\UploadableField(mapping="content_management", fileNameProperty="imageName")
      */
     private $imageFile;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @PHPCR\Field(type="string", translated=true, nullable=true)
+     * @PHPCR\Field(type="string", translated=true)
      */
     private $imageName;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @PHPCR\Field(type="string", translated=true, nullable=true)
+     * @Assert\Url()
+     * @PHPCR\Field(type="Uri", translated=true, nullable=true)
      */
     private $link;
 
@@ -96,7 +98,7 @@ class SliderImage extends AbstractImage
     /**
      * @param string $link
      */
-    public function setLink(string $link)
+    public function setLink(string $link = null)
     {
         $this->link = $link;
     }

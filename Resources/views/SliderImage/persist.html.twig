@@ -19,24 +19,3 @@
     {{ form_end(form) }}
 
 {% endblock %}
-
-{% block javascripts %}
-    <script src="{{ asset('bundles/contentmanagement/js/jquery.collection.js') }}"></script>
-
-    <script type="text/javascript">
-
-        $( document ).ready(function() {
-            $('form').on('change', '.vich-image input[type="file"]', handleImage);
-        });
-
-        function handleImage(e) {
-            console.log(e.target);
-            var reader = new FileReader();
-            reader.onload = function (event) {
-
-                $(e.target).parent('.vich-image').find('img').attr('src',event.target.result);
-            }
-            reader.readAsDataURL(e.target.files[0]);
-        }
-    </script>
-{% endblock %}

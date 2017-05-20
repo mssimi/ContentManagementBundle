@@ -24,19 +24,20 @@ class MenuItemType extends AbstractType
                     'class' => ''
                 )
             ))
-            ->add('link', null, array(
-                'label' => 'menu.link',
-                'attr' => array(
-                    'class' => ''
-                )
-            ))
             ->add('linkType', ChoiceType::class, array(
                 'label' => 'menu.linkType',
                 'choices' => array(
                     'menu.linkType'.ucfirst(MenuItem::linkTypeUrl) => MenuItem::linkTypeUrl,
                     'menu.linkType'.ucfirst(MenuItem::linkTypeRoute) => MenuItem::linkTypeRoute,
                     'menu.linkType'.ucfirst(MenuItem::linkTypePath) => MenuItem::linkTypePath,
+                    'menu.linkType'.ucfirst(MenuItem::linkTypePage) => MenuItem::linkTypePage,
                 ),
+                'attr' => array(
+                    'class' => ''
+                )
+            ))
+            ->add('link', null, array(
+                'label' => 'menu.link',
                 'attr' => array(
                     'class' => ''
                 )

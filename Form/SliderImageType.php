@@ -6,7 +6,7 @@ use mssimi\ContentManagementBundle\Document\SliderImage;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Vich\UploaderBundle\Form\Type\VichFileType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 /**
  * Class SliderImageType
@@ -28,15 +28,17 @@ class SliderImageType extends AbstractType
                     'class' => ''
                 )
             ))
-            ->add('publish', null, array(
-                'label' => 'page.publish',
+            ->add('imageFile', VichImageType::class, array(
+                'label' => 'page.imageFile',
+                'download_link' => false,
+                'allow_delete' => false,
+                'required' => is_null($builder->getData()->getId()),
                 'attr' => array(
                     'class' => ''
                 )
             ))
-            ->add('imageFile', VichFileType::class, array(
-                'label' => 'page.imageFile',
-                'download_link' => false,
+            ->add('publish', null, array(
+                'label' => 'page.publish',
                 'attr' => array(
                     'class' => ''
                 )
