@@ -48,6 +48,9 @@
         "doctrine/doctrine-fixtures-bundle": "^2.3",
         "phpstan/phpstan": "^0.7.0"
     },
+    "suggest": {
+        "helios-ag/fm-elfinder-bundle": "~6"
+    },
     "extra": {
         "branch-alias": {
             "dev-master" : "0.1-dev"

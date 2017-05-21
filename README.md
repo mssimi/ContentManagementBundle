@@ -156,3 +156,15 @@ For more info check these links
  * https://github.com/egeloen/IvoryCKEditorBundle
  * https://github.com/dustin10/VichUploaderBundle
  * https://github.com/liip/LiipImagineBundle
+ 
+ Install assets
+ 
+ ``` bash
+ $ php bin/console asset:install 
+ ```
+ 
+ Init DB
+ 
+``` bash
+$ bin/console doctrine:phpcr:init:dbal 
+```
