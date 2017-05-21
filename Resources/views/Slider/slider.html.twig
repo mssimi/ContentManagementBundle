@@ -1,11 +1,13 @@
 <div id="{{ slider.id|slice(1)|replace({'/' : '-'}) }}{{ idSuffix|default('') }}" class="{% if is_granted('ROLE_CMS') %}editable-block{% endif %}">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
+        {% if slider.children|length > 1 %}
         <ol class="carousel-indicators">
             {% for slide in slider.children %}
                 <li data-target="#myCarousel" data-slide-to="{{ loop.index0 }}" class="{% if loop.first %}active{% endif %}"></li>
             {% endfor %}
         </ol>
+        {% endif %}
 
         <div class="carousel-inner">
             {% for slide in slider.children %}

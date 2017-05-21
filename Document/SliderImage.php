@@ -43,6 +43,11 @@ class SliderImage extends AbstractImage
      */
     private $publish = true;
 
+    public function __clone()
+    {
+        $this->id = null;
+    }
+
     /**
      * @return string
      */
