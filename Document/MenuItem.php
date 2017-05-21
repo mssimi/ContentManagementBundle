@@ -57,6 +57,11 @@ class MenuItem extends AbstractNode implements NodeInterface
      */
     private $locale;
 
+    public function __clone()
+    {
+        $this->id = null;
+    }
+
     /**
      * @return string
      */

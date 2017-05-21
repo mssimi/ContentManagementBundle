@@ -157,14 +157,21 @@ For more info check these links
  * https://github.com/dustin10/VichUploaderBundle
  * https://github.com/liip/LiipImagineBundle
  
- Install assets
- 
- ``` bash
- $ php bin/console asset:install 
- ```
- 
- Init DB
+Install assets
  
 ``` bash
-$ bin/console doctrine:phpcr:init:dbal 
+$ php bin/console asset:install 
+```
+ 
+Init DB
+ 
+``` bash
+$ php bin/console doctrine:phpcr:init:dbal 
+$ php bin/console doctrine:phpcr:repository:init
+```
+
+If logged as user with ROLE_CMS, all blocks, menus, sliders will show quick edit button. Add this css file to your front base.html.twig or provide your own css for edit box.
+
+``` twig
+<link rel="stylesheet" href="{{ asset('bundles/contentmanagement/css/edit.css') }}">
 ```

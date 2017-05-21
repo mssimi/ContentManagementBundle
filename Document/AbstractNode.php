@@ -17,7 +17,7 @@ class AbstractNode
      *
      * @PHPCR\Id
      */
-    private $id;
+    protected $id;
 
     /**
      * @var object
