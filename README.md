@@ -13,7 +13,7 @@ This bundle provides basic content management tools for your symfony project. Yo
 * Blogs/Articles
 * Slider(Slideshow)
 
-Bundle contains CRUD actions as well as basic administration templates, which you can override. Bundle also provides simple "RouterController" for your pages.
+Bundle contains CRUD actions as well as basic administration templates, which you can override (http://symfony.com/doc/current/templating/overriding.html). Bundle also provides simple "RouterController" for your pages.
 
 ### Installation
 
