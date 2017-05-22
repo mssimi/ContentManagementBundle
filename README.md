@@ -41,7 +41,6 @@ class AppKernel extends Kernel
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
-            new FM\ElfinderBundle\FMElfinderBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
         );
@@ -56,8 +55,6 @@ Routing - add this lines to your app/config/routing.yml. Warning!!! routing_page
 content_management_admin:
     resource: "@ContentManagementBundle/Resources/config/routing_admin.yml"
     prefix:   /admin/
-elfinder:
-     resource: "@FMElfinderBundle/Resources/config/routing.yml"
 _liip_imagine:
     resource: "@LiipImagineBundle/Resources/config/routing.xml"
 fos_js_routing:
@@ -96,27 +93,10 @@ doctrine_phpcr:
         locale_fallback: hardcoded
         default_locale: en
 
-fm_elfinder:
-    instances:
-        default:
-            locale: "%locale%" # defaults to current request locale
-            editor: ckeditor # other options are tinymce, tinymce4, fm_tinymce, form, simple, custom
-            include_assets: true # disable if you want to manage loading of javascript and css assets manually
-            connector:
-                roots:       # at least one root must be defined, defines root filemanager directories
-                    uploads:
-                        driver: LocalFileSystem
-                        path: uploads
-                        upload_allow: ['image/png', 'image/jpg', 'image/jpeg']
-                        upload_deny: ['all']
-                        upload_max_size: 32M # also file upload sizes restricted in php.ini
-
 ivory_ck_editor:
     default_config: default
     configs:
         default:
-            filebrowserBrowseRoute: elfinder
-            filebrowserBrowseRouteParameters: []
             contentsCss: ['//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css']
             allowedContent: true
             autoParagraph: false
@@ -152,10 +132,12 @@ liip_imagine:
 For more info check these links
  
  * http://symfony.com/doc/master/cmf/bundles/phpcr_odm/introduction.html
- * https://github.com/helios-ag/FMElfinderBundle
  * https://github.com/egeloen/IvoryCKEditorBundle
  * https://github.com/dustin10/VichUploaderBundle
  * https://github.com/liip/LiipImagineBundle
+ 
+ Highly recommend bundle, if you want support for uploading images to your ckeditor
+ * https://github.com/helios-ag/FMElfinderBundle
  
 Install assets
  
@@ -175,3 +157,6 @@ If logged as user with ROLE_CMS, all blocks, menus, sliders will show quick edit
 ``` twig
 <link rel="stylesheet" href="{{ asset('bundles/contentmanagement/css/edit.css') }}">
 ```
+
+Demo here
+https://github.com/mssimi/ContentManagementDemo
