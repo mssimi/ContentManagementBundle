@@ -24,35 +24,35 @@ class AbstractNode
      *
      * @PHPCR\ParentDocument
      */
-    private $parent;
+    protected $parent;
 
     /**
      * @var \DateTime
      *
      * @PHPCR\Field(type="date", property="jcr:created")
      */
-    private $created;
+    protected $created;
 
     /**
      * @var string
      *
      * @PHPCR\Field(type="string", property="jcr:createdBy")
      */
-    private $createdBy;
+    protected $createdBy;
 
     /**
      * @var \DateTime
      *
      * @PHPCR\Field(type="date", property="jcr:lastModified")
      */
-    private $lastModified;
+    protected $lastModified;
 
     /**
      * @var string
      *
      * @PHPCR\Field(type="string", property="jcr:lastModifiedBy")
      */
-    private $lastModifiedBy;
+    protected $lastModifiedBy;
 
     /**
      * @return string

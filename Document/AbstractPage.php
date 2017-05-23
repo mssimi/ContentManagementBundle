@@ -17,48 +17,48 @@ class AbstractPage extends AbstractNode
      *
      * @PHPCR\Nodename
      */
-    private $name;
+    protected $name;
 
     /**
      *
      * @PHPCR\Children
      */
-    private $children;
+    protected $children;
 
     /**
      * @var boolean
      *
      * @PHPCR\Field(type="boolean")
      */
-    private $publish = true;
+    protected $publish = true;
 
     /**
      * @var string
      *
      * @PHPCR\Field(type="string", translated=true, nullable=true)
      */
-    private $metaKeywords;
+    protected $metaKeywords;
 
     /**
      * @var string
      *
      * @PHPCR\Field(type="string", translated=true)
      */
-    private $heading;
+    protected $heading;
 
     /**
      * @var string
      *
      * @PHPCR\Field(type="string", translated=true, nullable=true)
      */
-    private $content;
+    protected $content;
 
     /**
      * @var string
      *
      * @PHPCR\Locale
      */
-    private $locale;
+    protected $locale;
 
     /**
      * @return string

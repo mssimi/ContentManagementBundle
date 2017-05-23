@@ -1,20 +1,14 @@
 common:
     new: "New"
-    newDir: "New directory"
     edit: "Edit"
     remove: "Remove"
     submit: "Submit"
     back: "Back"
     tools: "Tools"
     list: "List"
-node:
     id: "Id"
-    name: "Node name"
-    content: "Content"
-    link: "Link"
-    label: "Label"
+    nodeName: "Node name"
     childrenCount: "Count"
-    published: "published"
 block:
     pageHeading: "Block"
     name: "Name"
@@ -37,11 +31,8 @@ page:
     heading: "Heading"
     content: "Content"
     metaKeywords: "Meta keywords"
-    metaDescription: "Meta description"
     publish: "Publish"
     imageFile: "Upload image"
-    template: "Template"
-    templateSimple: "Simple"
     link: "Link"
 blog:
     pageHeading: "Blog"

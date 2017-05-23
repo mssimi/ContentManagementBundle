@@ -53,7 +53,7 @@ class SliderImage extends AbstractImage
      */
     public function getName(): ?string
     {
-        return substr($this->getId(), strrpos($this->getId(), '/') + 1);
+        return substr($this->id, strrpos($this->id, '/') + 1);
     }
 
     /**
@@ -72,7 +72,7 @@ class SliderImage extends AbstractImage
         $this->imageFile = $imageFile;
 
         if ($imageFile) {
-            $this->setLastModified(new \DateTime());
+            $this->lastModified = new \DateTime();
         }
     }
 

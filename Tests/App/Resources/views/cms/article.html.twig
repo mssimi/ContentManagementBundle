@@ -2,7 +2,6 @@
 
 {% block title %}{{ article.heading}}{% endblock %}
 {% block metaKeywords %}{% if article.metaKeywords is not null %}{{ article.metaKeywords }}{% else %}{{ parent() }}{% endif %}{% endblock metaKeywords %}
-{% block metaDescription %}{% if article.metaDescription is not null %}{{ article.metaDescription }}{% else %}{{ parent() }}{% endif %}{% endblock metaDescription %}
 
 {% block content %}
     <div class="container">

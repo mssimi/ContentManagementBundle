@@ -67,7 +67,7 @@ class MenuItem extends AbstractNode implements NodeInterface
      */
     public function getName(): ?string
     {
-        return substr($this->getId(), strrpos($this->getId(), '/') + 1);
+        return substr($this->id, strrpos($this->id, '/') + 1);
     }
 
     /**
@@ -75,8 +75,8 @@ class MenuItem extends AbstractNode implements NodeInterface
      */
     public function getMenuId(): ?string
     {
-        preg_match('/\/cms\/menu\/(.*?)\//', $this->getParent()->getId(), $match);
-        return $match ? '/cms/menu/' . $match[1] : $this->getParent()->getId();
+        preg_match('/\/cms\/menu\/(.*?)\//', $this->parent->getId(), $match);
+        return $match ? '/cms/menu/' . $match[1] : $this->parent->getId();
     }
 
     /**

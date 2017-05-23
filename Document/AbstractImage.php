@@ -16,7 +16,7 @@ class AbstractImage extends AbstractNode
      *
      * @PHPCR\Locale
      */
-    private $locale;
+    protected $locale;
 
     /**
      * @return string

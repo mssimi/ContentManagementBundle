@@ -43,7 +43,7 @@ class Article extends AbstractPage
         $this->imageFile = $imageFile;
 
         if ($imageFile) {
-            $this->setLastModified(new \DateTime());
+            $this->lastModified = new \DateTime();
         }
     }
 

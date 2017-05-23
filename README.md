@@ -136,8 +136,12 @@ For more info check these links
  * https://github.com/dustin10/VichUploaderBundle
  * https://github.com/liip/LiipImagineBundle
  
- Highly recommend bundle, if you want support for uploading images to your ckeditor
+Highly recommend bundle, if you want support for uploading images to your ckeditor
  * https://github.com/helios-ag/FMElfinderBundle
+ 
+Enable caching is also higly recommended
+
+ * http://symfony.com/doc/current/cmf/cookbook/database/doctrine_cache.html
  
 Install assets
  
