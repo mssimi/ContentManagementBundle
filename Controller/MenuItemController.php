@@ -100,7 +100,7 @@ class MenuItemController extends Controller
     /**
      * remove an existing Menu item entity.
      *
-     * @Route("/remove/{id}", name="mssimi_menu_item_remove", options={"expose" = true} , requirements={"id"="/cms/page.*"})
+     * @Route("/remove/{id}", name="mssimi_menu_item_remove", options={"expose" = true} , requirements={"id"="/cms/menu.*"})
      * @Method({"GET", "POST"})
      * @param MenuItem $menu
      * @return Response|\Symfony\Component\HttpFoundation\RedirectResponse
