@@ -1,0 +1,8 @@
+{% extends "knp_menu.html.twig" %}
+
+{% set options = options|merge({'currentClass': 'active'}) %}
+
+{% block list %}
+    {% set listAttributes = item.childrenAttributes|merge({ class: 'list-unstyled' }) %}
+    {{ parent() }}
+{% endblock %}
