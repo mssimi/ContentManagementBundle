@@ -102,17 +102,18 @@ class MenuItemController extends Controller
      *
      * @Route("/remove/{id}", name="mssimi_menu_item_remove", options={"expose" = true} , requirements={"id"="/cms/menu.*"})
      * @Method({"GET", "POST"})
-     * @param MenuItem $menu
+     * @param MenuItem $menuItem
      * @return Response|\Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function removeAction(MenuItem $menu)
+    public function removeAction(MenuItem $menuItem)
     {
+        $menuId = $menuItem->getMenuId();
         $dm = $this->get('doctrine_phpcr')->getManager();
-        $dm->remove($menu);
+        $dm->remove($menuItem);
         $dm->flush();
 
         $this->addFlash('success', 'fleshMessage.common.entityRemoved');
-        return $this->redirectToRoute('mssimi_menu_index');
+        return $this->redirectToRoute('mssimi_menu_item_index', array('id' => $menuId));
     }
 
     /**

@@ -6,7 +6,7 @@
                 <div class="pull-right">
                     {{ edit_button_render(path('mssimi_menu_item_edit', {'id' : menu.id })) }}
                     <a class="btn btn-default" href="{{ path('mssimi_menu_item_new', {'id' : menu.id}) }}">{{ ('common.new')|trans }}</a>
-                    <a href="{{ path('mssimi_menu_remove', {'id' : menu.id }) }}" class="btn btn-danger" data-toggle="confirmation">{{ ('common.remove')|trans }}</a>
+                    <a href="{{ path('mssimi_menu_item_remove', {'id' : menu.id }) }}" class="btn btn-danger" data-toggle="confirmation">{{ ('common.remove')|trans }}</a>
                 </div>
             </div>
             {% if menu.children|length %}
