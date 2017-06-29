@@ -30,7 +30,7 @@ class SliderImageType extends AbstractType
             ))
             ->add('imageFile', VichImageType::class, array(
                 'label' => 'page.imageFile',
-                'download_link' => false,
+                'download_uri' => false,
                 'allow_delete' => false,
                 'required' => is_null($builder->getData()->getId()),
                 'attr' => array(
