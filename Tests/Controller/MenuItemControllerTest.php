@@ -56,7 +56,7 @@ class MenuItemControllerTest extends WebTestCase
         $form->setValues(array(
             'menu_item[label]' => "menuItemCreate label",
             'menu_item[link]' => "https://google.com",
-            'menu_item[linkType]' => "url",
+            'menu_item[linkType]' => "menu.linkTypeUrl",
         ));
         $crawler = $client->submit($form);
         $this->assertEquals(1, $crawler->filter('ul.sortable')->count());
