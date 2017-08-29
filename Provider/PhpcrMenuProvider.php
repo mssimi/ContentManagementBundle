@@ -143,7 +143,7 @@ class PhpcrMenuProvider implements MenuProviderInterface
      */
     public function get($name, array $options = [])
     {
-        $menu = $this->find($name, true);
+        $menu = $this->find($name, false);
 
         $menuItem = $this->loader->load($menu);
         if (!$menuItem) {
