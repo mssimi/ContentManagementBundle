@@ -10,6 +10,7 @@ use mssimi\ContentManagementBundle\Form\MenuItemType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -168,6 +169,6 @@ class MenuItemController extends Controller
             $response['suggestions'][] = ['value' => $menu->getId(), 'data' => $menu->getId()];
         }
 
-        return $this->json($response);
+        return new JsonResponse($response);
     }
 }

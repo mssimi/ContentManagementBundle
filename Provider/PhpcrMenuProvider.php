@@ -58,7 +58,7 @@ class PhpcrMenuProvider implements MenuProviderInterface
     private $managerRegistry;
 
     /**
-     * @param LoaderInterface $loader Factory for the menu items
+     * @param LoaderInterface $loader Factory for the menu itemzzs
      * @param ManagerRegistry $managerRegistry manager registry service to use in conjunction
      *                                         with the manager name to load the load menu root document
      * @param string $menuRoot root id of the menu
@@ -143,9 +143,14 @@ class PhpcrMenuProvider implements MenuProviderInterface
      */
     public function get($name, array $options = [])
     {
-        $menu = $this->find($name, false);
+        $menu = $this->find($name, true);
 
-        return $this->loader->load($menu);
+        $menuItem = $this->loader->load($menu);
+        if (!$menuItem) {
+            throw new \InvalidArgumentException("Menu at '$name' is misconfigured (f.e. the route might be incorrect) and could therefore not be instanciated");
+        }
+
+        return $menuItem;
     }
 
     /**
