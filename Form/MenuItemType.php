@@ -34,7 +34,8 @@ class MenuItemType extends AbstractType
                 ),
                 'attr' => array(
                     'class' => ''
-                )
+                ),
+                'choices_as_values' => true,
             ))
             ->add('link', null, array(
                 'label' => 'menu.link',
