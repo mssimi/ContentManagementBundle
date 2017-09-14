@@ -4,6 +4,7 @@ declare(strict_types = 1);
 namespace mssimi\ContentManagementBundle\Document;
 
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @PHPCR\Document(repositoryClass="mssimi\ContentManagementBundle\Repository\BlockRepository", translator="attribute", mixins={"mix:created", "mix:lastModified"})
@@ -22,6 +23,7 @@ class Block
      * @var string
      *
      * @PHPCR\Nodename
+     * @Assert\NotBlank()
      */
     private $name;
 
@@ -39,6 +41,7 @@ class Block
      * @var string
      *
      * @PHPCR\Field(type="string", translated=true)
+     * @Assert\NotBlank()
      */
     private $content;
 
