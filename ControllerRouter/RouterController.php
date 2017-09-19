@@ -15,7 +15,7 @@ class RouterController extends Controller
     /**
      * Displays a form to edit an existing Page entity.
      *
-     * @Route("{id}", name="mssimi_page_render", options={"expose" = true} , requirements={"id"=".+"})
+     * @Route("{id}", name="mssimi_page_render", options={"expose" = true} , requirements={"id"="(?!\/).+"})
      * @Method({"GET"})
      * @param $id
      * @param Request $request
