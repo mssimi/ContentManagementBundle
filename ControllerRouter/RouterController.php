@@ -5,7 +5,6 @@ namespace mssimi\ContentManagementBundle\ControllerRouter;
 use mssimi\ContentManagementBundle\Document\Article;
 use mssimi\ContentManagementBundle\Document\Blog;
 use mssimi\ContentManagementBundle\Document\Page;
-use PHPCR\Util\PathHelper;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -16,7 +15,7 @@ class RouterController extends Controller
     /**
      * Displays a form to edit an existing Page entity.
      *
-     * @Route("{id}", name="mssimi_page_render", options={"expose" = true} , requirements={"id"="(?!\/).+"})
+     * @Route("{id}", name="mssimi_page_render", options={"expose" = true} , requirements={"id"="(?!\/)[^:]+"})
      * @Method({"GET"})
      * @param $id
      * @param Request $request
@@ -25,14 +24,7 @@ class RouterController extends Controller
     public function routerAction($id, Request $request)
     {
         $dm = $this->get('doctrine_phpcr')->getManager();
-
-        $path = '/cms/page/' . rtrim($id,'/');
-
-        if(!PathHelper::assertValidAbsolutePath($path, false, false)){
-            throw $this->createNotFoundException();
-        }
-
-        $abstractPage = $dm->find(null, $path);
+        $abstractPage = $dm->find(null, '/cms/page/' . rtrim($id,'/'));
 
         if(!$abstractPage || !$abstractPage->getPublish()){
             throw $this->createNotFoundException();
