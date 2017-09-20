@@ -24,7 +24,7 @@ class RouterController extends Controller
     public function routerAction($id, Request $request)
     {
         $dm = $this->get('doctrine_phpcr')->getManager();
-        $abstractPage = $dm->find(null, '/cms/page/' . $id);
+        $abstractPage = $dm->find(null, '/cms/page/' . rtrim($id,'/'));
 
         if(!$abstractPage || !$abstractPage->getPublish()){
             throw $this->createNotFoundException();
