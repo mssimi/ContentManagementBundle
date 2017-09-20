@@ -5,6 +5,7 @@ namespace mssimi\ContentManagementBundle\ControllerRouter;
 use mssimi\ContentManagementBundle\Document\Article;
 use mssimi\ContentManagementBundle\Document\Blog;
 use mssimi\ContentManagementBundle\Document\Page;
+use PHPCR\Util\PathHelper;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -24,7 +25,14 @@ class RouterController extends Controller
     public function routerAction($id, Request $request)
     {
         $dm = $this->get('doctrine_phpcr')->getManager();
-        $abstractPage = $dm->find(null, '/cms/page/' . rtrim($id,'/'));
+
+        $path = '/cms/page/' . rtrim($id,'/');
+
+        if(!PathHelper::assertValidAbsolutePath($path, false, false)){
+            throw $this->createNotFoundException();
+        }
+
+        $abstractPage = $dm->find(null, $path);
 
         if(!$abstractPage || !$abstractPage->getPublish()){
             throw $this->createNotFoundException();
