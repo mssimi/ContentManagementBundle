@@ -15,7 +15,7 @@ class RouterController extends Controller
     /**
      * Displays a form to edit an existing Page entity.
      *
-     * @Route("{id}", name="mssimi_page_render", options={"expose" = true} , requirements={"id"=".+"})
+     * @Route("{id}", name="mssimi_page_render", options={"expose" = true} , requirements={"id"="(?!\/)[^:]+"})
      * @Method({"GET"})
      * @param $id
      * @param Request $request
@@ -24,7 +24,7 @@ class RouterController extends Controller
     public function routerAction($id, Request $request)
     {
         $dm = $this->get('doctrine_phpcr')->getManager();
-        $abstractPage = $dm->find(null, '/cms/page/' . $id);
+        $abstractPage = $dm->find(null, '/cms/page/' . rtrim($id,'/'));
 
         if(!$abstractPage || !$abstractPage->getPublish()){
             throw $this->createNotFoundException();
