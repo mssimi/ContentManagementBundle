@@ -138,11 +138,11 @@ class MenuItemController extends Controller
 
         $parent = $dm->find(null, $data['parent_id']);
 
-        if(isset($data['before']) && $data['before']){
-            $dm->reorder($parent, $childName, $data['before'], 0);
-        }
-        elseif(isset($data['after']) && $data['after']){
+        if(isset($data['after']) && $data['after']){
             $dm->reorder($parent, $childName, $data['after'], 1);
+        }
+        elseif(isset($data['before']) && $data['before']){
+            $dm->reorder($parent, $childName, $data['before'], 0);
         }
 
         $dm->flush();
