@@ -131,11 +131,11 @@ class SliderImageController extends Controller
         $child = $dm->find(null, $data['id']);
         $parent = $dm->find(null, $data['parent_id']);
 
-        if(isset($data['before']) && $data['before']){
-            $dm->reorder($parent, $child->getName(), $data['before'], 0);
-        }
-        elseif(isset($data['after']) && $data['after']){
+        if(isset($data['after']) && $data['after']){
             $dm->reorder($parent, $child->getName(), $data['after'], 1);
+        }
+        elseif(isset($data['before']) && $data['before']){
+            $dm->reorder($parent, $child->getName(), $data['before'], 0);
         }
 
         $dm->flush();
